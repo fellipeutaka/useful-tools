@@ -1,34 +1,77 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Useful Tools
 
-## Getting Started
+<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/fellipeutaka/useful-tools?style=for-the-badge) !-->
+<!-- ![GitHub language count](https://img.shields.io/github/languages/count/fellipeutaka/useful-tools?style=for-the-badge) !-->
+<!-- ![GitHub forks](https://img.shields.io/github/forks/fellipeutaka/useful-tools?style=for-the-badge) !-->
+<!-- ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/fellipeutaka/useful-tools?style=for-the-badge) !-->
+<!-- ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/fellipeutaka/useful-tools?style=for-the-badge) !-->
 
-First, run the development server:
+<!-- <img src="./doc/demo.gif" alt="Pomodoro GIF"> !-->
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- [x] QR Code
+	- [ ] Download QR Code
+	- [ ] Share on social medias (Twitter, WhatsApp...)
+- [x] Random Color
+	- [ ] Keyboard shorcuts
+- [ ] Color picker
+- [ ] Password generator
+- [ ] Translate
+- [ ] Barcode Reader
+- [ ] File converter (images, videos, audios, documents)
+- [ ] Video downloader (at least YouTube)
+- [ ] Convert Case
+- [ ] Unit converter
+- [ ] Currency converter
+- [ ] Weather
+- [ ] Time
+	- [ ] Local
+	- [ ] Anywhere
+- [ ] Calculator
+	- [ ] Cientific
+- [ ] Stopwatch
+- [ ] Timer
+- [ ] Alarm
+- [ ] Cryptography (encoder, decoder)
+	- [ ] Binary
+	- [ ] Morse code
+	- [ ] Hex
+	- [ ] Caesar's cipher
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## 🛠 Technologies Used
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [React](https://reactjs.org/) - version 18.2.0
+- [TypeScript](https://www.typescriptlang.org/) - version 4.7.4
+- [Next.js](https://nextjs.org/) - version 12.1.6
+- [Stitches](https://stitches.dev/) - version 1.2.8
+- [ESLint](https://eslint.org/) - version 8.18.0
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## 📫 Contributing to Useful Tools
 
-## Learn More
+To contribute to Useful Tools, follow these steps:
 
-To learn more about Next.js, take a look at the following resources:
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch_name>`.
+3. Make your changes and commit them: `git commit -m '<commit_message>'`
+4. Push to original branch: `git push origin <project_name> / <local>`
+5. Create the pull request.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Or, see the GitHub documentation on [how to create a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🤝 Collaborators
 
-## Deploy on Vercel
+We thank the following people who contributed to this project:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/FellipeUtaka">
+        <img src="https://github.com/fellipeutaka.png" width="100px;" alt="Fellipe Utaka display photo"/><br>
+        <sub>
+          <b>Fellipe Utaka</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>

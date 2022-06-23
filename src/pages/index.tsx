@@ -14,6 +14,7 @@ export default function Home() {
         <h1>Hello World</h1>
         <Link href="/tools/qr-code">QR Code</Link>
         <Link href="/tools/random-color">Random Color</Link>
+        <Link href="/tools/color-picker">Color Picker</Link>
       </main>
     </Layout>
   );

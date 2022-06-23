@@ -1,10 +1,10 @@
 # Useful Tools
 
-<!-- ![GitHub repo size](https://img.shields.io/github/repo-size/fellipeutaka/useful-tools?style=for-the-badge) !-->
-<!-- ![GitHub language count](https://img.shields.io/github/languages/count/fellipeutaka/useful-tools?style=for-the-badge) !-->
-<!-- ![GitHub forks](https://img.shields.io/github/forks/fellipeutaka/useful-tools?style=for-the-badge) !-->
-<!-- ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/fellipeutaka/useful-tools?style=for-the-badge) !-->
-<!-- ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/fellipeutaka/useful-tools?style=for-the-badge) !-->
+![GitHub repo size](https://img.shields.io/github/repo-size/fellipeutaka/useful-tools?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/fellipeutaka/useful-tools?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/fellipeutaka/useful-tools?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/fellipeutaka/useful-tools?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/fellipeutaka/useful-tools?style=for-the-badge)
 
 <!-- <img src="./doc/demo.gif" alt="Pomodoro GIF"> !-->
 

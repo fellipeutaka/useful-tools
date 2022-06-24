@@ -11,33 +11,33 @@
 ## Features
 
 - [x] QR Code
-	- [ ] Download QR Code
-	- [ ] Share on social medias (Twitter, WhatsApp...)
+  - [ ] Download QR Code
+  - [ ] Share on social medias (Twitter, WhatsApp...)
 - [x] Random Color
-	- [ ] Keyboard shorcuts
+  - [ ] Keyboard shorcuts
 - [ ] Color picker
 - [ ] Password generator
 - [ ] Translate
 - [ ] Barcode Reader
 - [ ] File converter (images, videos, audios, documents)
-- [ ] Video downloader (at least YouTube)
+- [x] Video downloader (at least YouTube)
 - [ ] Convert Case
 - [ ] Unit converter
 - [ ] Currency converter
 - [ ] Weather
 - [ ] Time
-	- [ ] Local
-	- [ ] Anywhere
+  - [ ] Local
+  - [ ] Anywhere
 - [ ] Calculator
-	- [ ] Cientific
+  - [ ] Cientific
 - [ ] Stopwatch
 - [ ] Timer
 - [ ] Alarm
 - [ ] Cryptography (encoder, decoder)
-	- [ ] Binary
-	- [ ] Morse code
-	- [ ] Hex
-	- [ ] Caesar's cipher
+  - [ ] Binary
+  - [ ] Morse code
+  - [ ] Hex
+  - [ ] Caesar's cipher
 
 ## 🛠 Technologies Used
 

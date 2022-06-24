@@ -1,19 +1,16 @@
 import Layout from "@useful-tools/components/Layout";
-import Link from "next/link";
+import VideoDownloaderComponent from "@useful-tools/components/tools/VideoDownloader";
 
 const seo = {
-  title: "Useful Tools",
+  title: "Video Downloader | Useful Tools",
   description: "The best and usefuls just for you",
   keywords: "tools, useful",
 };
 
-export default function Home() {
+export default function RandomColor() {
   return (
     <Layout seo={seo}>
-      <main>
-        <h1>Home</h1>
-        <Link href="/tools">Tools</Link>
-      </main>
+      <VideoDownloaderComponent />
     </Layout>
   );
 }

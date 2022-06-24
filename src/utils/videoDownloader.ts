@@ -4,7 +4,9 @@ export async function videoDownloader(url: string) {
   try {
     const page = await getPage();
     await Promise.all([
-      page.goto("https://en.savefrom.net/163/"),
+      page.goto("https://en.savefrom.net/163/", {
+        waitUntil: "domcontentloaded",
+      }),
       page.waitForSelector("#sf_url"),
       page.type("#sf_url", url, { delay: 0 }),
       page.waitForSelector(".media-result"),

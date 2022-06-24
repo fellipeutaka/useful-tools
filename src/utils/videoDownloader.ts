@@ -6,7 +6,6 @@ export async function videoDownloader(url: string) {
     await page.goto("https://en.savefrom.net/163/", {
       waitUntil: "domcontentloaded",
     });
-    await page.waitForSelector("#sf_url");
     await page.type("#sf_url", url, { delay: 0 });
     await page.waitForSelector(".media-result");
 

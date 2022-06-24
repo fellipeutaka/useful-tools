@@ -3,14 +3,12 @@ import { getPage } from "@useful-tools/lib/chromium";
 export async function videoDownloader(url: string) {
   try {
     const page = await getPage();
-    await Promise.all([
-      page.goto("https://en.savefrom.net/163/", {
-        waitUntil: "domcontentloaded",
-      }),
-      page.waitForSelector("#sf_url"),
-      page.type("#sf_url", url, { delay: 0 }),
-      page.waitForSelector(".media-result"),
-    ]);
+    await page.goto("https://en.savefrom.net/163/", {
+      waitUntil: "domcontentloaded",
+    });
+    await page.waitForSelector("#sf_url");
+    await page.type("#sf_url", url, { delay: 0 });
+    await page.waitForSelector(".media-result");
 
     const result = await page.evaluate(() => {
       const thumbnail =
@@ -39,6 +37,6 @@ export async function videoDownloader(url: string) {
     });
     return result;
   } catch (error) {
-    return error;
+    throw error;
   }
 }

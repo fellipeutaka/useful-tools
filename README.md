@@ -20,7 +20,7 @@
 - [ ] Translate
 - [ ] Barcode Reader
 - [ ] File converter (images, videos, audios, documents)
-- [x] Video downloader (at least YouTube)
+- [ ] Video downloader (at least YouTube)
 - [ ] Convert Case
 - [ ] Unit converter
 - [ ] Currency converter

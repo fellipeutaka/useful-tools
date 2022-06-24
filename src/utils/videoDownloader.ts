@@ -3,6 +3,9 @@ import { getPage } from "@useful-tools/lib/chromium";
 export async function videoDownloader(url: string) {
   try {
     const page = await getPage();
+    await page.setUserAgent(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.124 Safari/537.36 Edg/102.0.1245.44"
+    );
     await page.goto("https://en.savefrom.net/163/", {
       waitUntil: "domcontentloaded",
     });

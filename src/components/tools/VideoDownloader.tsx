@@ -46,7 +46,7 @@ export default function VideoDownloader() {
           <h2>{video.info.title}</h2>
           <p>{video.info.duration}</p>
           <Image
-            src={video.info.thub}
+            src={video.info.thumbnail}
             alt={video.info.title}
             width={480}
             height={360}

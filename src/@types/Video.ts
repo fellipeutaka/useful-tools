@@ -1,6 +1,6 @@
 type VideoInfo = {
   title: string;
-  thub: string;
+  thumbnail: string;
   duration: string;
 };
 

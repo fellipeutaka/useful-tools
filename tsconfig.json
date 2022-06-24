@@ -19,6 +19,7 @@
       "@useful-tools/stitches": ["./stitches.config.ts"],
       "@useful-tools/components/*": ["./src/components/*"],
       "@useful-tools/utils/*": ["./src/utils/*"],
+      "@useful-tools/lib/*": ["./src/lib/*"],
       "@useful-tools/types/*": ["./src/@types/*"]
     }
   },

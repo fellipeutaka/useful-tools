@@ -11,8 +11,8 @@
 ## Features
 
 - [x] QR Code
-  - [ ] Download QR Code
-  - [ ] Share on social medias (Twitter, WhatsApp...)
+  - [x] Download QR Code
+  - [x] Share on social medias (Twitter, WhatsApp...)
 - [x] Random Color
   - [ ] Keyboard shorcuts
 - [ ] Color picker

@@ -1,6 +1,8 @@
 import { styled } from "@useful-tools/stitches";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 import { QRCodeSVG } from "qrcode.react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Container = styled("main", {
   width: "100%",
@@ -9,8 +11,23 @@ const Container = styled("main", {
   placeItems: "center",
 });
 
+const QRCodeContainer = styled("section", {
+  padding: 12,
+  backgroundColor: "White",
+  borderRadius: 8,
+});
+
 export default function QRCode() {
   const [inputValue, setInputValue] = useState("");
+  const QRCodeRef = useRef<HTMLDivElement>(null);
+
+  function handleDownloadQRCode() {
+    if (QRCodeRef.current) {
+      domtoimage.toBlob(QRCodeRef.current).then((blob) => {
+        saveAs(blob, "qrcode.png");
+      });
+    }
+  }
 
   return (
     <Container>
@@ -20,9 +37,26 @@ export default function QRCode() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div style={{ padding: 12, backgroundColor: "#fff", borderRadius: 8 }}>
+      <QRCodeContainer ref={QRCodeRef}>
         <QRCodeSVG width={250} height={250} value={inputValue} />
-      </div>
+      </QRCodeContainer>
+      <button type="button" onClick={handleDownloadQRCode}>
+        Download
+      </button>
+      <a
+        href={`https://wa.me/?text=${encodeURIComponent(inputValue)}`}
+        rel="noreferrer"
+        target="_blank"
+      >
+        Share on WhatsApp
+      </a>
+      <a
+        href={`http://twitter.com/share?text=${encodeURIComponent(inputValue)}`}
+        rel="noreferrer"
+        target="_blank"
+      >
+        Share on Twitter
+      </a>
     </Container>
   );
 }

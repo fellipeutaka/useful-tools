@@ -16,7 +16,7 @@
 - [x] Random Color
   - [x] Keyboard shorcuts
 - [x] Color picker
-- [ ] Password generator
+- [x] Password generator
 - [ ] Translate
 - [ ] Barcode Reader
 - [ ] File converter (images, videos, audios, documents)

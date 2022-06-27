@@ -15,6 +15,7 @@ export default function Tools() {
         <Link href="/tools/qr-code">QR Code</Link>
         <Link href="/tools/random-color">Random Color</Link>
         <Link href="/tools/color-picker">Color Picker</Link>
+        <Link href="/tools/stopwatch">Stopwatch</Link>
       </main>
     </Layout>
   );

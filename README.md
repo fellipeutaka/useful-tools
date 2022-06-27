@@ -15,7 +15,7 @@
   - [x] Share on social medias (Twitter, WhatsApp...)
 - [x] Random Color
   - [ ] Keyboard shorcuts
-- [ ] Color picker
+- [x] Color picker
 - [ ] Password generator
 - [ ] Translate
 - [ ] Barcode Reader
@@ -30,7 +30,7 @@
   - [ ] Anywhere
 - [ ] Calculator
   - [ ] Cientific
-- [ ] Stopwatch
+- [x] Stopwatch
 - [ ] Timer
 - [ ] Alarm
 - [ ] Cryptography (encoder, decoder)

@@ -14,12 +14,11 @@ export default function ColorPicker() {
   async function handleCopyColorToClipboard() {
     try {
       await navigator.clipboard.writeText(color);
-      // toast("Password copied to your clipboard");
+      // toast.success('Copied!')
     } catch (err) {
       console.log(err);
-      // toast("Error copying password to clipboard");
+      // toast.error("Error copying color to clipboard")
     }
-    // toast.success('Copied!')
   }
 
   return (

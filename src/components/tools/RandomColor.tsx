@@ -40,9 +40,14 @@ export default function RandomColor() {
     setColor("#" + Math.random().toString(16).slice(-6));
   }, []);
 
-  const handleCopyColorToClipboard = useCallback(() => {
-    navigator.clipboard.writeText(color);
-    // toast.success('Copied!')
+  const handleCopyColorToClipboard = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(color);
+      // toast.success('Copied!')
+    } catch (err) {
+      console.log(err);
+      // toast.error("Error copying color to clipboard")
+    }
   }, [color]);
 
   useEffect(() => {

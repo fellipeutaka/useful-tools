@@ -14,7 +14,7 @@
   - [x] Download QR Code
   - [x] Share on social medias (Twitter, WhatsApp...)
 - [x] Random Color
-  - [ ] Keyboard shorcuts
+  - [x] Keyboard shorcuts
 - [x] Color picker
 - [ ] Password generator
 - [ ] Translate

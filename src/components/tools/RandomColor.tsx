@@ -1,5 +1,5 @@
 import { styled } from "@useful-tools/stitches";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export default function RandomColor() {
   const [color, setColor] = useState("#000000");
@@ -36,14 +36,33 @@ export default function RandomColor() {
     return isDark;
   }
 
-  function handleGenerateNewColor() {
+  const handleGenerateNewColor = useCallback(() => {
     setColor("#" + Math.random().toString(16).slice(-6));
-  }
+  }, []);
 
-  function handleCopyColorToClipboard() {
+  const handleCopyColorToClipboard = useCallback(() => {
     navigator.clipboard.writeText(color);
     // toast.success('Copied!')
-  }
+  }, [color]);
+
+  useEffect(() => {
+    function keyboardListener(e: KeyboardEvent) {
+      const keyPressed = e.code;
+      const keys = {
+        Space: handleGenerateNewColor,
+        KeyC: handleCopyColorToClipboard,
+      };
+      if (keys[keyPressed as keyof typeof keys]) {
+        keys[keyPressed as keyof typeof keys]();
+      }
+    }
+
+    document.addEventListener("keydown", keyboardListener);
+
+    return () => {
+      document.removeEventListener("keydown", keyboardListener);
+    };
+  }, [handleGenerateNewColor, handleCopyColorToClipboard]);
 
   return (
     <Container

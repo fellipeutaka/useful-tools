@@ -11,8 +11,14 @@ const Container = styled("main", {
 export default function ColorPicker() {
   const [color, setColor] = useState("#000000");
 
-  function handleCopyColorToClipboard() {
-    navigator.clipboard.writeText(color);
+  async function handleCopyColorToClipboard() {
+    try {
+      await navigator.clipboard.writeText(color);
+      // toast("Password copied to your clipboard");
+    } catch (err) {
+      console.log(err);
+      // toast("Error copying password to clipboard");
+    }
     // toast.success('Copied!')
   }
 

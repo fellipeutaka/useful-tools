@@ -56,7 +56,7 @@ export default function Clock() {
     if (zoneName) {
       axios
         .get<GetTimezoneFetch>(
-          `http://worldtimeapi.org/api/timezone/${zoneName}`
+          `https://worldtimeapi.org/api/timezone/${zoneName}`
         )
         .then(({ data }) => {
           setDate(new Date(data.utc_datetime));
@@ -67,7 +67,7 @@ export default function Clock() {
         async (position) => {
           const { latitude, longitude } = position.coords;
           const { data } = await axios.get<GetRegionFetch>(
-            `http://api.timezonedb.com/v2.1/get-time-zone?key=TM9MTIVM375H&format=json&by=position&lat=${latitude}&lng=${longitude}`
+            `https://api.timezonedb.com/v2.1/get-time-zone?key=TM9MTIVM375H&format=json&by=position&lat=${latitude}&lng=${longitude}`
           );
           setDate(new Date(data.formatted));
           setCookie(undefined, "@useful-tools.zoneName", data.zoneName, {

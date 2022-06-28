@@ -25,12 +25,13 @@
 - [ ] Unit converter
 - [ ] Currency converter
 - [ ] Weather
-- [ ] Time
-  - [ ] Local
+- [x] Time
+  - [x] Local
   - [ ] Anywhere
 - [ ] Calculator
   - [ ] Cientific
 - [x] Stopwatch
+  - [ ] Web Workers
 - [ ] Timer
 - [ ] Alarm
 - [ ] Cryptography (encoder, decoder)

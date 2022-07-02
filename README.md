@@ -35,7 +35,7 @@
 - [ ] Timer
 - [ ] Alarm
 - [ ] Cryptography (encoder, decoder)
-  - [ ] Binary
+  - [x] Binary
   - [ ] Morse code
   - [ ] Hex
   - [ ] Caesar's cipher

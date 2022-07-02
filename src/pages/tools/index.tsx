@@ -18,6 +18,7 @@ export default function Tools() {
         <Link href="/tools/stopwatch">Stopwatch</Link>
         <Link href="/tools/password-generator">Password Generator</Link>
         <Link href="/tools/clock">Clock</Link>
+        <Link href="/tools/binary-code">Binary Code</Link>
       </main>
     </Layout>
   );

@@ -1006,6 +1006,13 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+hex-encoding@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/hex-encoding/-/hex-encoding-2.0.0.tgz#b9d64b2ee651212d34d9570a1aa5daf5ec729bf7"
+  integrity sha512-xaOFMh7Z6zmc2lHTkJfxCmrx0eRffYz4WeTyPppZq436tDDOIsqJ7yX/AAZIHUG6vwGpC7GYTagSPtVH7jlXrA==
+  dependencies:
+    uint8-encoding "^2.0.0"
+
 ignore@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.0.tgz#6d3bac8fa7fe0d45d9f9be7bac2fc279577e345a"
@@ -1767,6 +1774,11 @@ typescript@4.7.4:
   version "4.7.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.7.4.tgz#1a88596d1cf47d59507a1bcdfb5b9dfe4d488235"
   integrity sha512-C0WQT0gezHuw6AdY1M2jxUO83Rjf0HP7Sk1DtXj6j1EwkQNZrHAg2XPWlq62oqEhYvONq5pkC2Y9oPljWToLmQ==
+
+uint8-encoding@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/uint8-encoding/-/uint8-encoding-2.0.0.tgz#2307ada829bf36f5c8177a96b5461b11532d8401"
+  integrity sha512-MQcY+mEuLoHBqAawasWrFbZx1SqUoFU/wVYNGO6lsIxczeO+cNjA1djYHQM3GWU3SaEhKTfG3Z5cE2r+zR6tNw==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"

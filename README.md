@@ -37,7 +37,7 @@
 - [ ] Cryptography (encoder, decoder)
   - [x] Binary
   - [x] Morse code
-  - [ ] Hex
+  - [x] Hex
   - [ ] Caesar's cipher
 
 ## 🛠 Technologies Used

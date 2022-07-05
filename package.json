@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.5",
+    "hex-encoding": "^2.0.0",
     "morsee": "^1.0.9",
     "next": "12.1.6",
     "nookies": "^2.5.2",

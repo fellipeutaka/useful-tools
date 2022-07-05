@@ -20,6 +20,7 @@ export default function Tools() {
         <Link href="/tools/clock">Clock</Link>
         <Link href="/tools/binary-code">Binary Code</Link>
         <Link href="/tools/morse-code">Morse Code</Link>
+        <Link href="/tools/hex-code">Hex Code</Link>
       </main>
     </Layout>
   );

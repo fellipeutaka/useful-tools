@@ -12,7 +12,7 @@ export default function BinaryCode() {
   const [text, setText] = useState("");
   const [binary, setBinary] = useState("");
 
-  function handleCodeText() {
+  function handleCodeTextToBinaryCode() {
     const textToBinary = text
       .split("")
       .map((character) => {
@@ -24,7 +24,7 @@ export default function BinaryCode() {
     setText("");
   }
 
-  function handleDecodeBinary() {
+  function handleDecodeBinaryCodeToText() {
     const regExpArray = binary.match(/.{1,8}/g);
     if (regExpArray) {
       const result = regExpArray
@@ -48,7 +48,7 @@ export default function BinaryCode() {
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button type="button" onClick={handleCodeText}>
+          <button type="button" onClick={handleCodeTextToBinaryCode}>
             Code
           </button>
         </div>
@@ -59,7 +59,7 @@ export default function BinaryCode() {
             value={binary}
             onChange={(e) => setBinary(e.target.value)}
           />
-          <button type="button" onClick={handleDecodeBinary}>
+          <button type="button" onClick={handleDecodeBinaryCodeToText}>
             Decode
           </button>
         </div>

@@ -36,7 +36,7 @@
 - [ ] Alarm
 - [ ] Cryptography (encoder, decoder)
   - [x] Binary
-  - [ ] Morse code
+  - [x] Morse code
   - [ ] Hex
   - [ ] Caesar's cipher
 

@@ -19,6 +19,7 @@ export default function Tools() {
         <Link href="/tools/password-generator">Password Generator</Link>
         <Link href="/tools/clock">Clock</Link>
         <Link href="/tools/binary-code">Binary Code</Link>
+        <Link href="/tools/morse-code">Morse Code</Link>
       </main>
     </Layout>
   );

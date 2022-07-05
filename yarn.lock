@@ -169,6 +169,11 @@
   resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
   integrity sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==
 
+"@types/morsee@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@types/morsee/-/morsee-1.0.0.tgz#d1f400f45633c8cd24e7573a92f0d863e4b10e31"
+  integrity sha512-qm77J4g6ZfkkjnFop6EoR6x1Lc4+6jWcB8Yc8i6TFEXB9JCzEoVXXKkzTx+IzQBPsEe4u948uPad+nIqtKi8Qw==
+
 "@types/node@18.0.0":
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.0.0.tgz#67c7b724e1bcdd7a8821ce0d5ee184d3b4dd525a"
@@ -1265,6 +1270,11 @@ minimist@^1.2.0, minimist@^1.2.6:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
+
+morsee@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/morsee/-/morsee-1.0.9.tgz#56040e46ef64323f687ff1537e247733c3e3a5a9"
+  integrity sha512-8X8jKVUmZBHKpET9Ap6FPiwlAAASvv60M1K25/YwCU7veuj5MfYgaWX3oEPHtMGgC44IIkIKzyD73fduEKB/9g==
 
 ms@2.0.0:
   version "2.0.0"

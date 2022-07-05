@@ -32,6 +32,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@gykh/caesar-cipher@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@gykh/caesar-cipher/-/caesar-cipher-2.0.0.tgz#97dc2624fb7f60aae3c6324fe709e574635d5014"
+  integrity sha512-VWzP8U8hBXdMjoSl+DKTcp3A8BtqrkuUfQ34f40V1Z9berPpiSG+4Hl74hP7LaNl1PZeWtntQ2gVDbUfjiqlpA==
+
 "@humanwhocodes/config-array@^0.9.2":
   version "0.9.5"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.9.5.tgz#2cbaf9a89460da24b5ca6531b8bbfc23e1df50c7"

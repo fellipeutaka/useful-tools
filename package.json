@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gykh/caesar-cipher": "^2.0.0",
     "@stitches/react": "^1.2.8",
     "axios": "^0.27.2",
     "dom-to-image": "^2.6.0",

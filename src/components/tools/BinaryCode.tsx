@@ -53,7 +53,7 @@ export default function BinaryCode() {
           </button>
         </div>
         <div>
-          <label htmlFor="binary">Binary to decode: </label>
+          <label htmlFor="binary">Binary to decode:</label>
           <textarea
             id="binary"
             value={binary}

@@ -21,6 +21,7 @@ export default function Tools() {
         <Link href="/tools/binary-code">Binary Code</Link>
         <Link href="/tools/morse-code">Morse Code</Link>
         <Link href="/tools/hex-code">Hex Code</Link>
+        <Link href="/tools/caesar-cipher">Caesar&apos;s cipher</Link>
       </main>
     </Layout>
   );

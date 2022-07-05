@@ -34,11 +34,11 @@
   - [ ] Web Workers
 - [ ] Timer
 - [ ] Alarm
-- [ ] Cryptography (encoder, decoder)
+- [x] Cryptography (encoder, decoder)
   - [x] Binary
   - [x] Morse code
   - [x] Hex
-  - [ ] Caesar's cipher
+  - [x] Caesar's cipher
 
 ## 🛠 Technologies Used
 

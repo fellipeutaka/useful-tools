@@ -11,10 +11,14 @@
 ## Features
 
 - [x] QR Code
+
   - [x] Download QR Code
   - [x] Share on social medias (Twitter, WhatsApp...)
+
 - [x] Random Color
+
   - [x] Keyboard shorcuts
+
 - [x] Color picker
 - [x] Password generator
 - [ ] Translate
@@ -23,18 +27,49 @@
 - [ ] Video downloader (at least YouTube)
 - [ ] Convert Case
 - [ ] Unit converter
+
+  - [ ] Length
+  - [ ] Area
+  - [ ] Volume
+  - [ ] Temperature
+  - [ ] Mass
+  - [ ] Time
+  - [ ] Speed
+  - [ ] Pressure
+  - [ ] Frequency
+  - [ ] Energy
+  - [ ] Digital Storage
+  - [ ] Data Transfer Rate
+
 - [ ] Currency converter
 - [ ] Weather
+- [ ] Photo editor
+
+  - [ ] Crop images
+  - [ ] Remove background
+
+- [ ] Todo list
+
+  - [ ] Drag 'n drop
+
 - [x] Time
+
   - [x] Local
   - [ ] Anywhere
+
 - [ ] Calculator
+
   - [ ] Cientific
+
 - [x] Stopwatch
+
   - [ ] Web Workers
+
 - [ ] Timer
 - [ ] Alarm
+- [ ] Graph Maker
 - [x] Cryptography (encoder, decoder)
+
   - [x] Binary
   - [x] Morse code
   - [x] Hex

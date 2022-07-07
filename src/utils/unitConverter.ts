@@ -30,35 +30,39 @@ const length: Length = [
       },
       {
         name: "millimeter",
-        calculate: (kilometer: number) => kilometer * 10 ** 6,
+        calculate: (kilometer: number) => Math.round(kilometer * 10 ** 6),
       },
       {
         name: "micrometers",
-        calculate: (kilometer: number) => kilometer * 10 ** 9,
+        calculate: (kilometer: number) => Math.round(kilometer * 10 ** 9),
       },
       {
         name: "nanometers",
-        calculate: (kilometer: number) => kilometer * 10 ** 12,
+        calculate: (kilometer: number) => Math.round(kilometer * 10 ** 12),
       },
       {
         name: "mile",
-        calculate: (kilometer: number) => kilometer / 1.609,
+        calculate: (kilometer: number) =>
+          Number((kilometer / 1.609).toFixed(3)),
       },
       {
         name: "yard",
-        calculate: (kilometer: number) => kilometer * 1094,
+        calculate: (kilometer: number) => Number((kilometer * 1094).toFixed(3)),
       },
       {
         name: "foot",
-        calculate: (kilometer: number) => kilometer * 3280.84,
+        calculate: (kilometer: number) =>
+          Number((kilometer * 3280.84).toFixed(3)),
       },
       {
         name: "inch",
-        calculate: (kilometer: number) => kilometer * 39370,
+        calculate: (kilometer: number) =>
+          Number((kilometer * 39370).toFixed(3)),
       },
       {
         name: "nautical mile",
-        calculate: (kilometer: number) => kilometer / 1.852,
+        calculate: (kilometer: number) =>
+          Number((kilometer / 1.852).toFixed(3)),
       },
     ],
   },
@@ -77,31 +81,31 @@ const length: Length = [
       },
       {
         name: "micrometers",
-        calculate: (meter: number) => meter * 10 ** 6,
+        calculate: (meter: number) => Math.round(meter * 10 ** 6),
       },
       {
         name: "nanometers",
-        calculate: (meter: number) => meter * 10 ** 9,
+        calculate: (meter: number) => Math.round(meter * 10 ** 9),
       },
       {
         name: "mile",
-        calculate: (meter: number) => meter / 1609,
+        calculate: (meter: number) => Number((meter / 1609).toFixed(3)),
       },
       {
         name: "yard",
-        calculate: (meter: number) => meter * 1.094,
+        calculate: (meter: number) => Number((meter * 1.09361).toFixed(3)),
       },
       {
         name: "foot",
-        calculate: (meter: number) => meter * 3.281,
+        calculate: (meter: number) => Number((meter * 3.28084).toFixed(3)),
       },
       {
         name: "inch",
-        calculate: (meter: number) => meter * 39.37,
+        calculate: (meter: number) => Number((meter * 39.37).toFixed(3)),
       },
       {
         name: "nautical mile",
-        calculate: (meter: number) => meter / 1852,
+        calculate: (meter: number) => Number((meter / 1852).toFixed(3)),
       },
     ],
   },

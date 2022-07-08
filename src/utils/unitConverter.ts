@@ -1,15 +1,17 @@
-type LengthUnits =
-  | "kilometer"
-  | "meter"
-  | "centimeter"
-  | "millimeter"
-  | "micrometers"
-  | "nanometers"
-  | "mile"
-  | "yard"
-  | "foot"
-  | "inch"
-  | "nautical mile";
+export const lengthUnits = [
+  "kilometer",
+  "meter",
+  "centimeter",
+  "millimeter",
+  "micrometers",
+  "nanometers",
+  "mile",
+  "yard",
+  "foot",
+  "inch",
+  "nautical mile",
+] as const;
+export type LengthUnits = typeof lengthUnits[number];
 
 type Length = [
   {
@@ -106,6 +108,57 @@ const length: Length = [
       {
         name: "nautical mile",
         calculate: (meter: number) => Number((meter / 1852).toFixed(3)),
+      },
+    ],
+  },
+  {
+    from: "centimeter",
+    to: [
+      {
+        name: "kilometer",
+        calculate: (centimeter: number) => centimeter / 100000,
+      },
+      { name: "meter", calculate: (centimeter: number) => centimeter / 100 },
+      {
+        name: "centimeter",
+        calculate: (centimeter: number) => centimeter,
+      },
+      {
+        name: "millimeter",
+        calculate: (centimeter: number) => centimeter * 10,
+      },
+      {
+        name: "micrometers",
+        calculate: (centimeter: number) => centimeter * 10000,
+      },
+      {
+        name: "nanometers",
+        calculate: (centimeter: number) => centimeter * 1e7,
+      },
+      {
+        name: "mile",
+        calculate: (centimeter: number) =>
+          Number((centimeter / 160900).toFixed(3)),
+      },
+      {
+        name: "yard",
+        calculate: (centimeter: number) =>
+          Number((centimeter * 0.0109361).toFixed(3)),
+      },
+      {
+        name: "foot",
+        calculate: (centimeter: number) =>
+          Number((centimeter * 0.0328084).toFixed(3)),
+      },
+      {
+        name: "inch",
+        calculate: (centimeter: number) =>
+          Number((centimeter * 0.393701).toFixed(3)),
+      },
+      {
+        name: "nautical mile",
+        calculate: (centimeter: number) =>
+          Number((centimeter / 185200).toFixed(3)),
       },
     ],
   },

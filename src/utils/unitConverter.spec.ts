@@ -70,6 +70,40 @@ describe("Unit Converter", () => {
         toBe: 2.519,
       },
     ];
+    const centimeterTests = [
+      { expect: calculateLength("meter", "kilometer", 15), toBe: 0.015 },
+      { expect: calculateLength("meter", "meter", 100), toBe: 100 },
+      { expect: calculateLength("meter", "centimeter", 23), toBe: 2300 },
+      { expect: calculateLength("meter", "millimeter", 33), toBe: 33000 },
+      {
+        expect: calculateLength("meter", "micrometers", 2.0005),
+        toBe: 2000500,
+      },
+      {
+        expect: calculateLength("meter", "nanometers", 6.000005),
+        toBe: 6000005000,
+      },
+      {
+        expect: calculateLength("meter", "mile", 450),
+        toBe: 0.28,
+      },
+      {
+        expect: calculateLength("meter", "yard", 12),
+        toBe: 13.123,
+      },
+      {
+        expect: calculateLength("meter", "foot", 31),
+        toBe: 101.706,
+      },
+      {
+        expect: calculateLength("meter", "inch", 32),
+        toBe: 1259.84,
+      },
+      {
+        expect: calculateLength("meter", "nautical mile", 4665),
+        toBe: 2.519,
+      },
+    ];
     kilometerTests.forEach((test) => expect(test.expect).toBe(test.toBe));
     meterTests.forEach((test) => expect(test.expect).toBe(test.toBe));
   });

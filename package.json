@@ -31,7 +31,7 @@
     "@types/cookie": "^0.5.1",
     "@types/dom-to-image": "^2.6.4",
     "@types/file-saver": "^2.0.5",
-    "@types/jest": "^28.1.4",
+    "@types/jest": "^28.1.5",
     "@types/morsee": "^1.0.0",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",

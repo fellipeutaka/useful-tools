@@ -68,6 +68,8 @@
 - [ ] Timer
 - [ ] Alarm
 - [ ] Graph Maker
+- [ ] Random name picker
+- [ ] Random number picker
 - [x] Cryptography (encoder, decoder)
 
   - [x] Binary

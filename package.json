@@ -13,6 +13,7 @@
     "@gykh/caesar-cipher": "^2.0.0",
     "@stitches/react": "^1.2.8",
     "axios": "^0.27.2",
+    "convert": "^4.5.0",
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.5",
     "hex-encoding": "^2.0.0",

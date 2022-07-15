@@ -1,9 +1,6 @@
 import { styled } from "@useful-tools/stitches";
-import {
-  calculateLength,
-  LengthUnits,
-  lengthUnits,
-} from "@useful-tools/utils/unitConverter";
+import { lengthUnits, LengthUnits } from "@useful-tools/types/Units";
+import convert from "convert";
 import { ChangeEvent, useState } from "react";
 
 const Container = styled("main", {
@@ -40,7 +37,7 @@ export default function Length() {
       setFromValue(value);
       setToValue("");
     } else {
-      const result = calculateLength(from, to, Number(value));
+      const result = convert(Number(value), from).to(to);
       setFromValue(state === "from" ? String(result) : value);
       setToValue(state === "to" ? String(result) : value);
     }

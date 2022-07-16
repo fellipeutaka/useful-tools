@@ -6,76 +6,113 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/fellipeutaka/useful-tools?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/fellipeutaka/useful-tools?style=for-the-badge)
 
-<!-- <img src="./doc/demo.gif" alt="Pomodoro GIF"> !-->
+<!-- <img src="./doc/demo.gif" alt="Useful Tools demo"> !-->
 
 ## Features
 
-- [x] QR Code
+- [ ] Calculator
 
-  - [x] Download QR Code
-  - [x] Share on social medias (Twitter, WhatsApp...)
+  - [ ] Cientific
 
-- [x] Random Color
+- [ ] Colors
 
-  - [x] Keyboard shorcuts
+  - [x] Color picker
+  - [x] Random Color
+    - [x] Keyboard shorcuts
 
-- [x] Color picker
+- [ ] Clock
+
+  - [ ] Alarm
+  - [x] Stopwatch
+    - [ ] Web Workers
+  - [x] Time
+    - [x] Local
+    - [ ] Anywhere
+  - [ ] Timer
+
+- [ ] Converters
+
+  - [ ] Currency
+  - [ ] Files
+    - [ ] Images
+    - [ ] Videos
+    - [ ] Audios
+    - [ ] Documents
+  - [ ] Units
+    - [x] Length
+    - [ ] Area
+    - [ ] Volume
+    - [ ] Temperature
+    - [ ] Mass
+    - [ ] Time
+    - [ ] Speed
+    - [ ] Pressure
+    - [ ] Frequency
+    - [ ] Energy
+    - [ ] Digital Storage
+    - [ ] Data Transfer Rate
+
+- [ ] Clock
+
+  - [ ] Alarm
+  - [x] Stopwatch
+    - [ ] Web Workers
+  - [x] Time
+    - [x] Local
+    - [ ] Anywhere
+  - [ ] Timer
+
+- [ ] Cryptography (encoder, decoder)
+
+  - [ ] Barcode
+  - [x] Binary
+  - [x] Morse code
+  - [x] Hex
+  - [x] Caesar's cipher
+  - [x] QR Code
+    - [x] Code
+      - [x] Download QR Code
+      - [x] Share on social medias (Twitter, WhatsApp...)
+    - [ ] Decode
+
+- [ ] Developer tools
+
+  - [ ] CSS
+    - [ ] Animation keyframes
+    - [ ] Border-radius generator
+    - [ ] Gradient generator
+    - [ ] Box shadow
+    - [ ] Text shadow
+    - [ ] Flexbox generator
+    - [ ] Grid generator
+
+- [ ] Graph Maker
+
 - [x] Password generator
 - [ ] Translate
-- [ ] Barcode Reader
-- [ ] File converter (images, videos, audios, documents)
-- [ ] Video downloader (at least YouTube)
-- [ ] Convert Case
-- [ ] Unit converter
 
-  - [x] Length
-  - [ ] Area
-  - [ ] Volume
-  - [ ] Temperature
-  - [ ] Mass
-  - [ ] Time
-  - [ ] Speed
-  - [ ] Pressure
-  - [ ] Frequency
-  - [ ] Energy
-  - [ ] Digital Storage
-  - [ ] Data Transfer Rate
-
-- [ ] Currency converter
 - [ ] Weather
 - [ ] Photo editor
 
   - [ ] Crop images
   - [ ] Remove background
 
+- [ ] Text
+
+  - [ ] Convert case
+  - [ ] Counters
+    - [ ] Character
+    - [ ] Consonant
+    - [ ] Vowel
+    - [ ] Word
+
 - [ ] Todo list
 
   - [ ] Drag 'n drop
 
-- [x] Time
-
-  - [x] Local
-  - [ ] Anywhere
-
-- [ ] Calculator
-
-  - [ ] Cientific
-
-- [x] Stopwatch
-
-  - [ ] Web Workers
-
-- [ ] Timer
-- [ ] Alarm
-- [ ] Graph Maker
 - [ ] Random name picker
 - [ ] Random number picker
-- [x] Cryptography (encoder, decoder)
-
-  - [x] Binary
-  - [x] Morse code
-  - [x] Hex
-  - [x] Caesar's cipher
+- [ ] Video downloader (at least YouTube)
 
 ## 🛠 Technologies Used
 

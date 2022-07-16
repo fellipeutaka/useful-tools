@@ -11,17 +11,14 @@
 ## Features
 
 - [ ] Calculator
-
   - [ ] Cientific
 
 - [ ] Colors
-
   - [x] Color picker
   - [x] Random Color
     - [x] Keyboard shorcuts
 
 - [ ] Clock
-
   - [ ] Alarm
   - [x] Stopwatch
     - [ ] Web Workers
@@ -31,7 +28,6 @@
   - [ ] Timer
 
 - [ ] Converters
-
   - [ ] Currency
   - [ ] Files
     - [ ] Images
@@ -53,7 +49,6 @@
     - [ ] Data Transfer Rate
 
 - [ ] Clock
-
   - [ ] Alarm
   - [x] Stopwatch
     - [ ] Web Workers
@@ -63,7 +58,6 @@
   - [ ] Timer
 
 - [ ] Cryptography (encoder, decoder)
-
   - [ ] Barcode
   - [x] Binary
   - [x] Morse code
@@ -76,7 +70,6 @@
     - [ ] Decode
 
 - [ ] Developer tools
-
   - [ ] CSS
     - [ ] Animation keyframes
     - [ ] Border-radius generator
@@ -98,7 +91,6 @@
   - [ ] Remove background
 
 - [ ] Text
-
   - [ ] Convert case
   - [ ] Counters
     - [ ] Character
@@ -107,7 +99,6 @@
     - [ ] Word
 
 - [ ] Todo list
-
   - [ ] Drag 'n drop
 
 - [ ] Random name picker

@@ -1,6 +1,7 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import Layout from "@useful-tools/components/Layout";
 import { styled } from "@useful-tools/stitches";
-import { useCallback, useEffect, useRef, useState } from "react";
 
 const seo = {
   title: "Random Color | Useful Tools",

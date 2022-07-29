@@ -1,9 +1,11 @@
-import Layout from "@useful-tools/components/Layout";
-import { styled } from "@useful-tools/stitches";
+import { useEffect, useState } from "react";
+
 import axios from "axios";
 import { parseCookies, setCookie } from "nookies";
-import { useEffect, useState } from "react";
+
+import Layout from "@useful-tools/components/Layout";
 import Spinner from "@useful-tools/components/Spinner";
+import { styled } from "@useful-tools/stitches";
 
 const Container = styled("main", {
   width: "100%",

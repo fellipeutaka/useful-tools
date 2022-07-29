@@ -1,9 +1,12 @@
-import Layout from "@useful-tools/components/Layout";
-import { styled } from "@useful-tools/stitches";
+import { useRef, useState } from "react";
+
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { QRCodeSVG } from "qrcode.react";
-import { useRef, useState } from "react";
+
+import Layout from "@useful-tools/components/Layout";
+import { styled } from "@useful-tools/stitches";
+
 
 const seo = {
   title: "QR Code | Useful Tools",

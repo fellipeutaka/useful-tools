@@ -1,5 +1,6 @@
-import Layout from "@useful-tools/components/Layout";
 import Link from "next/link";
+
+import Layout from "@useful-tools/components/Layout";
 
 const seo = {
   title: "Tools | Useful Tools",

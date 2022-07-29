@@ -1,5 +1,6 @@
-import { keyframes, styled } from "@useful-tools/stitches";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+import { keyframes, styled } from "@useful-tools/stitches";
 
 const loading = keyframes({
   from: {

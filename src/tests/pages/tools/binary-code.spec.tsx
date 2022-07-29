@@ -4,11 +4,11 @@ import BinaryCode from "@useful-tools/pages/tools/binary-code";
 
 describe("Binary code", () => {
   it("should render all components", () => {
-    const { container, queryByText } = render(<BinaryCode />);
-    const title = queryByText("Binary Code");
-    const textFieldLabel = queryByText("Text to code:");
+    const { container, getByText } = render(<BinaryCode />);
+    const title = getByText("Binary Code");
+    const textFieldLabel = getByText("Text to code:");
     const textField = container.querySelector("textarea#text");
-    const binaryFieldLabel = queryByText("Binary to decode:");
+    const binaryFieldLabel = getByText("Binary to decode:");
     const binaryField = container.querySelector("textarea#binary");
     expect(title).toBeInTheDocument();
     expect(textFieldLabel).toBeInTheDocument();

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "@gykh/caesar-cipher": "^2.0.0",

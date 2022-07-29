@@ -15,11 +15,17 @@ const seo = {
   keywords: "tools, useful",
 };
 
+function isBinary(string: string) {
+  const pattern = /^[01]*$/;
+  return !!string.match(pattern);
+}
+
 export default function BinaryCode() {
   const [text, setText] = useState("");
   const [binary, setBinary] = useState("");
 
-  function handleCodeTextToBinaryCode() {
+  function handleCodeTextToBinaryCode(text: string) {
+    setText(text);
     const textToBinary = text
       .split("")
       .map((character) => {
@@ -28,19 +34,21 @@ export default function BinaryCode() {
       })
       .join("");
     setBinary(textToBinary);
-    setText("");
   }
 
-  function handleDecodeBinaryCodeToText() {
-    const regExpArray = binary.match(/.{1,8}/g);
-    if (regExpArray) {
-      const result = regExpArray
-        .map((value) =>
-          String.fromCharCode(Number(parseInt(value, 2).toString(10)))
-        )
-        .join("");
-      setText(result);
-      setBinary("");
+  function handleDecodeBinaryCodeToText(binary: string) {
+    setBinary(binary);
+    setText("");
+    if (isBinary(binary)) {
+      const regExpArray = binary.match(/.{1,8}/g);
+      if (regExpArray) {
+        const result = regExpArray
+          .map((value) =>
+            String.fromCharCode(Number(parseInt(value, 2).toString(10)))
+          )
+          .join("");
+        setText(result);
+      }
     }
   }
 
@@ -54,22 +62,16 @@ export default function BinaryCode() {
             <textarea
               id="text"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={(e) => handleCodeTextToBinaryCode(e.target.value)}
             />
-            <button type="button" onClick={handleCodeTextToBinaryCode}>
-              Code
-            </button>
           </div>
           <div>
             <label htmlFor="binary">Binary to decode:</label>
             <textarea
               id="binary"
               value={binary}
-              onChange={(e) => setBinary(e.target.value)}
+              onChange={(e) => handleDecodeBinaryCodeToText(e.target.value)}
             />
-            <button type="button" onClick={handleDecodeBinaryCodeToText}>
-              Decode
-            </button>
           </div>
         </section>
       </Container>

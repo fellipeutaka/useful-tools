@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,29 +16,14 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@useful-tools/stitches": [
-        "./stitches.config.ts"
-      ],
-      "@useful-tools/components/*": [
-        "./src/components/*"
-      ],
-      "@useful-tools/utils/*": [
-        "./src/utils/*"
-      ],
-      "@useful-tools/lib/*": [
-        "./src/lib/*"
-      ],
-      "@useful-tools/types/*": [
-        "./src/@types/*"
-      ]
+      "@useful-tools/stitches": ["./stitches.config.ts"],
+      "@useful-tools/components/*": ["./src/components/*"],
+      "@useful-tools/pages/*": ["./src/pages/*"],
+      "@useful-tools/utils/*": ["./src/utils/*"],
+      "@useful-tools/lib/*": ["./src/lib/*"],
+      "@useful-tools/types/*": ["./src/@types/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

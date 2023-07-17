@@ -1,7 +1,25 @@
 {
   "name": "useful-tools",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "author": {
+    "name": "Fellipe Utaka",
+    "email": "fellipeutaka@gmail.com"
+  },
+  "homepage": "https://usefultools.vercel.app",
+  "maintainers": [
+    {
+      "name": "Fellipe Utaka",
+      "email": "fellipeutaka@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fellipeutaka/useful-tools"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

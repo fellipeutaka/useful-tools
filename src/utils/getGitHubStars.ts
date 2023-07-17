@@ -8,7 +8,7 @@ type ApiResponse = {
 
 export async function getGitHubStars() {
   try {
-    const response = await ky(
+    const response = await ky.get(
       `https://api.github.com/repos/${REPOSITORY_OWNER}/${REPOSITORY_NAME}`,
       {
         next: {

@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
-
-import { Download, Share, Twitter } from "lucide-react";
+import { Download, Twitter } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
 import { WhatsApp } from "~/components/icons/whatsapp";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
+import { useURLState } from "~/hooks/useURLState";
 
 export function QRCode() {
-  const [value, setValue] = useState("");
+  const [value, setValue] = useURLState("value");
 
   async function handleDownload() {
     const qrCode = document.querySelector("canvas");
@@ -19,25 +18,6 @@ export function QRCode() {
       a.download = "qrcode.png";
       a.href = qrCode.toDataURL();
       a.click();
-    }
-  }
-
-  async function handleShare() {
-    const qrCode = document.querySelector("canvas");
-    if (qrCode) {
-      try {
-        navigator.share({
-          title: "QR Code",
-          text: value,
-          files: [
-            new File([qrCode.toDataURL()], "qrcode.png", {
-              type: "image/png",
-            }),
-          ],
-        });
-      } catch (err) {
-        console.error(err);
-      }
     }
   }
 
@@ -64,14 +44,6 @@ export function QRCode() {
         <span>Download</span>
       </Button>
       <div className="flex flex-col items-center gap-4 sm:flex-row">
-        <Button
-          className="gap-2 rounded-full"
-          variant="secondary"
-          onClick={handleShare}
-        >
-          <Share className="h-4 w-4" />
-          <span>Share</span>
-        </Button>
         <Button className="gap-2 rounded-full" variant="green" asChild>
           <a
             href={`https://wa.me/?text=${encodeURIComponent(value)}`}

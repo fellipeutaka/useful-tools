@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
+
 import { typography } from "~/styles/typography";
+
+export const metadata: Metadata = {
+  title: "Tools",
+};
 
 export default function Tools() {
   return (

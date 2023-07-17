@@ -1,9 +1,14 @@
 import { Balancer } from "react-wrap-balancer";
 
+import type { Metadata } from "next";
 import { cnBase } from "tailwind-variants";
 
 import { REPOSITORY_URL } from "~/constants/repository-info";
 import { typography } from "~/styles/typography";
+
+export const metadata: Metadata = {
+  title: "About",
+};
 
 export default function Page() {
   return (

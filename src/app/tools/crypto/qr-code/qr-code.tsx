@@ -46,7 +46,7 @@ export function QRCode() {
         variant="outline"
         onClick={handleDownload}
       >
-        <Download size={18} />
+        <Download className="h-4 w-4" />
         <span>Download</span>
       </Button>
       <div className="flex items-center gap-4">
@@ -56,7 +56,7 @@ export function QRCode() {
             rel="noreferrer"
             target="_blank"
           >
-            <WhatsApp />
+            <WhatsApp className="h-4 w-4" />
             <span>Share on WhatsApp</span>
           </a>
         </Button>
@@ -66,7 +66,7 @@ export function QRCode() {
             rel="noreferrer"
             target="_blank"
           >
-            <Twitter />
+            <Twitter className="h-4 w-4" />
             <span>Share on Twitter</span>
           </a>
         </Button>

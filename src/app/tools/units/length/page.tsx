@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container grid h-full place-content-center">
+    <main className="container grid h-full place-content-center text-center">
       <h1 className={typography.h1}>Length</h1>
       <Length />
     </main>

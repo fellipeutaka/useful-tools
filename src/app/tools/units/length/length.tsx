@@ -5,8 +5,15 @@ import { useState } from "react";
 import convert from "convert";
 
 import { Input } from "~/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
 import { LengthUnits, lengthUnits } from "~/constants/length-units";
-import { capitalizeFirstLetter } from "~/utils/capitalizeFirstLetter";
+import { typography } from "~/styles/typography";
 
 type CalculateUnities = {
   from?: LengthUnits;
@@ -47,40 +54,48 @@ export function Length() {
     calculate("from", value);
   }
 
-  function handleChangeFromUnity(e: React.ChangeEvent<HTMLSelectElement>) {
-    const value = e.target.value as LengthUnits;
-    setFromUnity(value);
-    calculate("to", fromValue, { from: value });
+  function handleChangeFromUnity(value: string) {
+    setFromUnity(value as LengthUnits);
+    calculate("to", fromValue, { from: value as LengthUnits });
   }
 
-  function handleChangeToUnity(e: React.ChangeEvent<HTMLSelectElement>) {
-    const value = e.target.value as LengthUnits;
-    setToUnity(value);
-    calculate("to", fromValue, { to: value });
+  function handleChangeToUnity(value: string) {
+    setToUnity(value as LengthUnits);
+    calculate("to", fromValue, { to: value as LengthUnits });
   }
 
   return (
-    <section>
-      <div>
+    <section className="mt-6 grid grid-cols-3 items-center">
+      <div className="space-y-4">
         <Input value={fromValue} onChange={handleChangeFromValue} />
-        <select value={fromUnity} onChange={handleChangeFromUnity}>
-          {lengthUnits.map((lengthUnit) => (
-            <option key={lengthUnit} value={lengthUnit}>
-              {capitalizeFirstLetter(lengthUnit)}
-            </option>
-          ))}
-        </select>
+        <Select value={fromUnity} onValueChange={handleChangeFromUnity}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            {lengthUnits.map((lengthUnit) => (
+              <SelectItem key={lengthUnit} value={lengthUnit}>
+                {lengthUnit}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
-      <span> = </span>
-      <div>
+      <span className={typography.h3}> = </span>
+      <div className="space-y-4">
         <Input value={toValue} onChange={handleChangeToValue} />
-        <select value={toUnity} onChange={handleChangeToUnity}>
-          {lengthUnits.map((lengthUnit) => (
-            <option key={lengthUnit} value={lengthUnit}>
-              {capitalizeFirstLetter(lengthUnit)}
-            </option>
-          ))}
-        </select>
+        <Select value={toUnity} onValueChange={handleChangeToUnity}>
+          <SelectTrigger>
+            <SelectValue placeholder="Select a fruit" />
+          </SelectTrigger>
+          <SelectContent>
+            {lengthUnits.map((lengthUnit) => (
+              <SelectItem key={lengthUnit} value={lengthUnit}>
+                {lengthUnit}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </section>
   );

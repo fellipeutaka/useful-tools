@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container grid place-content-center border-b py-8 animate-in fade-in duration-really-slow">
+    <main className="container grid h-full place-content-center">
       <h1 className={cnBase(typography.h1, "text-center")}>Binary Code</h1>
       <BinaryCode />
     </main>

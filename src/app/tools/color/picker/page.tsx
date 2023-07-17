@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className="container grid place-content-center border-b py-8 text-center animate-in fade-in duration-really-slow">
+    <main className="container grid h-full place-content-center">
       <h1 className={typography.h1}>Color picker</h1>
       <ColorPicker />
     </main>

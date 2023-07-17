@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { typography } from "~/styles/typography";
+
 import { Length } from "./length";
 
 export const metadata: Metadata = {
@@ -8,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main>
-      <h1>Length</h1>
+    <main className="container grid h-full place-content-center">
+      <h1 className={typography.h1}>Length</h1>
       <Length />
     </main>
   );

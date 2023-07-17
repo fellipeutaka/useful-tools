@@ -2,9 +2,11 @@
 
 import type { ComponentProps } from "react";
 
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
 
 import { Toaster } from "~/components/ui/toast/toaster";
+import { queryClient } from "~/lib/react-query";
 
 export function ThemeProvider({
   children,
@@ -25,7 +27,7 @@ export function ThemeProvider({
 export function Providers({ children }: WithChildren) {
   return (
     <ThemeProvider>
-      {children}
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
       <Toaster />
     </ThemeProvider>
   );

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main>
+    <main className="container grid h-full place-content-center">
       <h1>Stopwatch</h1>
       <Stopwatch />
     </main>

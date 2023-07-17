@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Download, Twitter } from "lucide-react";
+import { Download, Share, Twitter } from "lucide-react";
 import { QRCodeCanvas } from "qrcode.react";
 
 import { WhatsApp } from "~/components/icons/whatsapp";
@@ -22,6 +22,25 @@ export function QRCode() {
     }
   }
 
+  async function handleShare() {
+    const qrCode = document.querySelector("canvas");
+    if (qrCode) {
+      try {
+        navigator.share({
+          title: "QR Code",
+          text: value,
+          files: [
+            new File([qrCode.toDataURL()], "qrcode.png", {
+              type: "image/png",
+            }),
+          ],
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
   return (
     <section className="mt-8 gap-4 space-y-4">
       <div>
@@ -35,12 +54,7 @@ export function QRCode() {
           (Your QR Code will be generated automatically)
         </p>
       </div>
-      <QRCodeCanvas
-        className="mx-auto"
-        width={250}
-        height={250}
-        value={value}
-      />
+      <QRCodeCanvas size={256} className="mx-auto" value={value} />
       <Button
         className="!my-6 mx-auto gap-2"
         variant="outline"
@@ -49,7 +63,15 @@ export function QRCode() {
         <Download className="h-4 w-4" />
         <span>Download</span>
       </Button>
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col items-center gap-4 sm:flex-row">
+        <Button
+          className="gap-2 rounded-full"
+          variant="secondary"
+          onClick={handleShare}
+        >
+          <Share className="h-4 w-4" />
+          <span>Share</span>
+        </Button>
         <Button className="gap-2 rounded-full" variant="green" asChild>
           <a
             href={`https://wa.me/?text=${encodeURIComponent(value)}`}

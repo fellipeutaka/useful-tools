@@ -39,6 +39,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.4",
     "@t3-oss/env-nextjs": "^0.6.0",
+    "@tanstack/react-query": "^4.29.25",
     "cmdk": "^0.2.0",
     "convert": "^4.13.0",
     "hex-encoding": "^2.0.2",
@@ -52,7 +53,6 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-wrap-balancer": "^1.0.0",
-    "tailwindcss-animate": "^1.0.6",
     "translate": "^2.0.2",
     "zod": "^3.21.4"
   },
@@ -80,6 +80,7 @@
     "prettier-plugin-tailwindcss": "^0.4.1",
     "tailwind-variants": "^0.1.13",
     "tailwindcss": "^3.3.3",
+    "tailwindcss-animate": "^1.0.6",
     "typescript": "5.1.6"
   },
   "config": {

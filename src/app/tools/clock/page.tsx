@@ -1,110 +1,18 @@
-"use client";
+import { Metadata } from "next";
 
-import { useEffect, useState } from "react";
+import { typography } from "~/styles/typography";
 
-import ky from "ky";
-import { Loader } from "lucide-react";
-import { parseCookies, setCookie } from "nookies";
+import { Clock } from "./clock";
 
-type GetRegionFetch = {
-  abbreviation: string;
-  cityName: string;
-  countryCode: string;
-  countryName: string;
-  dst: string;
-  formatted: string;
-  gmtOffset: number;
-  message: string;
-  nextAbbreviation: null;
-  regionName: string;
-  status: string;
-  timestamp: number;
-  zoneEnd: null;
-  zoneName: string;
-  zoneStart: number;
+export const metadata: Metadata = {
+  title: "Clock",
 };
 
-type GetTimezoneFetch = {
-  abbreviation: string;
-  client_ip: string;
-  datetime: string;
-  day_of_week: number;
-  day_of_year: number;
-  dst: boolean;
-  dst_from: null;
-  dst_offset: number;
-  dst_until: null;
-  raw_offset: number;
-  timezone: string;
-  unixtime: number;
-  utc_datetime: string;
-  utc_offset: string;
-  week_number: number;
-};
-
-export default function Clock() {
-  const [date, setDate] = useState<Date | null>(null);
-
-  useEffect(() => {
-    const { "@useful-tools.zoneName": zoneName } = parseCookies();
-
-    if (zoneName) {
-      ky.get(`https://worldtimeapi.org/api/timezone/${zoneName}`)
-        .json<GetTimezoneFetch>()
-        .then(({ utc_datetime }) => {
-          setDate(new Date(utc_datetime));
-        })
-        .catch((err) => console.log(err));
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          const { formatted, zoneName } = await ky
-            .get(
-              `https://api.timezonedb.com/v2.1/get-time-zone?key=TM9MTIVM375H&format=json&by=position&lat=${latitude}&lng=${longitude}`,
-            )
-            .json<GetRegionFetch>();
-          setDate(new Date(formatted));
-          setCookie(undefined, "@useful-tools.zoneName", zoneName, {
-            maxAge: 1 * 60 * 60 * 24, // 1 day
-          });
-        },
-        (err) => {
-          console.log(err);
-        },
-        {
-          enableHighAccuracy: false,
-          timeout: 5000,
-          maximumAge: 0,
-        },
-      );
-    }
-  }, []);
-
-  useEffect(() => {
-    if (date) {
-      const timeout = setTimeout(() => {
-        setDate((state) => new Date(state!.getTime() + 1000));
-      }, 1000);
-
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
-  }, [date]);
-
-  if (!date) {
-    return (
-      <div>
-        <Loader size={48} />
-      </div>
-    );
-  }
-
+export default function Page() {
   return (
-    <main>
-      <h1>Clock</h1>
-      <h2>{date.toLocaleTimeString()}</h2>
+    <main className="container grid h-full place-content-center text-center">
+      <h1 className={typography.h1}>Clock</h1>
+      <Clock />
     </main>
   );
 }

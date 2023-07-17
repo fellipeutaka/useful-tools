@@ -3,12 +3,13 @@ import { forwardRef } from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { tv, type VariantProps } from "tailwind-variants";
 
-
 export const ButtonStyles = tv({
   base: "flex items-center select-none justify-center rounded-md text-sm font-medium ring-offset-background transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   variants: {
     variant: {
       default: "bg-primary text-primary-foreground hover:bg-primary/90",
+      green: "bg-green-500 text-primary-foreground hover:bg-green-500/90",
+      blue: "bg-sky-500 text-primary-foreground hover:bg-sky-500/90",
       destructive:
         "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       outline:

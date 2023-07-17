@@ -1,53 +1,76 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-import domtoimage from "dom-to-image";
-import saveAs from "file-saver";
-import { QRCodeSVG } from "qrcode.react";
+import { Download, Twitter } from "lucide-react";
+import { QRCodeCanvas } from "qrcode.react";
 
+import { WhatsApp } from "~/components/icons/whatsapp";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 
 export function QRCode() {
-  const [inputValue, setInputValue] = useState("");
-  const QRCodeRef = useRef<HTMLDivElement>(null);
+  const [value, setValue] = useState("");
 
-  async function handleDownloadQRCode() {
-    if (QRCodeRef.current) {
-      const blob = await domtoimage.toBlob(QRCodeRef.current);
-
-      saveAs(blob, "qrcode.png");
+  async function handleDownload() {
+    const qrCode = document.querySelector("canvas");
+    if (qrCode) {
+      const a = document.createElement("a");
+      a.download = "qrcode.png";
+      a.href = qrCode.toDataURL();
+      a.click();
     }
   }
 
   return (
-    <section className="mt-6 flex w-full gap-4">
-      <Input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+    <section className="mt-8 gap-4 space-y-4">
+      <div>
+        <Input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Enter your website, text, or link here"
+        />
+        <p className="mt-1 text-xs text-muted-foreground">
+          (Your QR Code will be generated automatically)
+        </p>
+      </div>
+      <QRCodeCanvas
+        className="mx-auto"
+        width={250}
+        height={250}
+        value={value}
       />
-      <section ref={QRCodeRef}>
-        <QRCodeSVG width={250} height={250} value={inputValue} />
-      </section>
-      <Button type="button" onClick={handleDownloadQRCode}>
-        Download
+      <Button
+        className="!my-6 mx-auto gap-2"
+        variant="outline"
+        onClick={handleDownload}
+      >
+        <Download size={18} />
+        <span>Download</span>
       </Button>
-      <a
-        href={`https://wa.me/?text=${encodeURIComponent(inputValue)}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Share on WhatsApp
-      </a>
-      <a
-        href={`http://twitter.com/share?text=${encodeURIComponent(inputValue)}`}
-        rel="noreferrer"
-        target="_blank"
-      >
-        Share on Twitter
-      </a>
+      <div className="flex items-center gap-4">
+        <Button className="gap-2 rounded-full" variant="green" asChild>
+          <a
+            href={`https://wa.me/?text=${encodeURIComponent(value)}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <WhatsApp />
+            <span>Share on WhatsApp</span>
+          </a>
+        </Button>
+        <Button className="gap-2 rounded-full" variant="blue" asChild>
+          <a
+            href={`http://twitter.com/share?text=${encodeURIComponent(value)}`}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <Twitter />
+            <span>Share on Twitter</span>
+          </a>
+        </Button>
+      </div>
     </section>
   );
 }

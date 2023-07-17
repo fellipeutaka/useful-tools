@@ -25,7 +25,8 @@
     "build": "next build",
     "start": "next start",
     "preview": "next build && next start",
-    "lint": "next lint --fix"
+    "lint": "next lint --fix",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@gykh/caesar-cipher": "^2.0.0",

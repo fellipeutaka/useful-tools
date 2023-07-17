@@ -26,23 +26,8 @@ export const navItems = {
       title: "Tools",
       items: [
         {
-          title: "Calculator",
-          href: "/tools/calculator",
-          items: [],
-        },
-        {
-          title: "Color picker",
-          href: "/tools/color/picker",
-          items: [],
-        },
-        {
-          title: "Random color",
-          href: "/tools/color/random",
-          items: [],
-        },
-        {
-          title: "Alarm",
-          href: "/tools/clock/alarm",
+          title: "Clock",
+          href: "/tools/clock",
           items: [],
         },
         {
@@ -51,8 +36,48 @@ export const navItems = {
           items: [],
         },
         {
-          title: "Time",
-          href: "/tools/clock/time",
+          title: "Color Picker",
+          href: "/tools/color/picker",
+          items: [],
+        },
+        {
+          title: "Random Color",
+          href: "/tools/color/random",
+          items: [],
+        },
+        {
+          title: "Binary Code",
+          href: "/tools/crypto/binary",
+          items: [],
+        },
+        {
+          title: "Caesar Cipher",
+          href: "/tools/crypto/caesar-cipher",
+          items: [],
+        },
+        {
+          title: "Hex Code",
+          href: "/tools/crypto/hex",
+          items: [],
+        },
+        {
+          title: "Morse Code",
+          href: "/tools/crypto/morse",
+          items: [],
+        },
+        {
+          title: "QR Code",
+          href: "/tools/crypto/qr-code",
+          items: [],
+        },
+        {
+          title: "Password Generator",
+          href: "/tools/security/password-generator",
+          items: [],
+        },
+        {
+          title: "Length",
+          href: "/tools/units/length",
           items: [],
         },
       ],

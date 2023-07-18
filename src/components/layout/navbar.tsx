@@ -27,7 +27,10 @@ export function Navbar({ border, sticky }: NavbarProps) {
     <header className={NavbarStyles({ border, sticky })}>
       <nav className="container sticky top-0 z-40 flex h-full items-center justify-between">
         <div className="mr-4 hidden items-center md:flex">
-          <Link className="mr-6 flex items-center gap-2" href="/">
+          <Link
+            className="mr-6 flex items-center gap-2 transition-opacity hover:opacity-80"
+            href="/"
+          >
             <Logo className="h-6 w-6" />
             <span className="hidden font-bold sm:inline-block">
               Useful Tools

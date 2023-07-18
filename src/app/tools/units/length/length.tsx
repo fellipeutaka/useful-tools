@@ -70,7 +70,7 @@ export function Length() {
         <Input value={fromValue} onChange={handleChangeFromValue} />
         <Select value={fromUnity} onValueChange={handleChangeFromUnity}>
           <SelectTrigger>
-            <SelectValue placeholder="Select a fruit" />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {lengthUnits.map((lengthUnit) => (
@@ -86,7 +86,7 @@ export function Length() {
         <Input value={toValue} onChange={handleChangeToValue} />
         <Select value={toUnity} onValueChange={handleChangeToUnity}>
           <SelectTrigger>
-            <SelectValue placeholder="Select a fruit" />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {lengthUnits.map((lengthUnit) => (

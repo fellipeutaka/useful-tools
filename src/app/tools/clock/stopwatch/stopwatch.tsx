@@ -1,73 +1,63 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Button } from "~/components/ui/button";
+import { useHotkeys } from "~/hooks/useHotkeys";
+import { useInterval } from "~/hooks/useInterval";
+import { useOnMount } from "~/hooks/useOnMount";
 
-export default function Stopwatch() {
+export function Stopwatch() {
   const [count, setCount] = useState(0);
-  const [active, setActive] = useState(false);
 
-  useEffect(() => {
-    if (active) {
-      const interval = setInterval(() => {
-        setCount((state) => state + 10);
-      }, 10);
+  const interval = useInterval(() => setCount((state) => state + 10), 10);
 
-      return () => {
-        clearInterval(interval);
-      };
+  useOnMount(() => {
+    if (interval.active) {
+      interval.start();
     }
-  }, [active, count]);
+
+    return interval.stop;
+  });
 
   function handleClearCount() {
     setCount(0);
-    setActive(false);
+    interval.stop();
   }
 
-  function handleToggleActive() {
-    setActive((state) => !state);
-  }
-
-  useEffect(() => {
-    function keyboardListener(e: KeyboardEvent) {
-      const keyPressed = e.code;
-      const keys = {
-        Space: handleToggleActive,
-        KeyC: handleClearCount,
-      };
-      if (keys[keyPressed as keyof typeof keys]) {
-        keys[keyPressed as keyof typeof keys]();
-      }
-    }
-
-    document.addEventListener("keydown", keyboardListener);
-
-    return () => {
-      document.removeEventListener("keydown", keyboardListener);
-    };
-  }, []);
+  useHotkeys([
+    ["Space", interval.toggle],
+    ["C", handleClearCount],
+  ]);
 
   const minutes = useMemo(
-    () => String(Math.floor(count / 60000)).padStart(2, "0"),
+    () => String(Math.floor(count / 60_000)).padStart(2, "0"),
     [count],
   );
   const seconds = useMemo(
-    () => String(Math.floor(count / 1000)).padStart(2, "0"),
+    () => String(Math.floor(count / 1_000)).padStart(2, "0"),
     [count],
   );
   const milliseconds = useMemo(
-    () => String(count % 1000).padStart(2, "0"),
+    () => String(count % 1_000).padStart(2, "0"),
     [count],
   );
 
   return (
-    <section>
-      <span>
-        {minutes}:{seconds}:{milliseconds}
-      </span>
-      <Button onClick={handleToggleActive}>{active ? "Stop" : "Start"}</Button>
-      <Button onClick={handleClearCount}>Clear</Button>
+    <section className="mt-8">
+      <div className="mx-auto grid aspect-square h-48 w-48 place-content-center rounded-full border p-16">
+        <b>
+          {minutes}:{seconds}:{milliseconds}
+        </b>
+      </div>
+      <div className="mt-4 flex justify-center gap-4">
+        <Button variant="outline" onClick={interval.toggle}>
+          {interval.active ? "Stop" : "Start"}
+        </Button>
+        <Button variant="destructive" onClick={handleClearCount}>
+          Clear
+        </Button>
+      </div>
     </section>
   );
 }

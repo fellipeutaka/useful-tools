@@ -27,7 +27,7 @@ type GetTimezoneFetch = {
 };
 
 export function Clock() {
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState(new Date());
   const { isLoading } = useQuery({
     queryKey: ["/tools/clock"],
     queryFn: async ({ signal }) => {
@@ -38,9 +38,6 @@ export function Clock() {
 
       setDate(new Date(utc_datetime));
     },
-    onError() {
-      setDate(new Date());
-    },
     refetchOnWindowFocus: false,
     refetchOnMount: false,
     refetchOnReconnect: false,
@@ -49,7 +46,7 @@ export function Clock() {
   });
 
   const interval = useInterval(
-    () => setDate((state) => new Date(state!.getTime() + 1000)),
+    () => setDate((state) => new Date(state.getTime() + 1000)),
     1000,
   );
 

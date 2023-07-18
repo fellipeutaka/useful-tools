@@ -33,7 +33,7 @@ export function CommandMenu() {
   ]);
 
   const runCommand = useCallback(
-    (command: () => unknown) => () => {
+    (command: () => void) => () => {
       setIsOpen(false);
       command();
     },

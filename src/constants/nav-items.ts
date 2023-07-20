@@ -80,6 +80,11 @@ export const navItems = {
           href: "/tools/units/length",
           items: [],
         },
+        {
+          title: "CSS Minifier",
+          href: "/tools/dev/css",
+          items: [],
+        },
       ],
     },
   ],

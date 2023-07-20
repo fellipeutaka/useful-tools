@@ -118,7 +118,7 @@ export default async function Page() {
               <div className="space-y-2">
                 <h3 className="font-bold">Files</h3>
                 <p className="text-sm text-muted-foreground">
-                  Images Videos Audios Documents and more.
+                  Images, Videos, Audios, Documents and more.
                 </p>
               </div>
             </div>
@@ -173,12 +173,14 @@ export default async function Page() {
           <div className="flex h-10 w-10 items-center justify-center space-x-2 rounded-md border border-muted bg-muted">
             <Github />
           </div>
-          <div className="flex items-center">
-            <div className="h-4 w-4 border-y-8 border-l-0 border-r-8 border-solid border-muted border-y-transparent" />
-            <div className="flex h-10 items-center rounded-md border border-muted bg-muted px-4 font-medium">
-              {stars} stars on GitHub
+          {stars && (
+            <div className="flex items-center">
+              <div className="h-4 w-4 border-y-8 border-l-0 border-r-8 border-solid border-muted border-y-transparent" />
+              <div className="flex h-10 items-center rounded-md border border-muted bg-muted px-4 font-medium">
+                {stars} stars on GitHub
+              </div>
             </div>
-          </div>
+          )}
         </a>
       </section>
     </main>

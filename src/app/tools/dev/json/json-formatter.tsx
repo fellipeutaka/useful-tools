@@ -3,7 +3,6 @@
 import { useState } from "react";
 
 import Editor from "@monaco-editor/react";
-import init from "lightningcss-wasm";
 import { Copy, Loader } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -14,7 +13,7 @@ import { useClipboard } from "~/hooks/useClipboard";
 
 import { EDITOR_OPTIONS } from "../constants/editor-config";
 
-export function CssMinifier() {
+export function JSONFormatter() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,29 +26,21 @@ export function CssMinifier() {
     if (!input.trim()) {
       return toast({
         title: "Input is empty",
-        description: "Please enter some CSS to minify",
+        description: "Please enter some JSON to Beautify",
         status: "warning",
       });
     }
 
     setIsLoading(true);
     try {
-      const { transform } = await import("lightningcss-wasm");
-      await init();
-
-      const { code } = transform({
-        filename: "",
-        code: new TextEncoder().encode(input),
-        minify: true,
-      });
-      setResult(new TextDecoder().decode(code));
+      const code = JSON.stringify(JSON.parse(input), null, 2);
+      setResult(code);
       toast({
         title: "Success",
-        description: "CSS minified",
+        description: "JSON beautified",
         status: "success",
       });
     } catch (err) {
-      console.error(err);
       toast({
         title: "Error",
         description:
@@ -65,7 +56,7 @@ export function CssMinifier() {
     <section className="mt-8 grid h-full gap-x-4 gap-y-6 sm:grid-cols-2">
       <Editor
         className={TextareaStyles()}
-        language="css"
+        language="json"
         height="50vh"
         value={input}
         onChange={(value) => setInput(value ?? "")}
@@ -75,7 +66,7 @@ export function CssMinifier() {
       />
       <Editor
         className={TextareaStyles()}
-        language="css"
+        language="json"
         height="50vh"
         value={result}
         loading={<Loader className="h-6 w-6 animate-spin" />}
@@ -86,10 +77,10 @@ export function CssMinifier() {
         {isLoading ? (
           <>
             <Loader className="mr-2 h-4 w-4 animate-spin" />
-            <span>Minifying</span>
+            <span>Beautifying</span>
           </>
         ) : (
-          <span>Minify</span>
+          <span>Beautify</span>
         )}
       </Button>
       <Button variant="outline" onClick={() => copy(result)}>

@@ -85,6 +85,11 @@ export const navItems = {
           href: "/tools/dev/css",
           items: [],
         },
+        {
+          title: "JSON Formatter",
+          href: "/tools/dev/json",
+          items: [],
+        },
       ],
     },
   ],

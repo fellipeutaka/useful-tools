@@ -70,7 +70,7 @@ const Toast = forwardRef<
   React.ElementRef<typeof ToastPrimitives.Root>,
   React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> &
     VariantProps<(typeof ToastStyles)["Root"]>
->(({ className, status, children, ...props }, ref) => {
+>(({ className, status = "default", children, ...props }, ref) => {
   return (
     <ToastPrimitives.Root
       ref={ref}

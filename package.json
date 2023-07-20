@@ -42,7 +42,6 @@
     "@radix-ui/react-toast": "^1.1.4",
     "@t3-oss/env-nextjs": "^0.6.0",
     "@tanstack/react-query": "^4.29.25",
-    "clean-css": "^5.3.2",
     "cmdk": "^0.2.0",
     "convert": "^4.13.0",
     "hex-encoding": "^2.0.2",

@@ -2,11 +2,8 @@
 
 import { useState } from "react";
 
-import { cnBase } from "tailwind-variants";
-
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { typography } from "~/styles/typography";
 
 function isBinary(string: string) {
   const pattern = /^[01]*$/;
@@ -46,26 +43,23 @@ export function BinaryCode() {
   }
 
   return (
-    <main className="container grid place-content-center border-b py-8 animate-in fade-in duration-really-slow">
-      <h1 className={cnBase(typography.h1, "text-center")}>Binary Code</h1>
-      <section className="mt-6 flex w-full gap-4">
-        <div>
-          <Label htmlFor="text">Text to code:</Label>
-          <Textarea
-            id="text"
-            value={text}
-            onChange={(e) => handleCodeTextToBinaryCode(e.target.value)}
-          />
-        </div>
-        <div>
-          <Label htmlFor="binary">Binary to decode:</Label>
-          <Textarea
-            id="binary"
-            value={binary}
-            onChange={(e) => handleDecodeBinaryCodeToText(e.target.value)}
-          />
-        </div>
-      </section>
-    </main>
+    <section className="mt-6 flex w-full gap-4">
+      <div>
+        <Label htmlFor="text">Text to code:</Label>
+        <Textarea
+          id="text"
+          value={text}
+          onChange={(e) => handleCodeTextToBinaryCode(e.target.value)}
+        />
+      </div>
+      <div>
+        <Label htmlFor="binary">Binary to decode:</Label>
+        <Textarea
+          id="binary"
+          value={binary}
+          onChange={(e) => handleDecodeBinaryCodeToText(e.target.value)}
+        />
+      </div>
+    </section>
   );
 }

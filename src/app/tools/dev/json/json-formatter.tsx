@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import Editor from "@monaco-editor/react";
-import { Copy, Loader } from "lucide-react";
+import { Check, Copy, Loader } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "~/components/ui/button";
@@ -84,8 +84,17 @@ export function JSONFormatter() {
         )}
       </Button>
       <Button variant="outline" onClick={() => copy(result)}>
-        <Copy className="mr-2 h-4 w-4" />
-        <span>{copied ? "Copied" : "Copy"}</span>
+        {copied ? (
+          <>
+            <Check className="h-4 w-4 animate-in fade-in" />
+            <span className="animate-in fade-in">Copied!</span>
+          </>
+        ) : (
+          <>
+            <Copy className="h-4 w-4" />
+            <span>Copy</span>
+          </>
+        )}
       </Button>
     </section>
   );

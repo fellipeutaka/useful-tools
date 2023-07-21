@@ -90,6 +90,11 @@ export const navItems = {
           href: "/tools/dev/json",
           items: [],
         },
+        {
+          title: "Text Converter",
+          href: "/tools/text",
+          items: [],
+        },
       ],
     },
   ],

@@ -2,26 +2,20 @@
 
 import { useState } from "react";
 
-import Editor from "@monaco-editor/react";
 import init from "lightningcss-wasm";
-import { Check, Copy, Loader } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Loader } from "lucide-react";
 
+import { CodeEditor } from "~/components/common/code-editor";
+import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
-import { TextareaStyles } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/toast/use-toast";
-import { useClipboard } from "~/hooks/useClipboard";
-
-import { EDITOR_OPTIONS } from "../constants/editor-config";
 
 export function CssMinifier() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const { copy, copied } = useClipboard();
   const { toast } = useToast();
-  const { theme } = useTheme();
 
   async function handleMinify() {
     if (!input.trim()) {
@@ -63,26 +57,28 @@ export function CssMinifier() {
 
   return (
     <section className="mt-8 grid h-full gap-x-4 gap-y-6 sm:grid-cols-2">
-      <Editor
-        className={TextareaStyles()}
+      <CodeEditor
         language="css"
         height="50vh"
         value={input}
         onChange={(value) => setInput(value ?? "")}
-        loading={<Loader className="h-6 w-6 animate-spin" />}
-        options={EDITOR_OPTIONS}
-        theme={theme === "light" ? "vs-light" : "vs-dark"}
       />
-      <Editor
-        className={TextareaStyles()}
-        language="css"
-        height="50vh"
-        value={result}
-        loading={<Loader className="h-6 w-6 animate-spin" />}
-        options={{ ...EDITOR_OPTIONS, readOnly: true }}
-        theme={theme === "light" ? "vs-light" : "vs-dark"}
-      />
-      <Button disabled={isLoading} onClick={handleMinify}>
+      <div className="relative">
+        <CodeEditor
+          language="css"
+          height="50vh"
+          value={result}
+          options={{ readOnly: true }}
+        />
+        <CopyButton className="absolute right-2 top-2" valueToCopy={result} />
+      </div>
+
+      <Button
+        className="col-span-full"
+        disabled={isLoading}
+        onClick={handleMinify}
+        size="lg"
+      >
         {isLoading ? (
           <>
             <Loader className="mr-2 h-4 w-4 animate-spin" />
@@ -90,19 +86,6 @@ export function CssMinifier() {
           </>
         ) : (
           <span>Minify</span>
-        )}
-      </Button>
-      <Button variant="outline" onClick={() => copy(result)}>
-        {copied ? (
-          <>
-            <Check className="h-4 w-4 animate-in fade-in" />
-            <span className="animate-in fade-in">Copied!</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-4 w-4" />
-            <span>Copy</span>
-          </>
         )}
       </Button>
     </section>

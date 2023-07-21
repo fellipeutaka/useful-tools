@@ -2,21 +2,18 @@
 
 import { useRef } from "react";
 
-import { Check, Copy } from "lucide-react";
-
+import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { Switch } from "~/components/ui/switch";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/toast/use-toast";
-import { useClipboard } from "~/hooks/useClipboard";
 
 export function TextConverter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const textareaResultRef = useRef<HTMLTextAreaElement>(null);
   const switchRef = useRef<HTMLButtonElement>(null);
   const { toast } = useToast();
-  const { copy, copied } = useClipboard();
 
   function isInputEmpty() {
     return textareaRef.current?.value.trim() === "";
@@ -94,6 +91,82 @@ export function TextConverter() {
     }
   }
 
+  function handleCovertToPascalCase() {
+    if (isInputEmpty()) {
+      return toast({
+        title: "Warning",
+        description: "Input is empty",
+        status: "warning",
+      });
+    }
+    if (textareaRef.current && textareaResultRef.current) {
+      const text = textareaRef.current.value;
+      textareaResultRef.current.value = text
+        .toLowerCase()
+        .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+        .replaceAll(" ", "");
+      if (getIfShouldClearInput()) {
+        textareaRef.current.value = "";
+      }
+      toast({
+        title: "Success",
+        description: "Text converted to pascal",
+        status: "success",
+      });
+    }
+  }
+
+  function handleConvertToCamelCase() {
+    if (isInputEmpty()) {
+      return toast({
+        title: "Warning",
+        description: "Input is empty",
+        status: "warning",
+      });
+    }
+    if (textareaRef.current && textareaResultRef.current) {
+      const text = textareaRef.current.value;
+      textareaResultRef.current.value = text
+        .toLowerCase()
+        .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+        .replaceAll(" ", "")
+        .replace(/^[A-Z]/, (a) => a.toLowerCase());
+      if (getIfShouldClearInput()) {
+        textareaRef.current.value = "";
+      }
+      toast({
+        title: "Success",
+        description: "Text converted to camel",
+        status: "success",
+      });
+    }
+  }
+
+  function handleConvertToSnakeCase() {
+    if (isInputEmpty()) {
+      return toast({
+        title: "Warning",
+        description: "Input is empty",
+        status: "warning",
+      });
+    }
+    if (textareaRef.current && textareaResultRef.current) {
+      const text = textareaRef.current.value;
+      textareaResultRef.current.value = text
+        .toLowerCase()
+        .replace(/(?:^|\s)\S/g, (a) => a.toUpperCase())
+        .replaceAll(" ", "_");
+      if (getIfShouldClearInput()) {
+        textareaRef.current.value = "";
+      }
+      toast({
+        title: "Success",
+        description: "Text converted to snake",
+        status: "success",
+      });
+    }
+  }
+
   function handleRemoveAccents() {
     if (isInputEmpty()) {
       return toast({
@@ -151,22 +224,14 @@ export function TextConverter() {
         <Textarea ref={textareaRef} placeholder="Type something here…" />
         <div className="relative">
           <Textarea ref={textareaResultRef} readOnly placeholder="Result" />
-          <Button
+          <CopyButton
             className="absolute right-2 top-2 h-8 w-8"
-            variant="outline"
-            size="icon"
-            onClick={() => copy(textareaResultRef.current?.value ?? "")}
-          >
-            {copied ? (
-              <Check className="h-3 w-3 animate-in fade-in" />
-            ) : (
-              <Copy className="h-3 w-3" />
-            )}
-          </Button>
+            valueToCopy={textareaResultRef.current?.value ?? ""}
+          />
         </div>
       </div>
 
-      <div className="mt-4 flex flex-col items-center gap-4 sm:flex-row">
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         <Button variant="outline" onClick={handleConvertToUppercase}>
           Convert to uppercase
         </Button>
@@ -175,6 +240,15 @@ export function TextConverter() {
         </Button>
         <Button variant="outline" onClick={handleConvertToCapitalize}>
           Convert to capitalize
+        </Button>
+        <Button variant="outline" onClick={handleCovertToPascalCase}>
+          Convert to pascal case
+        </Button>
+        <Button variant="outline" onClick={handleConvertToCamelCase}>
+          Convert to camel case
+        </Button>
+        <Button variant="outline" onClick={handleConvertToSnakeCase}>
+          Convert to snake case
         </Button>
         <Button variant="outline" onClick={handleRemoveAccents}>
           Remove accents

@@ -2,25 +2,21 @@
 
 import { useState } from "react";
 
-import Editor from "@monaco-editor/react";
-import { Check, Copy, Loader } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Loader } from "lucide-react";
 
+import { CodeEditor } from "~/components/common/code-editor";
+import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
-import { TextareaStyles } from "~/components/ui/textarea";
+import { Input } from "~/components/ui/input";
 import { useToast } from "~/components/ui/toast/use-toast";
-import { useClipboard } from "~/hooks/useClipboard";
-
-import { EDITOR_OPTIONS } from "../constants/editor-config";
 
 export function JSONFormatter() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [numbersOfSpaces, setNumbersOfSpaces] = useState("2");
 
-  const { copy, copied } = useClipboard();
   const { toast } = useToast();
-  const { theme } = useTheme();
 
   async function handleMinify() {
     if (!input.trim()) {
@@ -31,9 +27,19 @@ export function JSONFormatter() {
       });
     }
 
+    const space = Number(numbersOfSpaces);
+
+    if (isNaN(space)) {
+      return toast({
+        title: "Invalid input",
+        description: "Please enter a valid number",
+        status: "warning",
+      });
+    }
+
     setIsLoading(true);
     try {
-      const code = JSON.stringify(JSON.parse(input), null, 2);
+      const code = JSON.stringify(JSON.parse(input), null, space);
       setResult(code);
       toast({
         title: "Success",
@@ -53,49 +59,48 @@ export function JSONFormatter() {
   }
 
   return (
-    <section className="mt-8 grid h-full gap-x-4 gap-y-6 sm:grid-cols-2">
-      <Editor
-        className={TextareaStyles()}
-        language="json"
-        height="50vh"
-        value={input}
-        onChange={(value) => setInput(value ?? "")}
-        loading={<Loader className="h-6 w-6 animate-spin" />}
-        options={EDITOR_OPTIONS}
-        theme={theme === "light" ? "vs-light" : "vs-dark"}
-      />
-      <Editor
-        className={TextareaStyles()}
-        language="json"
-        height="50vh"
-        value={result}
-        loading={<Loader className="h-6 w-6 animate-spin" />}
-        options={{ ...EDITOR_OPTIONS, readOnly: true }}
-        theme={theme === "light" ? "vs-light" : "vs-dark"}
-      />
-      <Button disabled={isLoading} onClick={handleMinify}>
-        {isLoading ? (
-          <>
-            <Loader className="mr-2 h-4 w-4 animate-spin" />
-            <span>Beautifying</span>
-          </>
-        ) : (
-          <span>Beautify</span>
-        )}
-      </Button>
-      <Button variant="outline" onClick={() => copy(result)}>
-        {copied ? (
-          <>
-            <Check className="h-4 w-4 animate-in fade-in" />
-            <span className="animate-in fade-in">Copied!</span>
-          </>
-        ) : (
-          <>
-            <Copy className="h-4 w-4" />
-            <span>Copy</span>
-          </>
-        )}
-      </Button>
+    <section className="mt-8">
+      <div className="my-6 grid h-full gap-x-4 sm:grid-cols-2">
+        <CodeEditor
+          language="json"
+          height="50vh"
+          value={input}
+          onChange={(value) => setInput(value ?? "")}
+        />
+        <div className="relative">
+          <CodeEditor
+            language="json"
+            height="50vh"
+            value={result}
+            options={{ readOnly: true }}
+          />
+          <CopyButton className="absolute right-4 top-4" valueToCopy={result} />
+        </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <Input
+          type="number"
+          placeholder="Number of spaces"
+          min={0}
+          max={10}
+          value={numbersOfSpaces}
+          onChange={(e) =>
+            setNumbersOfSpaces(
+              Math.min(Math.max(parseInt(e.target.value), 0), 10).toString(),
+            )
+          }
+        />
+        <Button disabled={isLoading} onClick={handleMinify}>
+          {isLoading ? (
+            <>
+              <Loader className="mr-2 h-4 w-4 animate-spin" />
+              <span>Beautifying</span>
+            </>
+          ) : (
+            <span>Beautify</span>
+          )}
+        </Button>
+      </div>
     </section>
   );
 }

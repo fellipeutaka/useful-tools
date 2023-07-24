@@ -6,8 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import ky from "ky";
 import { Loader } from "lucide-react";
 
-import { useInterval } from "~/hooks/useInterval";
-import { useOnMount } from "~/hooks/useOnMount";
+import { useInterval } from "~/hooks/use-interval";
+import { useOnMount } from "~/hooks/use-on-mount";
 
 type GetTimezoneFetch = {
   abbreviation: string;

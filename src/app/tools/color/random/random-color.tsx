@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
-import { useHotkeys } from "~/hooks/useHotkeys";
+import { useHotkeys } from "~/hooks/use-hotkeys";
 import { typography } from "~/styles/typography";
 import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
 

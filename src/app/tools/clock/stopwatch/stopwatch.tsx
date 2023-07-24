@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 
 import { Button } from "~/components/ui/button";
-import { useHotkeys } from "~/hooks/useHotkeys";
-import { useInterval } from "~/hooks/useInterval";
-import { useOnMount } from "~/hooks/useOnMount";
+import { useHotkeys } from "~/hooks/use-hotkeys";
+import { useInterval } from "~/hooks/use-interval";
+import { useOnMount } from "~/hooks/use-on-mount";
 
 export function Stopwatch() {
   const [count, setCount] = useState(0);

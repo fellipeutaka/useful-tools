@@ -4,15 +4,12 @@ import { useState } from "react";
 
 import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
-import { useClipboard } from "~/hooks/useClipboard";
 import { useHotkeys } from "~/hooks/useHotkeys";
 import { typography } from "~/styles/typography";
-
-import { convertHexToHSL, convertHexToRGB } from "../utils/convert";
+import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
 
 export function RandomColor() {
   const [color, setColor] = useState("#000000");
-  const { copy } = useClipboard();
 
   function handleGenerateNewColor() {
     setColor("#" + Math.random().toString(16).slice(-6));

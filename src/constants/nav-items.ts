@@ -95,6 +95,11 @@ export const navItems = {
           href: "/tools/text",
           items: [],
         },
+        {
+          title: "Currency Converter",
+          href: "/tools/currency",
+          items: [],
+        },
       ],
     },
   ],

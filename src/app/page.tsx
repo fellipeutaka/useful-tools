@@ -8,7 +8,7 @@ import { cnBase } from "tailwind-variants";
 import { Button } from "~/components/ui/button";
 import { REPOSITORY_URL } from "~/constants/repository-info";
 import { typography } from "~/styles/typography";
-import { getGitHubStars } from "~/utils/getGitHubStars";
+import { getGitHubStars } from "~/utils/get-github-stars";
 
 export const revalidate = 60; // 1 minute
 

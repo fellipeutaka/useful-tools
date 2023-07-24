@@ -5,8 +5,7 @@ import { useState } from "react";
 import { Input } from "~/components/ui/input";
 import { useClipboard } from "~/hooks/useClipboard";
 import { typography } from "~/styles/typography";
-
-import { convertHexToHSL, convertHexToRGB } from "../utils/convert";
+import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
 
 export function ColorPicker() {
   const [color, setColor] = useState("#000000");

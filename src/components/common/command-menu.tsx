@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 
 import { navItems } from "~/constants/nav-items";
-import { useHotkeys } from "~/hooks/useHotkeys";
+import { useHotkeys } from "~/hooks/use-hotkeys";
 
 import { Button } from "../ui/button";
 import {

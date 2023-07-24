@@ -77,12 +77,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply rounded-lg bg-foreground/40 transition-colors;
+    @apply rounded-lg bg-border transition-colors;
   }
 
   ::-webkit-scrollbar-thumb:hover,
   ::-webkit-scrollbar-thumb:active {
-    @apply bg-foreground/60;
+    @apply bg-border/80;
   }
 
   ::-webkit-color-swatch-wrapper {

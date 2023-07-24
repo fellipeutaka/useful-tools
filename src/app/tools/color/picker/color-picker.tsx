@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 import { Input } from "~/components/ui/input";
-import { useClipboard } from "~/hooks/useClipboard";
+import { useClipboard } from "~/hooks/use-clipboard";
 import { typography } from "~/styles/typography";
 import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
 

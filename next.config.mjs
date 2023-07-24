@@ -4,9 +4,6 @@ import "./src/constants/env.mjs";
 const config = {
   reactStrictMode: true,
   swcMinify: true,
-  images: {
-    domains: ["i.ytimg.com", "res.cloudinary.com"],
-  },
   eslint: {
     ignoreDuringBuilds: true,
   },

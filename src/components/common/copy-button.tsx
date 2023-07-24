@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "~/components/ui/tooltip";
-import { useClipboard } from "~/hooks/useClipboard";
+import { useClipboard } from "~/hooks/use-clipboard";
 
 type CopyButtonProps = ButtonProps & {
   valueToCopy: string;

@@ -6,7 +6,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { WhatsApp } from "~/components/icons/whatsapp";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
-import { useURLState } from "~/hooks/useURLState";
+import { useURLState } from "~/hooks/use-url-state";
 
 export function QRCode() {
   const [value, setValue] = useURLState("value");

@@ -8,7 +8,7 @@ const bodySchema = z.object({
   text: z.string(),
 });
 
-export default async function POST(req: Request) {
+export async function POST(req: Request) {
   const { from, to, text } = bodySchema.parse(req.body);
 
   try {

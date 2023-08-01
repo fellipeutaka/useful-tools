@@ -1,14 +1,32 @@
 import { REPOSITORY_URL } from "./repository-info";
 
-export const navItems = {
+export type NavItems = {
+  mainNav: {
+    title: string;
+    href: string;
+    external: boolean;
+  }[];
+  sidebarNav: {
+    title: string;
+    items: {
+      title: string;
+      href: string;
+      items: unknown[];
+    }[];
+  }[];
+};
+
+export const navItems: NavItems = {
   mainNav: [
     {
       title: "Tools",
       href: "/tools",
+      external: false,
     },
     {
       title: "About",
       href: "/about",
+      external: false,
     },
     {
       title: "GitHub",
@@ -98,6 +116,11 @@ export const navItems = {
         {
           title: "Currency Converter",
           href: "/tools/currency",
+          items: [],
+        },
+        {
+          title: "Todo List",
+          href: "/tools/todo",
           items: [],
         },
       ],

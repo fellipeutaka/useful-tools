@@ -9,7 +9,7 @@ import { ThemeToggler } from "../common/theme-toggler";
 import { Button } from "../ui/button";
 
 const NavbarStyles = tv({
-  base: "w-full bg-background/95 border-b border-transparent backdrop-blur-sm animate-in fade-in slide-in-from-top-full duration-slow",
+  base: "w-full border-b border-transparent bg-background/95 backdrop-blur-sm animate-in fade-in slide-in-from-top-full duration-slow",
   variants: {
     border: {
       true: "border-border",

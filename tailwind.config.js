@@ -69,15 +69,24 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
+        check: {
+          from: {
+            "stroke-dasharray": "0px, 100%",
+          },
+          to: {
+            "stroke-dasharray": "100%, 100%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        check: "check 300ms cubic-bezier(0.65, 0, 1, 1) forwards",
       },
     },
   },
   plugins: [require("tailwindcss-animate")],
   future: {
     hoverOnlyWhenSupported: true,
-  }
+  },
 };

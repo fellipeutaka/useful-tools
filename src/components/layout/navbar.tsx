@@ -2,6 +2,8 @@ import { Github, Twitter } from "lucide-react";
 import Link from "next/link";
 import { type VariantProps, tv } from "tailwind-variants";
 
+import { getScopedI18n } from "~/lib/next-international/server";
+
 import { CommandMenu } from "../common/command-menu";
 import { Logo } from "../common/logo";
 import { MainNav } from "../common/main-nav";
@@ -22,7 +24,9 @@ const NavbarStyles = tv({
 
 export type NavbarProps = VariantProps<typeof NavbarStyles>;
 
-export function Navbar({ border, sticky }: NavbarProps) {
+export async function Navbar({ border, sticky }: NavbarProps) {
+  const t = await getScopedI18n("components");
+
   return (
     <header className={NavbarStyles({ border, sticky })}>
       <nav className="container sticky top-0 z-40 flex h-full items-center justify-between">
@@ -49,7 +53,7 @@ export function Navbar({ border, sticky }: NavbarProps) {
               href="https://github.com/fellipeutaka"
               target="_blank"
               rel="noreferrer"
-              aria-label="My GitHub profile"
+              aria-label={t("navbar.links.github")}
             >
               <Github size={16} />
             </a>
@@ -59,7 +63,7 @@ export function Navbar({ border, sticky }: NavbarProps) {
               href="https://twitter.com/fellipeutaka"
               target="_blank"
               rel="noreferrer"
-              aria-label="My Twitter profile"
+              aria-label={t("navbar.links.twitter")}
             >
               <Twitter size={16} />
             </a>

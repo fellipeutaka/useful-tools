@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 import { navItems } from "~/constants/nav-items";
 import { useHotkeys } from "~/hooks/use-hotkeys";
+import { useI18n, useScopedI18n } from "~/lib/next-international/client";
 
 import { Button } from "../ui/button";
 import {
@@ -26,6 +27,8 @@ export function CommandMenu() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const { setTheme } = useTheme();
+  const t = useI18n();
+  const scopedT = useScopedI18n("components");
 
   useHotkeys([
     ["ctrl+K", () => setIsOpen((open) => !open)],
@@ -49,14 +52,14 @@ export function CommandMenu() {
       >
         <div className="flex items-center gap-2">
           <Search className="h-4 w-4" />
-          <span>Search...</span>
+          <span>{scopedT("navbar.search")}</span>
         </div>
         <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
       <CommandDialog open={isOpen} onOpenChange={setIsOpen}>
-        <CommandInput placeholder="Type a command or search..." />
+        <CommandInput placeholder={scopedT("navbar.search.placeholder")} />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
@@ -65,23 +68,27 @@ export function CommandMenu() {
               .map((item) => (
                 <CommandItem
                   key={item.href}
-                  value={item.title}
+                  value={scopedT(`navbar.main.${item.id}`)}
                   onSelect={runCommand(() =>
                     router.push(item.href as RouteHref),
                   )}
+                  className="capitalize"
                 >
                   <File className="mr-2 h-4 w-4" />
-                  {item.title}
+                  {scopedT(`navbar.main.${item.id}`)}
                 </CommandItem>
               ))}
           </CommandGroup>
           <CommandSeparator />
           {navItems.sidebarNav.map((group) => (
-            <CommandGroup key={group.title} heading={group.title}>
+            <CommandGroup
+              key={group.title}
+              heading={scopedT(`navbar.command.${group.id}`)}
+            >
               {group.items.map((item) => (
                 <CommandItem
-                  key={item.href}
-                  value={item.title}
+                  key={item.id}
+                  value={t(`pages.tools.${item.id}.title`)}
                   onSelect={runCommand(() =>
                     router.push(item.href as RouteHref),
                   )}
@@ -89,24 +96,24 @@ export function CommandMenu() {
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">
                     <Circle className="h-3 w-3" />
                   </div>
-                  {item.title}
+                  {t(`pages.tools.${item.id}.title`)}
                 </CommandItem>
               ))}
             </CommandGroup>
           ))}
           <CommandSeparator />
-          <CommandGroup heading="Theme">
+          <CommandGroup heading={scopedT("navbar.command.theme")}>
             <CommandItem onSelect={runCommand(() => setTheme("light"))}>
               <Sun className="mr-2 h-4 w-4" />
-              <span>Light</span>
+              <span>{scopedT("navbar.command.light")}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("dark"))}>
               <Moon className="mr-2 h-4 w-4" />
-              <span>Dark</span>
+              <span>{scopedT("navbar.command.dark")}</span>
             </CommandItem>
             <CommandItem onSelect={runCommand(() => setTheme("system"))}>
               <Laptop className="mr-2 h-4 w-4" />
-              <span>System</span>
+              <span>{scopedT("navbar.command.system")}</span>
             </CommandItem>
           </CommandGroup>
         </CommandList>

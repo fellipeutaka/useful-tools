@@ -11,7 +11,7 @@ const config = {
     ignoreBuildErrors: true,
   },
   experimental: {
-    typedRoutes: process.env.NODE_ENV === "development",
+    // typedRoutes: process.env.NODE_ENV === "development",
   },
   webpack: (config) => {
     config.resolve.fallback = { fs: false };

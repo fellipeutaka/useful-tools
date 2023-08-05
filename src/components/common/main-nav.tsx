@@ -3,36 +3,38 @@
 import Link from "next/link";
 
 import { REPOSITORY_URL } from "~/constants/repository-info";
+import { useI18n } from "~/lib/next-international/client";
 
 import { useToast } from "../ui/toast/use-toast";
 
 export function MainNav() {
   const { toast } = useToast();
+  const t = useI18n();
 
   return (
-    <div className="flex items-center space-x-6 text-sm font-medium text-foreground/60">
+    <div className="flex items-center space-x-6 text-sm font-medium capitalize text-foreground/60">
       <Link
         className="transition-colors hover:text-foreground/80"
         href="/tools"
       >
-        Tools
+        {t("general.tools")}
       </Link>
       <button
         onClick={() =>
           toast({
-            title: "It's free! 😜",
-            description: "This project is open source and free to use. 🥳",
+            title: t("components.navbar.pricing.toast.title"),
+            description: t("components.navbar.pricing.toast.description"),
           })
         }
-        className="transition-colors hover:text-foreground/80"
+        className="capitalize transition-colors hover:text-foreground/80"
       >
-        Pricing
+        {t("general.pricing")}
       </button>
       <Link
         className="transition-colors hover:text-foreground/80"
         href="/about"
       >
-        About
+        {t("general.about")}
       </Link>
       <a href={REPOSITORY_URL} target="_blank" rel="noreferrer">
         GitHub

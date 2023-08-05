@@ -11,6 +11,7 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { useClipboard } from "~/hooks/use-clipboard";
+import { useScopedI18n } from "~/lib/next-international/client";
 
 type CopyButtonProps = ButtonProps & {
   valueToCopy: string;
@@ -22,6 +23,7 @@ export function CopyButton({
   ...props
 }: CopyButtonProps) {
   const { copy, copied } = useClipboard();
+  const t = useScopedI18n("components.copy-button");
 
   return (
     <TooltipProvider>
@@ -34,7 +36,7 @@ export function CopyButton({
               e.preventDefault();
               copy(valueToCopy);
             }}
-            aria-label="Copy to clipboard"
+            aria-label={t("copy")}
             className={cnBase("h-8 w-8", className)}
             {...props}
           >
@@ -51,7 +53,7 @@ export function CopyButton({
           }}
           className="select-none"
         >
-          <p>{copied ? "Copied!" : "Copy to clipboard"}</p>
+          <p>{copied ? t("copied") : t("copy")}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

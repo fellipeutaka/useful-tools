@@ -4,6 +4,8 @@
   "language": "en,pt",
   "ignorePaths": ["dist", "out", "build", ".next"],
   "words": [
+    "Fellipe",
+    "Utaka",
     "caesar",
     "cmdk",
     "commitlint",
@@ -16,6 +18,7 @@
     "morsee",
     "nextjs",
     "qrcode",
+    "shadcn",
     "Shadcn",
     "tailwindcss",
     "tanstack",

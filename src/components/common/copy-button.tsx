@@ -20,6 +20,7 @@ type CopyButtonProps = ButtonProps & {
 export function CopyButton({
   valueToCopy,
   className,
+  onClick,
   ...props
 }: CopyButtonProps) {
   const { copy, copied } = useClipboard();
@@ -35,6 +36,7 @@ export function CopyButton({
             onClick={(e) => {
               e.preventDefault();
               copy(valueToCopy);
+              onClick?.(e);
             }}
             aria-label={t("copy")}
             className={cnBase("h-8 w-8", className)}

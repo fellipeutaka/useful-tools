@@ -81,7 +81,7 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        check: "check 300ms cubic-bezier(0.65, 0, 1, 1) forwards",
+        check: "check 150ms cubic-bezier(0.65, 0, 1, 1) forwards",
       },
     },
   },

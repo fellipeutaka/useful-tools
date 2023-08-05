@@ -181,6 +181,7 @@ const dictionary = {
       "password-generator": {
         title: "Gerador de Senhas",
         placeholder: "Senha",
+        length: "Número de caracteres: {length}",
         actions: {
           generate: "Gerar",
         },

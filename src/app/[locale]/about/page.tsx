@@ -16,7 +16,7 @@ export default async function Page() {
 
   return (
     <div className="grid content-center border-b">
-      <main className="container animate-in fade-in slide-in-from-bottom-8 duration-really-slow">
+      <main className="container py-10 animate-in fade-in slide-in-from-bottom-8 duration-really-slow">
         <div className="space-y-2">
           <h1 className={cnBase(typography.h1, "lg:text-4xl")}>{t("title")}</h1>
           <Balancer as="p" className="text-lg text-muted-foreground">

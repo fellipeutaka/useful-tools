@@ -1,8 +1,10 @@
-import { GenerateMetadata } from "~/@types/metadata";
+import type { GenerateMetadata } from "~/@types/metadata";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 
 import { ColorPicker } from "./color-picker";
+
+export const runtime = "edge";
 
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.color-picker");

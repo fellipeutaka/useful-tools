@@ -1,15 +1,23 @@
 import { Balancer } from "react-wrap-balancer";
 
-import type { Metadata } from "next";
 import { cnBase } from "tailwind-variants";
 
+import type { GenerateMetadata } from "~/@types/metadata";
 import { REPOSITORY_URL } from "~/constants/repository-info";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 
-export const metadata: Metadata = {
-  title: "About",
+export const generateMetadata: GenerateMetadata = async () => {
+  const t = await getScopedI18n("pages.about");
+
+  return {
+    title: t("title"),
+    description: "The best and useful just for you",
+    keywords: "tools, useful",
+  };
 };
+
+export const runtime = "edge";
 
 export default async function Page() {
   const t = await getScopedI18n("pages.about");

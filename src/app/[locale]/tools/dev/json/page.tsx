@@ -1,4 +1,4 @@
-import { GenerateMetadata } from "~/@types/metadata";
+import type { GenerateMetadata } from "~/@types/metadata";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 

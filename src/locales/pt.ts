@@ -117,6 +117,7 @@ const dictionary = {
       author: "Autor",
     },
     tools: {
+      title: "Ferramentas",
       clock: {
         title: "Relógio",
       },

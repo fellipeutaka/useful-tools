@@ -1,13 +1,15 @@
 import ky from "ky";
 import { tv } from "tailwind-variants";
 
-import { GenerateMetadata } from "~/@types/metadata";
+import type { GenerateMetadata } from "~/@types/metadata";
 import { Currency } from "~/constants/currency";
 import { env } from "~/constants/env.mjs";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 
 import { CurrencyConverter } from "./currency-converter";
+
+export const runtime = "edge";
 
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.currency");

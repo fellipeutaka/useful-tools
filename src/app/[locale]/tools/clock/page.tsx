@@ -4,6 +4,8 @@ import { typography } from "~/styles/typography";
 
 import { Clock } from "./clock";
 
+export const runtime = "edge";
+
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.clock");
 

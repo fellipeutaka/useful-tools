@@ -8,6 +8,8 @@ import { useInterval } from "~/hooks/use-interval";
 import { useOnMount } from "~/hooks/use-on-mount";
 import { useScopedI18n } from "~/lib/next-international/client";
 
+export const runtime = "edge";
+
 export function Stopwatch() {
   const t = useScopedI18n("pages.tools.stopwatch");
   const [count, setCount] = useState(0);

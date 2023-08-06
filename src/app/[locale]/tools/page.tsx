@@ -1,9 +1,17 @@
-import type { Metadata } from "next";
-
+import type { GenerateMetadata } from "~/@types/metadata";
+import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 
-export const metadata: Metadata = {
-  title: "Tools",
+export const runtime = "edge";
+
+export const generateMetadata: GenerateMetadata = async () => {
+  const t = await getScopedI18n("pages.tools");
+
+  return {
+    title: t("title"),
+    description: "The best and useful just for you",
+    keywords: "tools, useful",
+  };
 };
 
 export default function Tools() {

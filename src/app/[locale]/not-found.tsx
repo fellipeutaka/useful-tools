@@ -8,8 +8,6 @@ import { ThemeProvider } from "~/contexts/providers";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";
 
-export const runtime = "edge";
-
 export default async function NotFound() {
   const t = await getScopedI18n("pages.not-found");
 

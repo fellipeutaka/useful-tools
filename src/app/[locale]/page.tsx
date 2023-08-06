@@ -15,8 +15,6 @@ import { FeatureCard } from "./components/feature-card";
 
 export const revalidate = 60; // 1 minute
 
-export const runtime = "edge";
-
 export default async function Page() {
   const stars = await getGitHubStars();
   const t = await getI18n();

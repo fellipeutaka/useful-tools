@@ -4,8 +4,6 @@ import { typography } from "~/styles/typography";
 
 import { RandomColor } from "./random-color";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.random-color");
 

@@ -6,8 +6,6 @@ import { typography } from "~/styles/typography";
 
 import { CaesarCipher } from "./caesar-cipher";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.caesar-cipher");
 

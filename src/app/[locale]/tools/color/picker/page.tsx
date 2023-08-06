@@ -4,8 +4,6 @@ import { typography } from "~/styles/typography";
 
 import { ColorPicker } from "./color-picker";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.color-picker");
 

@@ -17,8 +17,6 @@ export const generateMetadata: GenerateMetadata = async () => {
   };
 };
 
-export const runtime = "edge";
-
 export default async function Page() {
   const t = await getScopedI18n("pages.about");
 

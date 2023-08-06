@@ -6,8 +6,6 @@ import { typography } from "~/styles/typography";
 
 import { BinaryCode } from "./binary-code";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.binary-code");
 

@@ -6,8 +6,6 @@ import { typography } from "~/styles/typography";
 
 import { Hex } from "./hex";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.hex-code");
 

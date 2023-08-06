@@ -6,8 +6,6 @@ import { typography } from "~/styles/typography";
 
 import { Morse } from "./morse";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.morse-code");
 

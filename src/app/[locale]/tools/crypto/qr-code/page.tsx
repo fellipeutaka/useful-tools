@@ -6,8 +6,6 @@ import { typography } from "~/styles/typography";
 
 import { QRCode } from "./qr-code";
 
-export const runtime = "edge";
-
 export const generateMetadata: GenerateMetadata = async () => {
   const t = await getScopedI18n("pages.tools.qr-code");
 

@@ -24,7 +24,7 @@ export function QRCode() {
   }
 
   return (
-    <section className="mt-8 gap-4 space-y-4">
+    <section className="mt-8">
       <div>
         <Input
           type="text"
@@ -34,9 +34,9 @@ export function QRCode() {
         />
         <p className="mt-1 text-xs text-muted-foreground">{t("hint")}</p>
       </div>
-      <QRCodeCanvas size={256} className="mx-auto" value={value} />
+      <QRCodeCanvas size={256} className="mx-auto mt-4" value={value} />
       <Button
-        className="!my-6 mx-auto gap-2"
+        className="mx-auto my-6"
         variant="outline"
         onClick={handleDownload}
       >
@@ -44,7 +44,10 @@ export function QRCode() {
         <span>{t("actions.download")}</span>
       </Button>
       <div className="flex flex-col items-center gap-4 sm:flex-row">
-        <Button className="gap-2 rounded-full" variant="green" asChild>
+        <Button
+          className="rounded-full bg-green-700 text-green-50 hover:bg-green-700/90"
+          asChild
+        >
           <a
             href={`https://wa.me/?text=${encodeURIComponent(value)}`}
             rel="noreferrer"
@@ -54,7 +57,10 @@ export function QRCode() {
             <span>{t("actions.share.whatsapp")}</span>
           </a>
         </Button>
-        <Button className="gap-2 rounded-full" variant="blue" asChild>
+        <Button
+          className="rounded-full bg-sky-700 text-sky-50 hover:bg-sky-700/90"
+          asChild
+        >
           <a
             href={`http://twitter.com/share?text=${encodeURIComponent(value)}`}
             rel="noreferrer"

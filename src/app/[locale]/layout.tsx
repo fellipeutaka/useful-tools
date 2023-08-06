@@ -9,6 +9,8 @@ import "~/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const runtime = "edge";
+
 export const generateMetadata: GenerateMetadata = () => {
   return {
     title: {

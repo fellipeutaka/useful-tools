@@ -8,8 +8,6 @@ export const ButtonStyles = tv({
   variants: {
     variant: {
       default: "bg-primary text-primary-foreground hover:bg-primary/90",
-      green: "bg-green-500 text-primary-foreground hover:bg-green-500/90",
-      blue: "bg-sky-500 text-primary-foreground hover:bg-sky-500/90",
       destructive:
         "bg-destructive text-destructive-foreground hover:bg-destructive/90",
       outline:

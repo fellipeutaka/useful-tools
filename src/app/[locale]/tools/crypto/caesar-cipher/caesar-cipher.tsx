@@ -2,20 +2,37 @@
 
 import { useState } from "react";
 
-import { decryptString, encryptString } from "@gykh/caesar-cipher";
-
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import { useToast } from "~/components/ui/toast/use-toast";
-import { useScopedI18n } from "~/lib/next-international/client";
+import { useI18n, useScopedI18n } from "~/lib/next-international/client";
+
+function cipher(chunk: Uint8Array, key: number) {
+  const transformedChunk = new Uint8Array(chunk.length);
+  for (let i = 0; i < chunk.length; i++) {
+    transformedChunk[i] = chunk[i] + (key % 26);
+  }
+  return transformedChunk;
+}
+
+function encryptString(str: string, key: number) {
+  const encrypted = cipher(new TextEncoder().encode(str), key);
+  return new TextDecoder().decode(encrypted);
+}
+
+function decryptString(str: string, key: number) {
+  const decrypted = cipher(new TextEncoder().encode(str), -key);
+  return new TextDecoder().decode(decrypted);
+}
 
 export function CaesarCipher() {
   const [key, setKey] = useState("3");
   const [text, setText] = useState("");
   const [caesarCipher, setCaesarCipher] = useState("");
-  const t = useScopedI18n("pages.tools.caesar-cipher");
+  const t = useI18n();
+  const scopedT = useScopedI18n("pages.tools.caesar-cipher");
   const { toast } = useToast();
 
   function handleCodeTextToCaesarCipherCode() {
@@ -24,7 +41,11 @@ export function CaesarCipher() {
       return setText("");
     }
     if (isNaN(Number(key))) {
-      return toast({ title: "Please, type a number between 0 - 25" });
+      return toast({
+        title: t("components.toast.warning"),
+        description: scopedT("toast.invalid-key"),
+        status: "warning",
+      });
     }
     const encrypted = encryptString(text, Number(key));
     setCaesarCipher(encrypted);
@@ -37,7 +58,11 @@ export function CaesarCipher() {
       return setCaesarCipher("");
     }
     if (isNaN(Number(key))) {
-      return toast({ title: "Please, type a number between 0 - 25" });
+      return toast({
+        title: t("components.toast.warning"),
+        description: scopedT("toast.invalid-key"),
+        status: "warning",
+      });
     }
     const decrypted = decryptString(caesarCipher, Number(key));
     setText(decrypted);
@@ -47,7 +72,7 @@ export function CaesarCipher() {
   return (
     <section className="mt-6 flex w-full gap-4">
       <div>
-        <Label htmlFor="key">{t("key")}</Label>
+        <Label htmlFor="key">{scopedT("key")}</Label>
         <Input
           type="number"
           id="key"
@@ -58,25 +83,25 @@ export function CaesarCipher() {
         />
       </div>
       <div>
-        <Label htmlFor="text">{t("encode")}</Label>
+        <Label htmlFor="text">{scopedT("encode")}</Label>
         <Textarea
           id="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-        <Button type="button" onClick={handleCodeTextToCaesarCipherCode}>
-          {t("actions.code")}
+        <Button className="mt-2" onClick={handleCodeTextToCaesarCipherCode}>
+          {scopedT("actions.code")}
         </Button>
       </div>
       <div>
-        <Label htmlFor="caesarCipher">{t("decode")}</Label>
+        <Label htmlFor="caesarCipher">{scopedT("decode")}</Label>
         <Textarea
           id="caesarCipher"
           value={caesarCipher}
           onChange={(e) => setCaesarCipher(e.target.value)}
         />
-        <Button type="button" onClick={handleDecodeCaesarCipherCodeToText}>
-          {t("actions.decode")}
+        <Button className="mt-2" onClick={handleDecodeCaesarCipherCodeToText}>
+          {scopedT("actions.decode")}
         </Button>
       </div>
     </section>

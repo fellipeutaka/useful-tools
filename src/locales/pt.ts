@@ -147,6 +147,9 @@ const dictionary = {
           code: "Codificar",
           decode: "Decodificar",
         },
+        toast: {
+          "invalid-key": "Por favor, digite um número entre 0 - 25",
+        },
       },
       "hex-code": {
         title: "Código Hexadecimal",

@@ -27,7 +27,6 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@gykh/caesar-cipher": "^2.0.0",
     "@hookform/resolvers": "^3.1.1",
     "@monaco-editor/react": "^4.5.1",
     "@radix-ui/react-checkbox": "^1.0.4",

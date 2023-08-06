@@ -144,6 +144,9 @@ const dictionary = {
           code: "Code",
           decode: "Decode",
         },
+        toast: {
+          "invalid-key": "Please type a number between 0 - 25",
+        },
       },
       "hex-code": {
         title: "Hex Code",

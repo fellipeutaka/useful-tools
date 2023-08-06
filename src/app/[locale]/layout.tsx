@@ -4,6 +4,7 @@ import type { GenerateMetadata } from "~/@types/metadata";
 import { Footer } from "~/components/layout/footer";
 import { Navbar } from "~/components/layout/navbar";
 import { Providers } from "~/contexts/providers";
+import { defaultLocale, localeList } from "~/locales";
 
 import "~/styles/globals.css";
 
@@ -26,6 +27,23 @@ export const generateMetadata: GenerateMetadata = () => {
       { media: "(prefers-color-scheme: light)", color: "white" },
       { media: "(prefers-color-scheme: dark)", color: "black" },
     ],
+    openGraph: {
+      type: "website",
+      locale: defaultLocale,
+      alternateLocale: localeList.filter((locale) => locale !== defaultLocale),
+      siteName: "Useful Tools",
+      url: "https://usefultools.vercel.app/",
+      title: "Useful Tools",
+      description: "The best and useful just for you",
+      images: [
+        {
+          url: "https://usefultools.vercel.app/og-image.png",
+          width: 1280,
+          height: 640,
+          alt: "Useful Tools",
+        },
+      ],
+    },
   };
 };
 

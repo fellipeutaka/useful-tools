@@ -1,9 +1,9 @@
 import { createI18nMiddleware } from "next-international/middleware";
 import { NextRequest } from "next/server";
 
-import { localeList } from "./locales";
+import { defaultLocale, localeList } from "./locales";
 
-const I18nMiddleware = createI18nMiddleware(localeList, "en", {
+const I18nMiddleware = createI18nMiddleware(localeList, defaultLocale, {
   urlMappingStrategy: "rewrite",
 });
 

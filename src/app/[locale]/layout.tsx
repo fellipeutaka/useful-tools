@@ -27,17 +27,21 @@ export const generateMetadata: GenerateMetadata = () => {
       { media: "(prefers-color-scheme: light)", color: "white" },
       { media: "(prefers-color-scheme: dark)", color: "black" },
     ],
+    applicationName: "Useful Tools",
+    alternates: {
+      canonical: "https://usefultools.vercel.app",
+    },
     openGraph: {
       type: "website",
       locale: defaultLocale,
       alternateLocale: localeList.filter((locale) => locale !== defaultLocale),
       siteName: "Useful Tools",
-      url: "https://usefultools.vercel.app/",
+      url: "https://usefultools.vercel.app",
       title: "Useful Tools",
       description: "The best and useful just for you",
       images: [
         {
-          url: "https://usefultools.vercel.app/og-image.png",
+          url: "/og-image.png",
           width: 1280,
           height: 640,
           alt: "Useful Tools",

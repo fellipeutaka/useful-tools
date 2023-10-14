@@ -2,7 +2,7 @@ import ky from "ky";
 import { tv } from "tailwind-variants";
 
 import type { GenerateMetadata } from "~/@types/metadata";
-import { Currency } from "~/constants/currency";
+import { type Currency } from "~/constants/currency";
 import { env } from "~/constants/env.mjs";
 import { getScopedI18n } from "~/lib/next-international/server";
 import { typography } from "~/styles/typography";

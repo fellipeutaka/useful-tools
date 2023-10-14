@@ -3,7 +3,9 @@ import { NextRequest } from "next/server";
 
 import { defaultLocale, localeList } from "./locales";
 
-const I18nMiddleware = createI18nMiddleware(localeList, defaultLocale, {
+const I18nMiddleware = createI18nMiddleware({
+  defaultLocale,
+  locales: localeList,
   urlMappingStrategy: "rewrite",
 });
 

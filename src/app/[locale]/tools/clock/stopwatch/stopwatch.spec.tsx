@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
-import Stopwatch from "@useful-tools/pages/tools/stopwatch";
+import { render } from "~/testing/test-utils";
+
+import { Stopwatch } from "./stopwatch";
 
 describe("Stopwatch", () => {
   it("should render all components", () => {

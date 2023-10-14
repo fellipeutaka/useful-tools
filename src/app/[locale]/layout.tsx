@@ -28,8 +28,9 @@ export const generateMetadata: GenerateMetadata = () => {
       { media: "(prefers-color-scheme: dark)", color: "black" },
     ],
     applicationName: "Useful Tools",
+    metadataBase: new URL("https://usefultools.vercel.app"),
     alternates: {
-      canonical: "https://usefultools.vercel.app",
+      canonical: "/",
     },
     openGraph: {
       type: "website",
@@ -54,7 +55,7 @@ export const generateMetadata: GenerateMetadata = () => {
 export default function RootLayout({
   children,
   params,
-}: WithChildren<PageParams>) {
+}: PropsWithChildren<PageParams>) {
   return (
     <html
       lang={params.locale}

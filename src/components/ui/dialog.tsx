@@ -6,7 +6,6 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { cnBase, tv } from "tailwind-variants";
 
-
 export function handleCloseDialog() {
   return new KeyboardEvent("keydown", {
     key: "Escape",
@@ -26,13 +25,7 @@ const DialogStyles = {
   }),
 };
 
-const DialogPortal = ({
-  className,
-  ...props
-}: DialogPrimitive.DialogPortalProps) => (
-  <DialogPrimitive.Portal className={cnBase(className)} {...props} />
-);
-DialogPortal.displayName = DialogPrimitive.Portal.displayName;
+const DialogPortal = DialogPrimitive.Portal;
 
 const DialogOverlay = forwardRef<
   React.ElementRef<typeof DialogPrimitive.Overlay>,

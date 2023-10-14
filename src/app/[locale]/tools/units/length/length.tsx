@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
-import { LengthUnits, lengthUnits } from "~/constants/length-units";
+import { type LengthUnits, lengthUnits } from "~/constants/length-units";
 import { useScopedI18n } from "~/lib/next-international/client";
 import { typography } from "~/styles/typography";
 

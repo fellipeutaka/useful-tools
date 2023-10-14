@@ -1,6 +1,6 @@
 "use client";
 
-import type { ComponentProps } from "react";
+import type { ComponentProps, PropsWithChildren } from "react";
 
 import { QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as NextThemeProvider } from "next-themes";
@@ -13,7 +13,7 @@ import en from "~/locales/en";
 export function ThemeProvider({
   children,
   ...props
-}: WithChildren<ComponentProps<typeof NextThemeProvider>>) {
+}: PropsWithChildren<ComponentProps<typeof NextThemeProvider>>) {
   return (
     <NextThemeProvider
       attribute="class"
@@ -29,7 +29,7 @@ export function ThemeProvider({
 export function Providers({
   children,
   locale,
-}: WithChildren<{ locale: string }>) {
+}: PropsWithChildren<{ locale: string }>) {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>

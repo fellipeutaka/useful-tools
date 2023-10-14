@@ -11,10 +11,10 @@ import {
   ComboboxTrigger,
 } from "~/components/ui/combobox";
 import { Input } from "~/components/ui/input";
-import { Currency, currencies } from "~/constants/currency";
+import { type Currency, currencies } from "~/constants/currency";
 import { useScopedI18n } from "~/lib/next-international/client";
 
-import { CurrencyResponse } from "./page";
+import { type CurrencyResponse } from "./page";
 
 type CurrencyState = {
   value: string;

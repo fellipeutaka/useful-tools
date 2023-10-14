@@ -1,6 +1,8 @@
-import { render, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import BinaryCode from "@useful-tools/pages/tools/binary-code";
+
+import { render, waitFor } from "~/testing/test-utils";
+
+import { BinaryCode } from "./binary-code";
 
 describe("Binary code", () => {
   it("should render all components", () => {

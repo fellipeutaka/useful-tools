@@ -12,7 +12,9 @@ import { useI18n, useScopedI18n } from "~/lib/next-international/client";
 function cipher(chunk: Uint8Array, key: number) {
   const transformedChunk = new Uint8Array(chunk.length);
   for (let i = 0; i < chunk.length; i++) {
-    transformedChunk[i] = chunk[i] + (key % 26);
+    if (chunk[i]) {
+      transformedChunk[i] = chunk[i]! + (key % 26);
+    }
   }
   return transformedChunk;
 }

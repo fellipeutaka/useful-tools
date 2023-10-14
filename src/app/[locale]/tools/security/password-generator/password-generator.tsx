@@ -85,7 +85,7 @@ export function PasswordGenerator() {
         <p>{t("length", { length })}</p>
         <Slider
           value={[length]}
-          onValueChange={([value]) => setLength(value)}
+          onValueChange={([value]) => setLength(value!)}
           min={4}
           max={128}
         />

@@ -1,3 +1,4 @@
+import million from 'million/compiler';
 import "./src/constants/env.mjs";
 
 /** @type {import('next').NextConfig} */
@@ -18,6 +19,13 @@ const config = {
 
     return config;
   },
+  compiler: {
+    removeConsole: {
+      exclude: ["error", "warn"],
+    },
+  },
 };
 
-export default config;
+export default million.next(
+  config, { auto: { rsc: true } }
+);

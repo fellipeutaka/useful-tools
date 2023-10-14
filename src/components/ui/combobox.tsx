@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cnBase } from "tailwind-variants";
 
-import { Button, ButtonProps } from "./button";
+import { Button, type ButtonProps } from "./button";
 import {
   Command,
   CommandEmpty,

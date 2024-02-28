@@ -4,17 +4,11 @@ import { useState } from "react";
 
 import convert from "convert";
 
-import { Input } from "~/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "~/components/ui/select";
-import { type LengthUnits, lengthUnits } from "~/constants/length-units";
-import { useScopedI18n } from "~/lib/next-international/client";
-import { typography } from "~/styles/typography";
+import { useTranslations } from "next-intl";
+import { HeadingStyles } from "~/components/ui/heading";
+import { Select, SelectContent, SelectItem } from "~/components/ui/select";
+import { TextField } from "~/components/ui/textfield";
+import { type LengthUnits, lengthUnits } from "~/config/length";
 
 type CalculateUnities = {
   from?: LengthUnits;
@@ -26,7 +20,7 @@ export function Length() {
   const [toUnity, setToUnity] = useState<LengthUnits>("centimeter");
   const [fromValue, setFromValue] = useState("1");
   const [toValue, setToValue] = useState("100");
-  const t = useScopedI18n("pages.tools.length");
+  const t = useTranslations("pages.tools.length");
 
   function calculate(
     state: "from" | "to",
@@ -36,7 +30,7 @@ export function Length() {
     if (!value.trim()) {
       setFromValue(value);
       setToValue("");
-    } else if (isNaN(Number(value))) {
+    } else if (Number.isNaN(Number(value))) {
       setFromValue(value);
       setToValue("");
     } else {
@@ -69,11 +63,11 @@ export function Length() {
   return (
     <section className="mt-6 grid grid-cols-3 items-center">
       <div className="space-y-4">
-        <Input value={fromValue} onChange={handleChangeFromValue} />
+        <TextField>
+          <TextField.Input value={fromValue} onChange={handleChangeFromValue} />
+        </TextField>
         <Select value={fromUnity} onValueChange={handleChangeFromUnity}>
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
+          <Select.Trigger placeholder="From" />
           <SelectContent>
             {lengthUnits.map((lengthUnit) => (
               <SelectItem key={lengthUnit} value={lengthUnit}>
@@ -83,17 +77,19 @@ export function Length() {
           </SelectContent>
         </Select>
       </div>
-      <span className={typography.h3}> = </span>
+      <span className={HeadingStyles({ variant: "h3", className: "mx-auto" })}>
+        =
+      </span>
       <div className="space-y-4">
-        <Input value={toValue} onChange={handleChangeToValue} />
+        <TextField>
+          <TextField.Input value={toValue} onChange={handleChangeToValue} />
+        </TextField>
         <Select value={toUnity} onValueChange={handleChangeToUnity}>
-          <SelectTrigger>
-            <SelectValue />
-          </SelectTrigger>
+          <Select.Trigger placeholder="To" />
           <SelectContent>
             {lengthUnits.map((lengthUnit) => (
               <SelectItem key={lengthUnit} value={lengthUnit}>
-                {lengthUnit}
+                {t(lengthUnit)}
               </SelectItem>
             ))}
           </SelectContent>

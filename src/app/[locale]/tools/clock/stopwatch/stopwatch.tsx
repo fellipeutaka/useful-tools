@@ -1,15 +1,15 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
 import { Button } from "~/components/ui/button";
 import { useHotkeys } from "~/hooks/use-hotkeys";
 import { useInterval } from "~/hooks/use-interval";
 import { useOnMount } from "~/hooks/use-on-mount";
-import { useScopedI18n } from "~/lib/next-international/client";
 
 export function Stopwatch() {
-  const t = useScopedI18n("pages.tools.stopwatch");
+  const t = useTranslations("pages.tools.stopwatch");
   const [count, setCount] = useState(0);
 
   const interval = useInterval(() => setCount((state) => state + 10), 10);
@@ -47,7 +47,7 @@ export function Stopwatch() {
 
   return (
     <section className="mt-8">
-      <div className="mx-auto grid aspect-square h-48 w-48 place-content-center rounded-full border p-16">
+      <div className="mx-auto grid aspect-square h-48 w-48 place-content-center rounded-full border border-border p-16">
         <b>
           {minutes}:{seconds}:{milliseconds}
         </b>

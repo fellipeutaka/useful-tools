@@ -9,21 +9,23 @@ export function useURLState(query: string): [string, (value: string) => void] {
   const [state, setState] = useState(searchParams.get(query) ?? "");
 
   const updateState = (value: string) => {
-    const current = new URLSearchParams(Array.from(searchParams.entries()));
+    const newSearchParams = new URLSearchParams(
+      Array.from(searchParams.entries()),
+    );
 
     if (!value.trim()) {
-      current.delete(query);
+      newSearchParams.delete(query);
     } else {
-      current.set(query, value);
+      newSearchParams.set(query, value);
     }
 
     setState(value);
 
-    const search = current.toString();
+    const search = newSearchParams.toString();
 
     const newUrl = `${pathname}${search ? `?${search}` : ""}`;
 
-    router.push(newUrl as never);
+    router.push(newUrl);
   };
 
   return [state, updateState];

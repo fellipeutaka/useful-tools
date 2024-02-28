@@ -3,8 +3,8 @@
 import { forwardRef } from "react";
 
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { Check } from "lucide-react";
-import { tv } from "tailwind-variants";
+import { tv } from "mizuhara/utils";
+import { Icons } from "../icons";
 
 export const CheckboxStyles = {
   Root: tv({
@@ -33,7 +33,7 @@ const Checkbox = forwardRef<
     {...props}
   >
     <CheckboxPrimitive.Indicator className={CheckboxStyles.Indicator()}>
-      <Check className="h-4 w-4 animate-check" />
+      <Icons.Check className="h-4 w-4 animate-check" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
 ));

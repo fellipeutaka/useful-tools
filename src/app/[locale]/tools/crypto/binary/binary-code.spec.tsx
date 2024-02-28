@@ -1,46 +1,56 @@
 import userEvent from "@testing-library/user-event";
 
-import { render, waitFor } from "~/testing/test-utils";
-
+import { describe, expect, it } from "vitest";
+import { render, waitFor } from "~/tests/render";
 import { BinaryCode } from "./binary-code";
 
 describe("Binary code", () => {
   it("should render all components", () => {
-    const { container, getByText } = render(<BinaryCode />);
-    const title = getByText("Binary Code");
-    const textFieldLabel = getByText("Text to code:");
-    const textField = container.querySelector("textarea#text");
-    const binaryFieldLabel = getByText("Binary to decode:");
-    const binaryField = container.querySelector("textarea#binary");
-    expect(title).toBeInTheDocument();
-    expect(textFieldLabel).toBeInTheDocument();
-    expect(textField).toBeInTheDocument();
-    expect(binaryFieldLabel).toBeInTheDocument();
-    expect(binaryField).toBeInTheDocument();
+    const { getByText, getByPlaceholderText } = render(<BinaryCode />);
+    const textFieldLabel = getByText("Text to binary");
+    const textField = getByPlaceholderText(
+      "Some text to encode to binary code",
+    );
+    const binaryFieldLabel = getByText("Binary to text");
+    const binaryField = getByPlaceholderText(
+      "Some binary code to decode to text",
+    );
+    expect(textFieldLabel).toBeVisible();
+    expect(textField).toBeVisible();
+    expect(binaryFieldLabel).toBeVisible();
+    expect(binaryField).toBeVisible();
   });
+
   it("should convert some text to binary code", async () => {
-    const { container, getByDisplayValue } = render(<BinaryCode />);
-    const textField =
-      container.querySelector<HTMLTextAreaElement>("textarea#text")!;
-    userEvent.type(textField, "binary code");
+    const { getByPlaceholderText } = render(<BinaryCode />);
+    const textField = getByPlaceholderText(
+      "Some text to encode to binary code",
+    );
+    const binaryField = getByPlaceholderText(
+      "Some binary code to decode to text",
+    );
+    userEvent.type(textField, "hi lol");
     await waitFor(() => {
-      expect(
-        getByDisplayValue(
-          "0110001001101001011011100110000101110010011110010010000001100011011011110110010001100101",
-        ),
-      ).toBeInTheDocument();
+      expect(binaryField).toHaveTextContent(
+        "01101000 01101001 00100000 01101100 01101111 01101100",
+      );
     });
   });
+
   it("should convert some binary code to text", async () => {
-    const { getByDisplayValue, container } = render(<BinaryCode />);
-    const binaryField =
-      container.querySelector<HTMLTextAreaElement>("textarea#binary")!;
+    const { getByPlaceholderText } = render(<BinaryCode />);
+    const textField = getByPlaceholderText(
+      "Some text to encode to binary code",
+    );
+    const binaryField = getByPlaceholderText(
+      "Some binary code to decode to text",
+    );
     userEvent.type(
       binaryField,
-      "0110001001101001011011100110000101110010011110010010000001100011011011110110010001100101",
+      "01101000 01101001 00100000 01101100 01101111 01101100",
     );
     await waitFor(() => {
-      expect(getByDisplayValue("binary code")).toBeInTheDocument();
+      expect(textField).toHaveTextContent("hi lol");
     });
   });
 });

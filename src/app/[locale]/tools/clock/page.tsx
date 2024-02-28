@@ -1,25 +1,30 @@
-import type { GenerateMetadata } from "~/@types/metadata";
-import { getScopedI18n } from "~/lib/next-international/server";
-import { typography } from "~/styles/typography";
+import type { GenerateMetadata, PageParams } from "~/@types/metadata";
 
+import { useTranslations } from "next-intl";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { Heading } from "~/components/ui/heading";
+import { getStaticParams } from "~/lib/i18n";
 import { Clock } from "./clock";
 
+export function generateStaticParams() {
+  return getStaticParams();
+}
+
 export const generateMetadata: GenerateMetadata = async () => {
-  const t = await getScopedI18n("pages.tools.clock");
+  const t = await getTranslations();
 
   return {
-    title: t("title"),
-    description: "The best and useful just for you",
-    keywords: "tools, useful",
+    title: t("pages.tools.clock.title"),
   };
 };
 
-export default async function Page() {
-  const t = await getScopedI18n("pages.tools.clock");
+export default function Page({ params }: PageParams) {
+  unstable_setRequestLocale(params.locale);
+  const t = useTranslations("pages.tools.clock");
 
   return (
-    <main className="container grid h-full place-content-center text-center">
-      <h1 className={typography.h1}>{t("title")}</h1>
+    <main className="container">
+      <Heading>{t("title")}</Heading>
       <Clock />
     </main>
   );

@@ -1,20 +1,22 @@
-import { createI18nMiddleware } from "next-international/middleware";
-import { NextRequest } from "next/server";
+import createMiddleware from "next-intl/middleware";
+import { locales } from "./lib/i18n";
+import { localePrefix } from "./lib/i18n/navigation";
 
-import { defaultLocale, localeList } from "./locales";
-
-const I18nMiddleware = createI18nMiddleware({
-  defaultLocale,
-  locales: localeList,
-  urlMappingStrategy: "rewrite",
+export default createMiddleware({
+  locales,
+  defaultLocale: "en",
+  localePrefix,
 });
 
-export function middleware(request: NextRequest) {
-  return I18nMiddleware(request);
-}
-
 export const config = {
+  // Matcher entries are linked with a logical "or", therefore
+  // if one of them matches, the middleware will be invoked.
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|logo.png|logo.svg|og-image.png).*)",
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `/_vercel`
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    "/((?!api|_next|_vercel|.*\\..*).*)",
+    // However, match all pathnames within `/users`, optionally with a locale prefix
+    "/([\\w-]+)?/about/(.+)",
   ],
 };

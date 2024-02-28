@@ -2,21 +2,22 @@
 
 import { forwardRef } from "react";
 
-import * as LabelPrimitive from "@radix-ui/react-label";
-import { cnBase } from "tailwind-variants";
+import { Root } from "@radix-ui/react-label";
 
-export const Label = forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(function Label({ className, ...props }, ref) {
-  return (
-    <LabelPrimitive.Root
+import { TextStyles } from "./text";
+
+export type LabelProps = React.ComponentPropsWithoutRef<typeof Root> & {
+  htmlFor: string;
+};
+
+export const Label = forwardRef<React.ElementRef<typeof Root>, LabelProps>(
+  ({ className, htmlFor, ...props }, ref) => (
+    <Root
       ref={ref}
-      className={cnBase(
-        "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        className,
-      )}
+      className={TextStyles({ className, variant: "label" })}
+      htmlFor={htmlFor}
       {...props}
     />
-  );
-});
+  ),
+);
+Label.displayName = "Label";

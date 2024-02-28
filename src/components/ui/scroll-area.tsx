@@ -3,40 +3,22 @@
 import { forwardRef } from "react";
 
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
-import { tv } from "tailwind-variants";
+import { cn } from "mizuhara/utils";
 
-export const ScrollAreaStyles = {
-  Root: tv({
-    base: "relative overflow-hidden",
-  }),
-  Scrollbar: tv({
-    base: "flex touch-none select-none transition-colors",
-    variants: {
-      orientation: {
-        vertical: "h-full w-2.5 border-l border-l-transparent p-0.5",
-        horizontal: "h-2.5 border-t border-t-transparent p-0.5",
-      },
-    },
-  }),
-};
-
-const ScrollArea = forwardRef<
+const ScrollAreaRoot = forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
 >(({ className, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
-    className={ScrollAreaStyles.Root({ className })}
+    className={cn("relative overflow-hidden", className)}
     {...props}
   >
-    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
-      {children}
-    </ScrollAreaPrimitive.Viewport>
-    <ScrollBar />
+    {children}
     <ScrollAreaPrimitive.Corner />
   </ScrollAreaPrimitive.Root>
 ));
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+ScrollAreaRoot.displayName = ScrollAreaPrimitive.Root.displayName;
 
 const ScrollBar = forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
@@ -45,7 +27,14 @@ const ScrollBar = forwardRef<
   <ScrollAreaPrimitive.ScrollAreaScrollbar
     ref={ref}
     orientation={orientation}
-    className={ScrollAreaStyles.Scrollbar({ className, orientation })}
+    className={cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" &&
+        "h-full w-2.5 border-l border-l-transparent p-px",
+      orientation === "horizontal" &&
+        "h-2.5 flex-col border-t border-t-transparent p-px",
+      className,
+    )}
     {...props}
   >
     <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border" />
@@ -53,4 +42,19 @@ const ScrollBar = forwardRef<
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
-export { ScrollArea, ScrollBar };
+const Viewport = forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaViewport>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaViewport>
+>(({ className, ...props }, ref) => (
+  <ScrollAreaPrimitive.ScrollAreaViewport
+    ref={ref}
+    className={cn("size-full rounded-[inherit]", className)}
+    {...props}
+  />
+));
+Viewport.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+
+export const ScrollArea = Object.assign(ScrollAreaRoot, {
+  ScrollBar,
+  Viewport,
+});

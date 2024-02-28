@@ -1,38 +1,46 @@
 "use client";
 
+import { hsvaToHslString } from "@uiw/color-convert";
 import { useState } from "react";
-
-import { Input } from "~/components/ui/input";
-import { useClipboard } from "~/hooks/use-clipboard";
-import { typography } from "~/styles/typography";
-import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
+import { HsvaColorPicker } from "react-colorful";
+import { TextField } from "~/components/ui/textfield";
+import {
+  hsvaToHexString,
+  hsvaToHexaString,
+  hsvaToHslaString,
+  hsvaToRgbString,
+  hsvaToRgbaString,
+} from "~/utils";
 
 export function ColorPicker() {
-  const [color, setColor] = useState("#000000");
-  const { copy } = useClipboard();
-
-  const colorInRGB = convertHexToRGB(color);
-  const colorInHSL = convertHexToHSL(color);
+  const [color, setColor] = useState({
+    h: 0,
+    s: 0,
+    v: 0,
+    a: 1,
+  });
 
   return (
-    <section>
-      <div className="mt-12 flex flex-col">
-        <button onClick={() => copy(color)} className={typography.h3}>
-          Hex: {color}
-        </button>
-        <button onClick={() => copy(colorInRGB)} className={typography.h3}>
-          RGB: {colorInRGB}
-        </button>
-        <button onClick={() => copy(colorInHSL)} className={typography.h3}>
-          HSL: {colorInHSL}
-        </button>
-      </div>
-      <Input
-        className="mx-auto mt-4 h-16 w-16 rounded-md p-0 ring-1 ring-border ring-offset-2 ring-offset-background transition-colors duration-500"
-        type="color"
-        value={color}
-        onChange={(e) => setColor(e.target.value)}
-      />
+    <section className="space-y-4 mt-12">
+      <HsvaColorPicker className="mx-auto" color={color} onChange={setColor} />
+      <TextField>
+        <TextField.Input value={hsvaToHexString(color)} readOnly />
+      </TextField>
+      <TextField>
+        <TextField.Input value={hsvaToHexaString(color)} readOnly />
+      </TextField>
+      <TextField>
+        <TextField.Input value={hsvaToRgbString(color)} readOnly />
+      </TextField>
+      <TextField>
+        <TextField.Input value={hsvaToRgbaString(color)} readOnly />
+      </TextField>
+      <TextField>
+        <TextField.Input value={hsvaToHslString(color)} readOnly />
+      </TextField>
+      <TextField>
+        <TextField.Input value={hsvaToHslaString(color)} readOnly />
+      </TextField>
     </section>
   );
 }

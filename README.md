@@ -106,9 +106,9 @@
     - [ ] Vowel
     - [ ] Word
 
-- [ ] Todo list
+- [x] Todo list
 
-  - [ ] Drag 'n drop
+  - [x] Drag 'n drop
 
 - [ ] Random name picker
 - [ ] Random number picker

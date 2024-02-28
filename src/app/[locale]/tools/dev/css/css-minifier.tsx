@@ -2,56 +2,50 @@
 
 import { useState } from "react";
 
-import init from "lightningcss-wasm";
-import { Loader } from "lucide-react";
-
-import { CodeEditor } from "~/components/common/code-editor";
-import { CopyButton } from "~/components/common/copy-button";
+import { useTranslations } from "next-intl";
+import { toast } from "sonner";
+import { CopyButton } from "~/components/copy-button";
+import { Icons } from "~/components/icons";
+import { CodeEditor } from "~/components/tools/code-editor";
 import { Button } from "~/components/ui/button";
-import { useToast } from "~/components/ui/toast/use-toast";
-import { useI18n, useScopedI18n } from "~/lib/next-international/client";
+
+const textEncoder = new TextEncoder();
+const textDecoder = new TextDecoder();
 
 export function CssMinifier() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const t = useI18n();
-  const scopedT = useScopedI18n("pages.tools.css-minifier");
-
-  const { toast } = useToast();
+  const t = useTranslations();
 
   async function handleMinify() {
     if (!input.trim()) {
-      return toast({
-        title: t("components.toast.warning"),
-        description: scopedT("toast.required"),
-        status: "warning",
+      return toast.warning(t("components.toast.warning"), {
+        description: t("pages.tools.css-minifier.toast.required"),
       });
     }
 
     setIsLoading(true);
     try {
-      const { transform } = await import("lightningcss-wasm");
+      const { transform, default: init } = await import("lightningcss-wasm");
       await init();
 
       const { code } = transform({
         filename: "",
-        code: new TextEncoder().encode(input),
+        code: textEncoder.encode(input),
         minify: true,
       });
-      setResult(new TextDecoder().decode(code));
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success"),
-        status: "success",
+      setResult(textDecoder.decode(code));
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.css-minifier.toast.success"),
       });
     } catch (err) {
       console.error(err);
-      toast({
-        title: "Error",
+      toast.error(t("components.toast.error"), {
         description:
-          err instanceof Error ? err?.message : "Something went wrong",
-        status: "error",
+          err instanceof Error
+            ? err?.message
+            : t("components.toast.error-unexpected"),
       });
     } finally {
       setIsLoading(false);
@@ -84,11 +78,11 @@ export function CssMinifier() {
       >
         {isLoading ? (
           <>
-            <Loader className="mr-2 h-4 w-4 animate-spin" />
-            <span>{scopedT("actions.minifying")}</span>
+            <Icons.Loader className="mr-2 size-4 animate-spin" />
+            <span>{t("pages.tools.css-minifier.actions.minifying")}</span>
           </>
         ) : (
-          <span>{scopedT("actions.minify")}</span>
+          <span>{t("pages.tools.css-minifier.actions.minify")}</span>
         )}
       </Button>
     </section>

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.5.3/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "all": true
+      },
+      "complexity": {
+        "all": true
+      },
+      "correctness": {
+        "all": true
+      },
+      "performance": {
+        "all": true
+      },
+      "security": {
+        "all": true
+      },
+      "style": {
+        "recommended": true,
+        "noDefaultExport": {
+          "level": "error"
+        }
+      },
+      "suspicious": {
+        "all": true,
+        "noConsoleLog": "off"
+      },
+      "nursery": {
+        "all": true,
+        "useImportRestrictions": "off",
+        "noNodejsModules": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": [
+        "src/app/**/page.tsx",
+        "src/app/**/layout.tsx",
+        "src/app/**/template.tsx",
+        "src/app/**/loading.tsx",
+        "src/app/**/error.tsx",
+        "src/app/**/not-found.tsx",
+        "src/app/**/default.tsx",
+        "src/app/**/icon.tsx",
+        "src/app/**/apple-icon.tsx",
+        "src/app/**/manifest.ts",
+        "src/app/**/opengraph-image.tsx",
+        "src/app/**/twitter-image.tsx",
+        "src/app/**/robots.ts",
+        "src/app/**/sitemap.ts",
+
+        "src/middleware.ts",
+        "next.config.js",
+        "tailwind.config.ts",
+        "vitest.config.ts",
+        "src/lib/i18n/index.ts"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": {
+              "level": "off"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "javascript": {
+    "globals": ["React"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  }
+}

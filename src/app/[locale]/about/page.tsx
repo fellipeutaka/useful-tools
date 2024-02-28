@@ -1,48 +1,55 @@
-import { Balancer } from "react-wrap-balancer";
+import { useTranslations } from "next-intl";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import type { GenerateMetadata, PageParams } from "~/@types/metadata";
+import { Heading } from "~/components/ui/heading";
+import { Text } from "~/components/ui/text";
+import { siteConfig } from "~/config/site";
+import { getStaticParams } from "~/lib/i18n";
 
-import { cnBase } from "tailwind-variants";
-
-import type { GenerateMetadata } from "~/@types/metadata";
-import { REPOSITORY_URL } from "~/constants/repository-info";
-import { getScopedI18n } from "~/lib/next-international/server";
-import { typography } from "~/styles/typography";
+export function generateStaticParams() {
+  return getStaticParams();
+}
 
 export const generateMetadata: GenerateMetadata = async () => {
-  const t = await getScopedI18n("pages.about");
+  const t = await getTranslations();
 
   return {
-    title: t("title"),
-    description: "The best and useful just for you",
-    keywords: "tools, useful",
+    title: t("pages.about.seo.title"),
+    description: t("pages.about.seo.description"),
   };
 };
 
-export default async function Page() {
-  const t = await getScopedI18n("pages.about");
+export default function Page({ params }: PageParams) {
+  unstable_setRequestLocale(params.locale);
+  const t = useTranslations("pages.about");
 
   return (
-    <div className="grid content-center border-b">
-      <main className="container py-10 animate-in fade-in slide-in-from-bottom-8 duration-really-slow">
+    <div className="grid content-center border-b border-border">
+      <main className="container py-10 animate-in fade-in slide-in-from-bottom-8 animate-duration-1000">
         <div className="space-y-2">
-          <h1 className={cnBase(typography.h1, "lg:text-4xl")}>{t("title")}</h1>
-          <Balancer as="p" className="text-lg text-muted-foreground">
-            {t("subtitle", {
-              link: (
+          <Heading className="lg:text-4xl">{t("title")}</Heading>
+          <p className="text-lg text-muted-foreground">
+            {t.rich("subtitle", {
+              link: (chunks) => (
                 <a
                   className="font-medium underline underline-offset-4"
-                  href={REPOSITORY_URL}
+                  href={siteConfig.url}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {t("subtitle.link")}
+                  {chunks}
                 </a>
               ),
             })}
-          </Balancer>
+          </p>
         </div>
-        <h2 className={cnBase(typography.h2, "mt-8 border-b pb-2")}>
+        <Heading
+          as="h2"
+          variant="h2"
+          className="mt-8 border-b border-border pb-2"
+        >
           {t("credits.title")}
-        </h2>
+        </Heading>
         <ul className="my-6 ml-6 list-disc space-y-2">
           <li>
             <a
@@ -90,10 +97,14 @@ export default async function Page() {
             <span> - {t("credits.topics.vercel")}</span>
           </li>
         </ul>
-        <h2 className={cnBase(typography.h2, "mt-8 border-b pb-2")}>
+        <Heading
+          as="h2"
+          variant="h2"
+          className="mt-8 border-b border-border pb-2"
+        >
           {t("author")}
-        </h2>
-        <p className={typography.p}>
+        </Heading>
+        <Text>
           MIT &copy;{" "}
           <a
             className="font-medium underline underline-offset-4"
@@ -103,7 +114,7 @@ export default async function Page() {
           >
             Fellipe Utaka
           </a>
-        </p>
+        </Text>
       </main>
     </div>
   );

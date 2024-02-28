@@ -1,24 +1,29 @@
-import type { GenerateMetadata } from "~/@types/metadata";
-import { getScopedI18n } from "~/lib/next-international/server";
-import { typography } from "~/styles/typography";
-
+import { useTranslations } from "next-intl";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import type { GenerateMetadata, PageParams } from "~/@types/metadata";
+import { Heading } from "~/components/ui/heading";
+import { getStaticParams } from "~/lib/i18n";
 import { JSONFormatter } from "./json-formatter";
 
+export function generateStaticParams() {
+  return getStaticParams();
+}
+
 export const generateMetadata: GenerateMetadata = async () => {
-  const t = await getScopedI18n("pages.tools.json-formatter");
+  const t = await getTranslations();
 
   return {
-    title: t("title"),
-    description: "The best and useful just for you",
-    keywords: "tools, useful",
+    title: t("pages.tools.json-formatter.title"),
   };
 };
-export default async function Page() {
-  const t = await getScopedI18n("pages.tools.json-formatter");
+
+export default function Page({ params }: PageParams) {
+  unstable_setRequestLocale(params.locale);
+  const t = useTranslations("pages.tools.json-formatter");
 
   return (
     <main className="container">
-      <h1 className={typography.h1}>{t("title")}</h1>
+      <Heading>{t("title")}</Heading>
       <JSONFormatter />
     </main>
   );

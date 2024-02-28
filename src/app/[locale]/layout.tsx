@@ -1,77 +1,97 @@
-import { Inter } from "next/font/google";
-
-import type { GenerateMetadata } from "~/@types/metadata";
-import { Footer } from "~/components/layout/footer";
-import { Navbar } from "~/components/layout/navbar";
-import { Providers } from "~/contexts/providers";
-import { defaultLocale, localeList } from "~/locales";
+import { cn } from "mizuhara/utils";
+import type { Viewport } from "next";
+import { NextIntlClientProvider, useMessages } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import type { GenerateMetadata, PageParams } from "~/@types/metadata";
+import type { PropsWithChildren } from "~/@types/utils";
+import { Providers } from "~/components/providers";
+import { SiteFooter } from "~/components/site-footer";
+import { SiteHeader } from "~/components/site-header";
+import { fonts } from "~/config/fonts";
+import { siteConfig } from "~/config/site";
 
 import "~/styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+export const generateMetadata: GenerateMetadata = async () => {
+  const t = await getTranslations();
 
-export const generateMetadata: GenerateMetadata = () => {
+  const description = t("pages.home.seo.description");
+
   return {
     title: {
-      default: "Useful Tools",
-      template: "%s | Useful Tools",
+      default: siteConfig.name,
+      template: `%s | ${siteConfig.name}`,
     },
-    description: "The best and useful just for you",
+    description,
     keywords: "tools, useful",
-    viewport: "width=device-width, initial-scale=1",
+    authors: [
+      { name: "Fellipe Utaka", url: "https://fellipeutaka.vercel.app" },
+    ],
     creator: "Fellipe Utaka",
     publisher: "Fellipe Utaka",
-    authors: [{ name: "Fellipe Utaka" }],
     robots: "index, follow",
-    themeColor: [
-      { media: "(prefers-color-scheme: light)", color: "white" },
-      { media: "(prefers-color-scheme: dark)", color: "black" },
-    ],
-    applicationName: "Useful Tools",
-    metadataBase: new URL("https://usefultools.vercel.app"),
+    applicationName: siteConfig.name,
+    metadataBase: new URL(siteConfig.url),
     alternates: {
       canonical: "/",
+      languages: {
+        pt: "/pt",
+        en: "/en",
+      },
     },
     openGraph: {
       type: "website",
-      locale: defaultLocale,
-      alternateLocale: localeList.filter((locale) => locale !== defaultLocale),
-      siteName: "Useful Tools",
-      url: "https://usefultools.vercel.app",
-      title: "Useful Tools",
-      description: "The best and useful just for you",
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1280,
-          height: 640,
-          alt: "Useful Tools",
-        },
-      ],
+      locale: "en",
+      siteName: siteConfig.name,
+      url: siteConfig.url,
+      title: siteConfig.name,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: siteConfig.name,
+      description,
+      creator: "@fellipeutaka",
     },
   };
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
   children,
   params,
 }: PropsWithChildren<PageParams>) {
+  const messages = useMessages();
+
   return (
     <html
       lang={params.locale}
-      className="dark"
-      style={{ colorScheme: "dark" }}
       suppressHydrationWarning
+      className="motion-safe:scroll-smooth"
     >
       <body
-        className="grid min-h-screen grid-rows-[4rem,1fr,min-content] bg-background text-foreground antialiased"
-        style={inter.style}
+        className={cn(
+          fonts.sans.variable,
+          fonts.mono.variable,
+          "grid min-h-screen grid-rows-[4rem,1fr,min-content] [scrollbar-gutter:stable]",
+          "bg-background text-foreground antialiased font-sans",
+        )}
       >
-        <Providers locale={params.locale}>
-          <Navbar sticky border />
-          {children}
-          <Footer />
-        </Providers>
+        <NextIntlClientProvider messages={messages}>
+          <Providers>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+          </Providers>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,52 +1,46 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
-import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
 import { useHotkeys } from "~/hooks/use-hotkeys";
-import { useScopedI18n } from "~/lib/next-international/client";
-import { typography } from "~/styles/typography";
-import { convertHexToHSL, convertHexToRGB } from "~/utils/convert-colors";
+import {
+  hexToHsva,
+  hsvaToHexString,
+  hsvaToHslaString,
+  hsvaToRgbString,
+} from "~/utils";
 
 export function RandomColor() {
-  const t = useScopedI18n("pages.tools.random-color");
-  const [color, setColor] = useState("#000000");
+  const t = useTranslations("pages.tools.random-color");
+  const [color, setColor] = useState({
+    h: 0,
+    s: 0,
+    v: 0,
+    a: 1,
+  });
 
   function handleGenerateNewColor() {
-    setColor("#" + Math.random().toString(16).slice(-6));
+    setColor(hexToHsva("#".concat(Math.random().toString(16).slice(-6))));
   }
 
   useHotkeys([["Space", handleGenerateNewColor]]);
 
-  const colorInRGB = convertHexToRGB(color);
-  const colorInHSL = convertHexToHSL(color);
+  const colorInHex = hsvaToHexString(color);
+  const colorInRGB = hsvaToRgbString(color);
+  const colorInHSL = hsvaToHslaString(color);
 
   return (
-    <section>
-      <div className="mt-12">
-        <div className="flex items-center justify-between">
-          <p className={typography.h3}>Hex: {color}</p>
-          <CopyButton className="h-7 w-7" valueToCopy={color} />
-        </div>
-        <div className="flex items-center justify-between">
-          <p className={typography.h3}>RGB: {colorInRGB}</p>
-          <CopyButton className="h-7 w-7" valueToCopy={colorInRGB} />
-        </div>
-        <div className="flex items-center justify-between">
-          <p className={typography.h3}>HSL: {colorInHSL}</p>
-          <CopyButton className="h-7 w-7" valueToCopy={colorInHSL} />
-        </div>
-      </div>
+    <section className="grid place-content-center">
       <button
-        className="mx-auto mt-4 block h-16 w-16 rounded-md ring-1 ring-border ring-offset-2 ring-offset-background transition-colors duration-500"
-        style={{ backgroundColor: color }}
+        type="button"
+        className="mx-auto my-4 block size-16 rounded-md ring-1 ring-border ring-offset-2 ring-offset-background transition-colors duration-500"
         aria-hidden
+        style={{ backgroundColor: colorInHex }}
         onClick={handleGenerateNewColor}
       />
-      <Button className="mx-auto mt-6" onClick={handleGenerateNewColor}>
-        {t("generate")}
-      </Button>
+      <Button onClick={handleGenerateNewColor}>{t("generate")}</Button>
     </section>
   );
 }

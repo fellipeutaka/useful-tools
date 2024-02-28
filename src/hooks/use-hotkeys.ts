@@ -49,7 +49,7 @@ function isExactHotkey(hotkey: Hotkey, event: KeyboardEvent) {
   }
 
   if (mod) {
-    if (!ctrlKey && !metaKey) {
+    if (!(ctrlKey || metaKey)) {
       return false;
     }
   } else {
@@ -92,17 +92,19 @@ export type HotkeyItem = [
 export function useHotkeys(hotkeys: HotkeyItem[]) {
   useEffect(() => {
     function keydownListener(event: KeyboardEvent) {
-      hotkeys.forEach(
-        ([hotkey, handler, options = { preventDefault: true }]) => {
-          if (getHotkeyMatcher(hotkey)(event)) {
-            if (options.preventDefault) {
-              event.preventDefault();
-            }
-
-            handler(event);
+      for (const [
+        hotkey,
+        handler,
+        options = { preventDefault: true },
+      ] of hotkeys) {
+        if (getHotkeyMatcher(hotkey)(event)) {
+          if (options.preventDefault) {
+            event.preventDefault();
           }
-        },
-      );
+
+          handler(event);
+        }
+      }
     }
 
     document.documentElement.addEventListener("keydown", keydownListener);

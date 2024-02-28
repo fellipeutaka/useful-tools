@@ -6,7 +6,7 @@ export function useInterval(fn: () => void, interval: number) {
 
   const start = useCallback(() => {
     setActive((old) => {
-      if (!old && !intervalRef.current) {
+      if (!(old || intervalRef.current)) {
         intervalRef.current = window.setInterval(fn, interval);
       }
       return true;

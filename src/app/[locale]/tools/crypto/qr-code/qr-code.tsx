@@ -1,46 +1,47 @@
 "use client";
 
-import { Download, Twitter } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { QRCodeCanvas } from "qrcode.react";
+import { Icons } from "~/components/icons";
 
-import { WhatsApp } from "~/components/icons/whatsapp";
 import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
+import { TextField } from "~/components/ui/textfield";
 import { useURLState } from "~/hooks/use-url-state";
-import { useScopedI18n } from "~/lib/next-international/client";
 
 export function QRCode() {
   const [value, setValue] = useURLState("value");
-  const t = useScopedI18n("pages.tools.qr-code");
+  const t = useTranslations("pages.tools.qr-code");
 
-  async function handleDownload() {
+  function handleDownload() {
     const qrCode = document.querySelector("canvas");
     if (qrCode) {
       const a = document.createElement("a");
       a.download = "qrcode.png";
       a.href = qrCode.toDataURL();
       a.click();
+      a.remove();
     }
   }
 
   return (
     <section className="mt-8">
       <div>
-        <Input
-          type="text"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          placeholder={t("placeholder")}
-        />
+        <TextField>
+          <TextField.Input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder={t("placeholder")}
+          />
+        </TextField>
         <p className="mt-1 text-xs text-muted-foreground">{t("hint")}</p>
       </div>
       <QRCodeCanvas size={256} className="mx-auto mt-4" value={value} />
       <Button
-        className="mx-auto my-6"
+        className="mx-auto flex my-6"
         variant="outline"
         onClick={handleDownload}
       >
-        <Download className="h-4 w-4" />
+        <Icons.Download className="size-4 mr-2" />
         <span>{t("actions.download")}</span>
       </Button>
       <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -53,7 +54,7 @@ export function QRCode() {
             rel="noreferrer"
             target="_blank"
           >
-            <WhatsApp className="h-4 w-4" />
+            <Icons.WhatsApp className="size-4 mr-2" />
             <span>{t("actions.share.whatsapp")}</span>
           </a>
         </Button>
@@ -66,7 +67,7 @@ export function QRCode() {
             rel="noreferrer"
             target="_blank"
           >
-            <Twitter className="h-4 w-4" />
+            <Icons.Twitter className="size-4 mr-2" />
             <span>{t("actions.share.twitter")}</span>
           </a>
         </Button>

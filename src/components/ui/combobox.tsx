@@ -2,9 +2,8 @@
 
 import { forwardRef } from "react";
 
-import { Check, ChevronsUpDown } from "lucide-react";
-import { cnBase } from "tailwind-variants";
-
+import { cn } from "mizuhara/utils";
+import { Icons } from "../icons";
 import { Button, type ButtonProps } from "./button";
 import {
   Command,
@@ -13,9 +12,9 @@ import {
   CommandInput,
   CommandItem,
 } from "./command";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
+import { Popover } from "./popover";
 
-export const Combobox = Popover;
+export const ComboboxRoot = Popover;
 
 export type ComboboxTriggerProps = ButtonProps & {
   value: string;
@@ -28,19 +27,19 @@ export const ComboboxTrigger = forwardRef<
   ComboboxTriggerProps
 >(function ComboboxTrigger({ placeholder, value, items, ...props }, ref) {
   return (
-    <PopoverTrigger asChild>
+    <Popover.Trigger asChild>
       <Button ref={ref} variant="outline" {...props} role="combobox">
         {value
           ? items.find((item) => item.toUpperCase() === value.toUpperCase())
           : placeholder}
-        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        <Icons.ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
       </Button>
-    </PopoverTrigger>
+    </Popover.Trigger>
   );
 });
 
 export type ComboboxContentProps = React.ComponentPropsWithoutRef<
-  typeof PopoverContent
+  typeof Popover.Content
 > & {
   placeholder: string;
   notFound: string;
@@ -53,15 +52,11 @@ export const ComboboxContent = forwardRef<HTMLDivElement, ComboboxContentProps>(
   ) {
     return (
       <Command>
-        <PopoverContent
-          className={cnBase("p-0", className)}
-          {...props}
-          ref={ref}
-        >
+        <Popover.Content className={cn("p-0", className)} {...props} ref={ref}>
           <CommandInput placeholder={placeholder} />
           <CommandEmpty>{notFound}</CommandEmpty>
           {children}
-        </PopoverContent>
+        </Popover.Content>
       </Command>
     );
   },
@@ -83,15 +78,15 @@ export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
   ) {
     return (
       <CommandGroup
-        className={cnBase("overflow-y-auto", className)}
+        className={cn("overflow-y-auto", className)}
         {...props}
         ref={ref}
       >
         {items.map((item) => (
           <CommandItem key={item} onSelect={onSelect}>
-            <Check
-              className={cnBase(
-                "mr-2 h-4 w-4",
+            <Icons.Check
+              className={cn(
+                "mr-2 size-4",
                 value.toUpperCase() === item.toUpperCase()
                   ? "animate-in fade-in"
                   : "opacity-0 animate-out fade-out",

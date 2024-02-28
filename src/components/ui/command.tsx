@@ -2,12 +2,12 @@
 
 import { forwardRef } from "react";
 
-import { type DialogProps } from "@radix-ui/react-dialog";
+import type { DialogProps } from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
-import { Search } from "lucide-react";
-import { tv } from "tailwind-variants";
+import { tv } from "mizuhara/utils";
 
 import { Dialog, DialogContent } from "~/components/ui/dialog";
+import { Icons } from "../icons";
 
 export const CommandStyles = {
   Root: tv({
@@ -36,7 +36,7 @@ export const CommandStyles = {
   }),
 };
 
-const Command = forwardRef<
+export const CommandRoot = forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive>
 >(({ className, ...props }, ref) => (
@@ -46,26 +46,29 @@ const Command = forwardRef<
     {...props}
   />
 ));
-Command.displayName = CommandPrimitive.displayName;
+CommandRoot.displayName = CommandPrimitive.displayName;
 
-const CommandDialog = ({ children, ...props }: DialogProps) => {
+export const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <CommandRoot className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
-        </Command>
+        </CommandRoot>
       </DialogContent>
     </Dialog>
   );
 };
 
-const CommandInput = forwardRef<
+export const CommandInput = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+  <div
+    className="flex items-center border-b border-border px-3"
+    cmdk-input-wrapper=""
+  >
+    <Icons.Search className="mr-2 size-4 shrink-0 opacity-50" />
     <CommandPrimitive.Input
       ref={ref}
       className={CommandStyles.Input({ className })}
@@ -76,7 +79,7 @@ const CommandInput = forwardRef<
 
 CommandInput.displayName = CommandPrimitive.Input.displayName;
 
-const CommandList = forwardRef<
+export const CommandList = forwardRef<
   React.ElementRef<typeof CommandPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => (
@@ -89,7 +92,7 @@ const CommandList = forwardRef<
 
 CommandList.displayName = CommandPrimitive.List.displayName;
 
-const CommandEmpty = forwardRef<
+export const CommandEmpty = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Empty>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Empty>
 >(({ className, ...props }, ref) => (
@@ -102,7 +105,7 @@ const CommandEmpty = forwardRef<
 
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName;
 
-const CommandGroup = forwardRef<
+export const CommandGroup = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Group>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Group>
 >(({ className, ...props }, ref) => (
@@ -115,7 +118,7 @@ const CommandGroup = forwardRef<
 
 CommandGroup.displayName = CommandPrimitive.Group.displayName;
 
-const CommandSeparator = forwardRef<
+export const CommandSeparator = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
@@ -127,7 +130,7 @@ const CommandSeparator = forwardRef<
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
-const CommandItem = forwardRef<
+export const CommandItem = forwardRef<
   React.ElementRef<typeof CommandPrimitive.Item>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
 >(({ className, ...props }, ref) => (
@@ -140,7 +143,7 @@ const CommandItem = forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 
-const CommandShortcut = ({
+export const CommandShortcut = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLSpanElement>) => {
@@ -148,14 +151,13 @@ const CommandShortcut = ({
 };
 CommandShortcut.displayName = "CommandShortcut";
 
-export {
-  Command,
-  CommandDialog,
-  CommandInput,
-  CommandList,
-  CommandEmpty,
-  CommandGroup,
-  CommandItem,
-  CommandShortcut,
-  CommandSeparator,
-};
+export const Command = Object.assign(CommandRoot, {
+  Dialog: CommandDialog,
+  Input: CommandInput,
+  List: CommandList,
+  Empty: CommandEmpty,
+  Group: CommandGroup,
+  Separator: CommandSeparator,
+  Item: CommandItem,
+  Shortcut: CommandShortcut,
+});

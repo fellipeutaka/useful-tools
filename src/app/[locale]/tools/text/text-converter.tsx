@@ -1,31 +1,27 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRef } from "react";
+import { toast } from "sonner";
+import { CopyButton } from "~/components/copy-button";
 
-import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { Switch } from "~/components/ui/switch";
 import { Textarea } from "~/components/ui/textarea";
-import { useToast } from "~/components/ui/toast/use-toast";
-import { useI18n, useScopedI18n } from "~/lib/next-international/client";
 
 export function TextConverter() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const textareaResultRef = useRef<HTMLTextAreaElement>(null);
   const switchRef = useRef<HTMLButtonElement>(null);
-  const { toast } = useToast();
-  const t = useI18n();
-  const scopedT = useScopedI18n("pages.tools.text-converter");
+  const t = useTranslations();
 
-  function checkIfInputIsEmpty(): void | never {
+  function checkIfInputIsEmpty() {
     const isEmpty = textareaRef.current?.value.trim() === "";
     if (isEmpty) {
       textareaRef.current?.focus();
-      throw toast({
-        title: t("components.toast.warning"),
-        description: scopedT("toast.required"),
-        status: "warning",
+      throw toast.warning(t("components.toast.warning"), {
+        description: t("pages.tools.text-converter.toast.required"),
       });
     }
   }
@@ -42,10 +38,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-uppercase"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-uppercase"),
       });
     }
   }
@@ -58,10 +52,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-lowercase"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-lowercase"),
       });
     }
   }
@@ -76,10 +68,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-capitalize"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-capitalize"),
       });
     }
   }
@@ -95,10 +85,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-pascal-case"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-pascal-case"),
       });
     }
   }
@@ -115,10 +103,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-camel-case"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-camel-case"),
       });
     }
   }
@@ -134,10 +120,8 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-snake-case"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.text-converter.toast.success-snake-case"),
       });
     }
   }
@@ -148,14 +132,14 @@ export function TextConverter() {
       const text = textareaRef.current.value;
       textareaResultRef.current.value = text
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
+        .replace(/[\p{M}]/gu, "");
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-remove-accents"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t(
+          "pages.tools.text-converter.toast.success-remove-accents",
+        ),
       });
     }
   }
@@ -168,10 +152,10 @@ export function TextConverter() {
       if (getIfShouldClearInput()) {
         textareaRef.current.value = "";
       }
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success-remove-duplicates"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t(
+          "pages.tools.text-converter.toast.success-remove-duplicates",
+        ),
       });
     }
   }
@@ -180,19 +164,21 @@ export function TextConverter() {
     <section className="mt-8">
       <div className="flex items-center gap-2">
         <Switch id="switch" ref={switchRef} />
-        <Label htmlFor="switch">{scopedT("clear-input")}</Label>
+        <Label htmlFor="switch">
+          {t("pages.tools.text-converter.clear-input")}
+        </Label>
       </div>
 
       <div className="mt-2 grid gap-4 sm:grid-cols-2">
         <Textarea
           ref={textareaRef}
-          placeholder={scopedT("placeholder.input")}
+          placeholder={t("pages.tools.text-converter.placeholder.input")}
         />
         <div className="relative">
           <Textarea
             ref={textareaResultRef}
             readOnly
-            placeholder={scopedT("placeholder.output")}
+            placeholder={t("pages.tools.text-converter.placeholder.output")}
           />
           <CopyButton
             className="absolute right-2 top-2"
@@ -203,28 +189,28 @@ export function TextConverter() {
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
         <Button variant="outline" onClick={handleConvertToUppercase}>
-          {scopedT("actions.uppercase")}
+          {t("pages.tools.text-converter.actions.uppercase")}
         </Button>
         <Button variant="outline" onClick={handleConvertToLowercase}>
-          {scopedT("actions.lowercase")}
+          {t("pages.tools.text-converter.actions.lowercase")}
         </Button>
         <Button variant="outline" onClick={handleConvertToCapitalize}>
-          {scopedT("actions.capitalize")}
+          {t("pages.tools.text-converter.actions.capitalize")}
         </Button>
         <Button variant="outline" onClick={handleCovertToPascalCase}>
-          {scopedT("actions.pascal-case")}
+          {t("pages.tools.text-converter.actions.pascal-case")}
         </Button>
         <Button variant="outline" onClick={handleConvertToCamelCase}>
-          {scopedT("actions.camel-case")}
+          {t("pages.tools.text-converter.actions.camel-case")}
         </Button>
         <Button variant="outline" onClick={handleConvertToSnakeCase}>
-          {scopedT("actions.snake-case")}
+          {t("pages.tools.text-converter.actions.snake-case")}
         </Button>
         <Button variant="outline" onClick={handleRemoveAccents}>
-          {scopedT("actions.remove-accents")}
+          {t("pages.tools.text-converter.actions.remove-accents")}
         </Button>
         <Button variant="outline" onClick={handleRemoveDuplicates}>
-          {scopedT("actions.remove-duplicates")}
+          {t("pages.tools.text-converter.actions.remove-duplicates")}
         </Button>
       </div>
     </section>

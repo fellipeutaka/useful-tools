@@ -1,42 +1,33 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-
-import { Loader } from "lucide-react";
-
-import { CodeEditor } from "~/components/common/code-editor";
-import { CopyButton } from "~/components/common/copy-button";
+import { toast } from "sonner";
+import { CopyButton } from "~/components/copy-button";
+import { Icons } from "~/components/icons";
+import { CodeEditor } from "~/components/tools/code-editor";
 import { Button } from "~/components/ui/button";
-import { Input } from "~/components/ui/input";
-import { useToast } from "~/components/ui/toast/use-toast";
-import { useI18n, useScopedI18n } from "~/lib/next-international/client";
+import { TextField } from "~/components/ui/textfield";
 
 export function JSONFormatter() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [numbersOfSpaces, setNumbersOfSpaces] = useState("2");
-  const t = useI18n();
-  const scopedT = useScopedI18n("pages.tools.json-formatter");
+  const t = useTranslations();
 
-  const { toast } = useToast();
-
-  async function handleFormat() {
+  function handleFormat() {
     if (!input.trim()) {
-      return toast({
-        title: t("components.toast.warning"),
-        description: scopedT("toast.required"),
-        status: "warning",
+      return toast.warning(t("components.toast.warning"), {
+        description: t("pages.tools.json-formatter.toast.required"),
       });
     }
 
     const space = Number(numbersOfSpaces);
 
-    if (isNaN(space)) {
-      return toast({
-        title: t("components.toast.warning"),
-        description: scopedT("toast.invalid-number"),
-        status: "warning",
+    if (Number.isNaN(space)) {
+      return toast.warning(t("components.toast.warning"), {
+        description: t("pages.tools.json-formatter.toast.invalid-number"),
       });
     }
 
@@ -44,17 +35,16 @@ export function JSONFormatter() {
     try {
       const code = JSON.stringify(JSON.parse(input), null, space);
       setResult(code);
-      toast({
-        title: t("components.toast.success"),
-        description: scopedT("toast.success"),
-        status: "success",
+      toast.success(t("components.toast.success"), {
+        description: t("pages.tools.json-formatter.toast.success"),
       });
     } catch (err) {
-      toast({
-        title: t("components.toast.error"),
+      console.error(err);
+      toast.error(t("components.toast.error"), {
         description:
-          err instanceof Error ? err.message : "Something went wrong",
-        status: "error",
+          err instanceof Error
+            ? err?.message
+            : t("components.toast.error-unexpected"),
       });
     } finally {
       setIsLoading(false);
@@ -81,26 +71,31 @@ export function JSONFormatter() {
         </div>
       </div>
       <div className="flex items-center gap-4">
-        <Input
-          type="number"
-          placeholder={scopedT("placeholder")}
-          min={0}
-          max={10}
-          value={numbersOfSpaces}
-          onChange={(e) =>
-            setNumbersOfSpaces(
-              Math.min(Math.max(parseInt(e.target.value), 0), 10).toString(),
-            )
-          }
-        />
+        <TextField>
+          <TextField.Input
+            type="number"
+            placeholder={t("pages.tools.json-formatter.placeholder")}
+            min={0}
+            max={10}
+            value={numbersOfSpaces}
+            onChange={(e) =>
+              setNumbersOfSpaces(
+                Math.min(
+                  Math.max(Number.parseInt(e.target.value), 0),
+                  10,
+                ).toString(),
+              )
+            }
+          />
+        </TextField>
         <Button disabled={isLoading} onClick={handleFormat}>
           {isLoading ? (
             <>
-              <Loader className="mr-2 h-4 w-4 animate-spin" />
-              <span>{scopedT("actions.formatting")}</span>
+              <Icons.Loader className="mr-2 size-4 animate-spin" />
+              <span>{t("pages.tools.json-formatter.actions.formatting")}</span>
             </>
           ) : (
-            <span>{scopedT("actions.format")}</span>
+            <span>{t("pages.tools.json-formatter.actions.format")}</span>
           )}
         </Button>
       </div>

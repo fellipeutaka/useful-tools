@@ -1,36 +1,17 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
+import { CopyButton } from "~/components/copy-button";
+import { Icons } from "~/components/icons";
 
-import { RefreshCw } from "lucide-react";
-
-import { CopyButton } from "~/components/common/copy-button";
 import { Button } from "~/components/ui/button";
 import { Checkbox } from "~/components/ui/checkbox";
-import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Slider } from "~/components/ui/slider";
+import { TextField } from "~/components/ui/textfield";
 import { useIds } from "~/hooks/use-ids";
-import { useScopedI18n } from "~/lib/next-international/client";
-
-function getCharacters(
-  includeUppercase: boolean,
-  includeNumbers: boolean,
-  includeLowercase: boolean,
-  includeSymbols: boolean,
-) {
-  const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const numbers = "0123456789";
-  const lowercase = "abcdefghijklmnopqrstuvwxyz";
-  const symbols = "!@#$%^&*";
-
-  return [
-    ...(includeUppercase ? uppercase.split("") : []),
-    ...(includeNumbers ? numbers.split("") : []),
-    ...(includeLowercase ? lowercase.split("") : []),
-    ...(includeSymbols ? symbols.split("") : []),
-  ];
-}
+import { generatePassword, getCharacters } from "~/utils/crypto";
 
 export function PasswordGenerator() {
   const [password, setPassword] = useState("");
@@ -40,52 +21,49 @@ export function PasswordGenerator() {
   const [includeLowercase, setIncludeLowercase] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(false);
   const [uppercaseId, numberId, lowercaseId, symbolId] = useIds(4);
-  const t = useScopedI18n("pages.tools.password-generator");
+  const t = useTranslations("pages.tools.password-generator");
 
   const handleGeneratePassword = useCallback(() => {
-    const characters = getCharacters(
-      includeUppercase,
-      includeNumbers,
-      includeLowercase,
-      includeSymbols,
-    );
-
     setPassword(
-      Array.from(
-        window.crypto.getRandomValues(new Uint32Array(length)),
-        (value) => characters[value % characters.length],
-      ).join(""),
+      generatePassword({
+        length,
+        characters: getCharacters(
+          includeUppercase,
+          includeNumbers,
+          includeLowercase,
+          includeSymbols,
+        ),
+      }),
     );
   }, [
-    includeLowercase,
-    includeNumbers,
-    includeSymbols,
-    includeUppercase,
     length,
+    includeUppercase,
+    includeNumbers,
+    includeLowercase,
+    includeSymbols,
   ]);
 
   useEffect(() => {
     handleGeneratePassword();
-  }, [
-    handleGeneratePassword,
-    includeLowercase,
-    includeNumbers,
-    includeSymbols,
-    includeUppercase,
-    length,
-  ]);
+  }, [handleGeneratePassword]);
 
   return (
     <section className="mt-8 space-y-6">
       <div className="flex items-center gap-2">
-        <Input value={password} readOnly placeholder={t("placeholder")} />
+        <TextField className="w-full">
+          <TextField.Input
+            value={password}
+            readOnly
+            placeholder={t("placeholder")}
+          />
+        </TextField>
         <CopyButton className="h-10 w-12" valueToCopy={password} />
       </div>
       <div className="space-y-3">
         <p>{t("length", { length })}</p>
         <Slider
           value={[length]}
-          onValueChange={([value]) => setLength(value!)}
+          onValueChange={([value]) => setLength(value)}
           min={4}
           max={128}
         />
@@ -125,7 +103,7 @@ export function PasswordGenerator() {
         </div>
       </div>
       <Button onClick={handleGeneratePassword}>
-        <RefreshCw size={16} />
+        <Icons.RefreshCw className="size-4 mr-2" />
         <span>{t("actions.generate")}</span>
       </Button>
     </section>

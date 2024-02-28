@@ -1,53 +1,58 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 
+import HexEncoding from "hex-encoding";
 import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
-import { useScopedI18n } from "~/lib/next-international/client";
 
 export function Hex() {
-  const [text, setText] = useState("");
-  const [hex, setHex] = useState("");
-  const t = useScopedI18n("pages.tools.hex-code");
+  const [data, setData] = useState({
+    text: "",
+    hex: "",
+  });
+  const t = useTranslations("pages.tools.hex-code");
 
-  async function handleCodeTextToHexCode() {
-    const { default: Hex } = await import("hex-encoding");
-    const encoded = Hex.encodeStr(text);
-    setHex(encoded);
-    setText("");
+  function handleEncodeTextToHex(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const text = e.target.value;
+    const encoded = HexEncoding.encodeStr(text);
+
+    setData({
+      text,
+      hex: encoded,
+    });
   }
 
-  async function handleDecodeHexCodeToText() {
-    const { default: Hex } = await import("hex-encoding");
-    const decoded = Hex.decodeStr(hex);
-    setText(decoded);
-    setHex("");
+  function handleDecodeHexToText(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const hex = e.target.value;
+    const decoded = HexEncoding.decodeStr(hex);
+
+    setData({
+      text: decoded,
+      hex,
+    });
   }
 
   return (
     <section className="mt-6 flex w-full gap-4">
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="text">{t("encode")}</Label>
         <Textarea
           id="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          value={data.text}
+          onChange={handleEncodeTextToHex}
+          placeholder={t("encode-placeholder")}
         />
-        <button type="button" onClick={handleCodeTextToHexCode}>
-          {t("actions.code")}
-        </button>
       </div>
-      <div>
+      <div className="space-y-2">
         <Label htmlFor="hex">{t("decode")}</Label>
         <Textarea
           id="hex"
-          value={hex}
-          onChange={(e) => setHex(e.target.value)}
+          value={data.hex}
+          onChange={handleDecodeHexToText}
+          placeholder={t("decode-placeholder")}
         />
-        <button type="button" onClick={handleDecodeHexCodeToText}>
-          {t("actions.decode")}
-        </button>
       </div>
     </section>
   );

@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ES2022",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "verbatimModuleSyntax": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
@@ -23,9 +20,8 @@
     ],
     "paths": {
       "~/*": ["./src/*"],
-      "~/testing/*": ["./__tests__/*"]
-    },
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+      "~/tests/*": ["./__tests__/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

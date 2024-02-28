@@ -5,16 +5,16 @@ import { useState } from "react";
 import { Big } from "big.js";
 
 import {
-  Combobox,
   ComboboxContent,
   ComboboxList,
+  ComboboxRoot,
   ComboboxTrigger,
 } from "~/components/ui/combobox";
-import { Input } from "~/components/ui/input";
-import { type Currency, currencies } from "~/constants/currency";
-import { useScopedI18n } from "~/lib/next-international/client";
 
-import { type CurrencyResponse } from "./page";
+import { useTranslations } from "next-intl";
+import { TextField } from "~/components/ui/textfield";
+import { type Currency, currencies } from "~/config/currency";
+import type { CurrencyResponse } from "./page";
 
 type CurrencyState = {
   value: string;
@@ -35,7 +35,7 @@ type CalculateCurrencyProps = {
 function formatCurrency(value: string, currency: string) {
   return new Intl.NumberFormat(undefined, {
     style: "currency",
-    currency: currency,
+    currency,
   }).format(Number(value));
 }
 
@@ -45,13 +45,13 @@ function calculateCurrency({
   fromCurrency,
   toCurrency,
 }: CalculateCurrencyProps) {
-  return isNaN(Number(value)) || value.trim() === ""
+  return Number.isNaN(Number(value)) || value.trim() === ""
     ? ""
     : Big(value).div(rates[fromCurrency]).mul(rates[toCurrency]).toString();
 }
 
 export function CurrencyConverter({ data }: CurrencyConverterProps) {
-  const t = useScopedI18n("pages.tools.currency");
+  const t = useTranslations("pages.tools.currency");
   const [fromState, setFromState] = useState<CurrencyState>({
     value: "1",
     currency: "EUR",
@@ -66,7 +66,7 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
     input: "from" | "to",
   ) {
     if (input === "from") {
-      const value = isNaN(e.target.valueAsNumber) ? "" : e.target.value;
+      const value = Number.isNaN(e.target.valueAsNumber) ? "" : e.target.value;
       setFromState((state) => ({ ...state, value }));
       setToState((state) => ({
         ...state,
@@ -80,7 +80,7 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
     }
 
     if (input === "to") {
-      const value = isNaN(e.target.valueAsNumber) ? "" : e.target.value;
+      const value = Number.isNaN(e.target.valueAsNumber) ? "" : e.target.value;
       setToState((state) => ({ ...state, value }));
       setFromState((state) => ({
         ...state,
@@ -134,24 +134,29 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
 
   return (
     <section className="mt-8">
-      <p className="text-muted-foreground">
-        {t("result", {
-          from: formatCurrency(fromState.value, fromState.currency),
-          to: (
-            <p className="text-xl font-semibold text-foreground">
+      <div suppressHydrationWarning className="text-muted-foreground">
+        {t.rich("result", {
+          from: () => formatCurrency(fromState.value, fromState.currency),
+          to: () => (
+            <p
+              suppressHydrationWarning
+              className="text-xl font-semibold text-foreground"
+            >
               {formatCurrency(toState.value, toState.currency)}
             </p>
           ),
         })}
-      </p>
+      </div>
       <div className="mt-8 space-y-4">
         <div className="flex items-center gap-2">
-          <Input
-            value={fromState.value}
-            onChange={(e) => onInputChange(e, "from")}
-            type="number"
-          />
-          <Combobox>
+          <TextField>
+            <TextField.Input
+              value={fromState.value}
+              onChange={(e) => onInputChange(e, "from")}
+              type="number"
+            />
+          </TextField>
+          <ComboboxRoot>
             <ComboboxTrigger
               className="w-48 justify-between"
               items={currencies}
@@ -170,16 +175,19 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
                 className="max-h-[50dvh]"
               />
             </ComboboxContent>
-          </Combobox>
+          </ComboboxRoot>
         </div>
 
         <div className="flex items-center gap-2">
-          <Input
-            value={toState.value}
-            onChange={(e) => onInputChange(e, "to")}
-            type="number"
-          />
-          <Combobox>
+          <TextField>
+            <TextField.Input
+              value={toState.value}
+              onChange={(e) => onInputChange(e, "to")}
+              type="number"
+            />
+          </TextField>
+
+          <ComboboxRoot>
             <ComboboxTrigger
               className="w-48 justify-between"
               items={currencies}
@@ -198,7 +206,7 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
                 className="max-h-[50dvh]"
               />
             </ComboboxContent>
-          </Combobox>
+          </ComboboxRoot>
         </div>
       </div>
     </section>

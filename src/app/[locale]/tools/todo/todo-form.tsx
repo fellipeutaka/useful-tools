@@ -3,14 +3,14 @@
 import { valibotResolver } from "@hookform/resolvers/valibot";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
-import { type Output, minLength, object, string, toTrimmed } from "valibot";
+import { type Output, object, string } from "valibot";
 import { Icons } from "~/components/icons";
 import { Button } from "~/components/ui/button";
 import { TextField } from "~/components/ui/textfield";
 import { useTodo } from "./todo-store";
 
 const formSchema = object({
-  title: string([toTrimmed(), minLength(3)]),
+  title: string(),
 });
 
 type FormSchema = Output<typeof formSchema>;
@@ -20,6 +20,7 @@ export function TodoForm() {
     resolver: valibotResolver(formSchema),
   });
   const t = useTranslations("pages.tools.todo");
+
   const addTodo = useTodo((state) => state.addTodo);
   const handleAddTodo = form.handleSubmit((data) => {
     addTodo(data.title);

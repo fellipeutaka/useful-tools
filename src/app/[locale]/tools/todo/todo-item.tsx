@@ -13,7 +13,7 @@ type TodoItemProps = {
 };
 
 export function TodoItem({ todo }: TodoItemProps) {
-  const { toggleCompleteById, deleteById } = useTodo();
+  const { toggleCompleteById, deleteById, editTodo } = useTodo();
   const {
     attributes,
     listeners,
@@ -37,17 +37,27 @@ export function TodoItem({ todo }: TodoItemProps) {
       }}
     >
       <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-1">
           <Checkbox
             className="size-6"
             checked={!!todo.completedAt}
             onCheckedChange={() => toggleCompleteById(todo.id)}
             aria-label={t("complete")}
           />
-          <p>{todo.title}</p>
+          <input
+            value={todo.title}
+            className="appearance-none bg-transparent outline-none flex-1"
+            onChange={(e) => editTodo(todo.id, e.target.value)}
+          />
         </div>
 
-        <Button size="icon" variant="ghost" {...attributes} {...listeners}>
+        <Button
+          size="icon"
+          variant="ghost"
+          className="cursor-grab aria-pressed:cursor-grabbing"
+          {...attributes}
+          {...listeners}
+        >
           <Icons.GripVertical className="size-4" />
         </Button>
       </div>

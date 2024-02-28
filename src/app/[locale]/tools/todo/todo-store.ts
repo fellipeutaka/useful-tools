@@ -13,6 +13,7 @@ export type Todo = {
 type TodoStore = {
   todos: Todo[];
   addTodo: (title: string) => void;
+  editTodo: (id: string, title: string) => void;
   deleteById: (id: string) => void;
   toggleCompleteById: (id: string) => void;
   orderTodo: (over: Over, active: Active) => void;
@@ -33,6 +34,13 @@ export const useTodo = create<TodoStore>()(
               completedAt: null,
             },
           ],
+        }));
+      },
+      editTodo(id, title) {
+        set((state) => ({
+          todos: state.todos.map((todo) =>
+            todo.id !== id ? todo : { ...todo, title },
+          ),
         }));
       },
       deleteById(id) {

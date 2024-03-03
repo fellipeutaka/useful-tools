@@ -2,15 +2,35 @@
 
 import { useTranslations } from "next-intl";
 import { QRCodeCanvas } from "qrcode.react";
+import { useState } from "react";
 import { Icons } from "~/components/icons";
 
 import { Button } from "~/components/ui/button";
 import { TextField } from "~/components/ui/textfield";
-import { useURLState } from "~/hooks/use-url-state";
 
-export function QRCode() {
-  const [value, setValue] = useURLState("value");
+type QRCodeProps = {
+  initialValue: string;
+};
+
+export function QRCode({ initialValue }: QRCodeProps) {
   const t = useTranslations("pages.tools.qr-code");
+  const [value, setValue] = useState(initialValue);
+
+  function handleValueChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setValue(value);
+
+    const newSearchParams = new URLSearchParams(window.location.search);
+    if (!value.trim()) {
+      newSearchParams.delete("value");
+    } else {
+      newSearchParams.set("value", value);
+    }
+
+    const search = newSearchParams.toString();
+    const newUrl = `${window.location.pathname}${search ? `?${search}` : ""}`;
+    window.history.replaceState({ path: newUrl }, "", newUrl);
+  }
 
   function handleDownload() {
     const qrCode = document.querySelector("canvas");
@@ -29,8 +49,9 @@ export function QRCode() {
         <TextField>
           <TextField.Input
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={handleValueChange}
             placeholder={t("placeholder")}
+            maxLength={256}
           />
         </TextField>
         <p className="mt-1 text-xs text-muted-foreground">{t("hint")}</p>
@@ -44,7 +65,7 @@ export function QRCode() {
         <Icons.Download className="size-4 mr-2" />
         <span>{t("actions.download")}</span>
       </Button>
-      <div className="flex flex-col items-center gap-4 sm:flex-row">
+      <div className="flex flex-col items-center gap-4 sm:flex-row justify-center">
         <Button
           className="rounded-full bg-green-700 text-green-50 hover:bg-green-700/90"
           asChild

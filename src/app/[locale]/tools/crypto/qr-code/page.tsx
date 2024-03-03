@@ -18,7 +18,14 @@ export const generateMetadata: GenerateMetadata = async () => {
   };
 };
 
-export default function Page({ params }: PageParams) {
+export default function Page({
+  params,
+  searchParams,
+}: PageParams & {
+  searchParams: {
+    value?: string;
+  };
+}) {
   unstable_setRequestLocale(params.locale);
   const t = useTranslations("pages.tools.qr-code");
 
@@ -26,7 +33,7 @@ export default function Page({ params }: PageParams) {
     <main className="container">
       <Heading>{t("title")}</Heading>
       <Suspense>
-        <QRCode />
+        <QRCode initialValue={searchParams.value?.slice(0, 256) ?? ""} />
       </Suspense>
     </main>
   );

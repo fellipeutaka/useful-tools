@@ -2,7 +2,15 @@
 
 import { TodoItem } from "./todo-item";
 
-import { DndContext, type DragEndEvent, closestCenter } from "@dnd-kit/core";
+import {
+  DndContext,
+  type DragEndEvent,
+  MouseSensor,
+  TouchSensor,
+  closestCenter,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -12,6 +20,7 @@ import { useTodo } from "./todo-store";
 export function TodoList() {
   const todos = useTodo((state) => state.todos);
   const orderTodo = useTodo((state) => state.orderTodo);
+  const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 
   function onDragEnd(event: DragEndEvent) {
     const { active, over } = event;
@@ -24,7 +33,11 @@ export function TodoList() {
   }
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      onDragEnd={onDragEnd}
+    >
       <SortableContext items={todos} strategy={verticalListSortingStrategy}>
         <ul className="mt-6 space-y-3">
           {todos.map((todo) => (

@@ -54,18 +54,18 @@ export function QRCode({ initialValue }: QRCodeProps) {
             maxLength={256}
           />
         </TextField>
-        <p className="mt-1 text-xs text-muted-foreground">{t("hint")}</p>
+        <p className="mt-1 text-muted-foreground text-xs">{t("hint")}</p>
       </div>
       <QRCodeCanvas size={256} className="mx-auto mt-4" value={value} />
       <Button
-        className="mx-auto flex my-6"
+        className="mx-auto my-6 flex"
         variant="outline"
         onClick={handleDownload}
       >
-        <Icons.Download className="size-4 mr-2" />
+        <Icons.Download className="mr-2 size-4" />
         <span>{t("actions.download")}</span>
       </Button>
-      <div className="flex flex-col items-center gap-4 sm:flex-row justify-center">
+      <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
         <Button
           className="rounded-full bg-green-700 text-green-50 hover:bg-green-700/90"
           asChild
@@ -75,7 +75,7 @@ export function QRCode({ initialValue }: QRCodeProps) {
             rel="noreferrer"
             target="_blank"
           >
-            <Icons.WhatsApp className="size-4 mr-2" />
+            <Icons.WhatsApp className="mr-2 size-4" />
             <span>{t("actions.share.whatsapp")}</span>
           </a>
         </Button>
@@ -88,7 +88,7 @@ export function QRCode({ initialValue }: QRCodeProps) {
             rel="noreferrer"
             target="_blank"
           >
-            <Icons.Twitter className="size-4 mr-2" />
+            <Icons.Twitter className="mr-2 size-4" />
             <span>{t("actions.share.twitter")}</span>
           </a>
         </Button>

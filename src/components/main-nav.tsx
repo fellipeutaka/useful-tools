@@ -51,7 +51,7 @@ export function MainNav() {
         </Link>
         <Link
           href={siteConfig.links.github}
-          className="hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
+          className="hidden text-foreground/60 transition-colors lg:block hover:text-foreground/80"
         >
           GitHub
         </Link>

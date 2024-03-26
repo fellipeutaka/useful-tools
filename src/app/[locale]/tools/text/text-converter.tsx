@@ -181,13 +181,13 @@ export function TextConverter() {
             placeholder={t("pages.tools.text-converter.placeholder.output")}
           />
           <CopyButton
-            className="absolute right-2 top-2"
+            className="absolute top-2 right-2"
             valueToCopy={textareaResultRef.current?.value ?? ""}
           />
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
+      <div className="mt-6 grid gap-4 md:grid-cols-4 sm:grid-cols-2">
         <Button variant="outline" onClick={handleConvertToUppercase}>
           {t("pages.tools.text-converter.actions.uppercase")}
         </Button>

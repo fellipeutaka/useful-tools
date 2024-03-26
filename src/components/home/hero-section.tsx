@@ -9,8 +9,8 @@ export function HeroSection() {
   const t = useTranslations("pages.home");
 
   return (
-    <section className="py-10 text-center md:py-12 lg:py-28 xl:py-36">
-      <Heading className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
+    <section className="py-10 text-center lg:py-28 md:py-12 xl:py-36">
+      <Heading className="text-3xl lg:text-7xl md:text-6xl sm:text-5xl">
         {t.rich("title", {
           tools: (chunks) => (
             <span className="bg-gradient-to-r from-primary to-pink-600 bg-clip-text text-transparent">
@@ -23,7 +23,7 @@ export function HeroSection() {
       <Heading
         as="h2"
         variant="h2"
-        className="mx-auto mt-8 max-w-xl text-lg font-semibold tracking-tight text-muted-foreground sm:text-xl"
+        className="mx-auto mt-8 max-w-xl font-semibold text-lg text-muted-foreground tracking-tight sm:text-xl"
       >
         {t("subtitle")}
       </Heading>
@@ -34,7 +34,7 @@ export function HeroSection() {
         </Button>
         <Button size="lg" variant="outline" asChild>
           <a href={siteConfig.links.github} target="_blank" rel="noreferrer">
-            <Icons.GitHub className="size-4 mr-2" />
+            <Icons.GitHub className="mr-2 size-4" />
             <span>GitHub</span>
           </a>
         </Button>

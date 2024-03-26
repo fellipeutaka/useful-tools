@@ -8,19 +8,19 @@ export function FeatureSection() {
   return (
     <section
       id="features"
-      className="space-y-6 py-8 text-center md:py-12 lg:py-24"
+      className="space-y-6 py-8 text-center lg:py-24 md:py-12"
     >
       <Heading
         as="h2"
         variant="h2"
-        className="text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+        className="text-3xl leading-[1.1] md:text-6xl sm:text-3xl"
       >
         {t("features.title")}
       </Heading>
-      <p className="mx-auto max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+      <p className="mx-auto max-w-[85%] text-muted-foreground leading-normal sm:text-lg sm:leading-7">
         {t("features.subtitle")}
       </p>
-      <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
+      <div className="mx-auto grid justify-center gap-4 md:max-w-[64rem] md:grid-cols-3 sm:grid-cols-2">
         <FeatureCard
           title={t("features.cryptography.title")}
           description={t("features.cryptography.description")}
@@ -69,7 +69,7 @@ function FeatureCard({ title, description, icon: Icon }: FeatureCardProps) {
         <Icon className="size-12" />
         <div className="space-y-2">
           <h3 className="font-bold">{title}</h3>
-          <p className="text-sm text-muted-foreground">{description}</p>
+          <p className="text-muted-foreground text-sm">{description}</p>
         </div>
       </div>
     </div>

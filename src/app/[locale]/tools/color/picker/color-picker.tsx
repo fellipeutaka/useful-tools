@@ -21,7 +21,7 @@ export function ColorPicker() {
   });
 
   return (
-    <section className="space-y-4 mt-12">
+    <section className="mt-12 space-y-4">
       <HsvaColorPicker className="mx-auto" color={color} onChange={setColor} />
       <TextField>
         <TextField.Input value={hsvaToHexString(color)} readOnly />

@@ -12,7 +12,7 @@ export function ToolCard({ title, description, href, releasedAt }: Tool) {
           <p className="font-semibold">Coming Soon!</p>
         </div>
         <h3 className="mb-2 font-bold">{title}</h3>
-        <p className="text-sm text-muted-foreground">{description}</p>
+        <p className="text-muted-foreground text-sm">{description}</p>
       </div>
     );
   }
@@ -23,7 +23,7 @@ export function ToolCard({ title, description, href, releasedAt }: Tool) {
       href={href}
     >
       <h3 className="font-bold">{title}</h3>
-      <p className="text-sm text-muted-foreground">{description}</p>
+      <p className="text-muted-foreground text-sm">{description}</p>
     </Link>
   );
 }

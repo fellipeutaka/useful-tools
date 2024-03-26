@@ -42,8 +42,6 @@ export function CaesarCipher() {
   function handleKeyChange(e: React.ChangeEvent<HTMLInputElement>) {
     const key = e.target.value;
 
-    console.log(key);
-
     if (/[^0-9]/.test(key) || Number(key) > 25 || Number(key) < 0) {
       return toast.warning(t("components.toast.warning"), {
         description: t("pages.tools.caesar-cipher.toast.invalid-key"),

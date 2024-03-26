@@ -140,7 +140,7 @@ export function CurrencyConverter({ data }: CurrencyConverterProps) {
           to: () => (
             <p
               suppressHydrationWarning
-              className="text-xl font-semibold text-foreground"
+              className="font-semibold text-foreground text-xl"
             >
               {formatCurrency(toState.value, toState.currency)}
             </p>

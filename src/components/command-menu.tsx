@@ -35,14 +35,14 @@ export function CommandMenu() {
     <>
       <Button
         variant="outline"
-        className="h-9 w-full justify-between text-sm text-muted-foreground sm:pr-4 md:w-40 lg:w-64"
+        className="h-9 w-full justify-between text-muted-foreground text-sm lg:w-64 md:w-40 sm:pr-4"
         onClick={() => setIsOpen(true)}
       >
         <div className="flex items-center gap-2">
           <Icons.Search className="size-4" />
           <span>{t("components.navbar.search")}</span>
         </div>
-        <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium sm:flex">
+        <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-medium font-mono text-[10px] sm:flex">
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>

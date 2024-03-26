@@ -67,7 +67,7 @@ export function CssMinifier() {
           value={result}
           options={{ readOnly: true }}
         />
-        <CopyButton className="absolute right-2 top-2" valueToCopy={result} />
+        <CopyButton className="absolute top-2 right-2" valueToCopy={result} />
       </div>
 
       <Button

@@ -1,11 +1,11 @@
 "use client";
 
+import { cn } from "mizuhara/utils";
 import { useTranslations } from "next-intl";
 import { Button, type ButtonProps } from "~/components/ui/button";
 import { Tooltip } from "~/components/ui/tooltip";
 import { useClipboard } from "~/hooks/use-clipboard";
 import { Icons } from "./icons";
-import { cn } from "mizuhara/utils";
 
 type CopyButtonProps = ButtonProps & {
   valueToCopy: string;
@@ -37,7 +37,7 @@ export function CopyButton({
             {...props}
           >
             {copied ? (
-              <Icons.Check className="size-3 animate-in fade-in" />
+              <Icons.Check className="fade-in size-3 animate-in" />
             ) : (
               <Icons.Copy className="size-3" />
             )}

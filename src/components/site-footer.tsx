@@ -7,12 +7,12 @@ export function SiteFooter() {
   const t = useTranslations("components");
 
   return (
-    <footer className="container flex flex-col items-center justify-between gap-4 py-6 animate-in fade-in duration-medium md:h-24 md:flex-row">
-      <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+    <footer className="fade-in container flex animate-in flex-col items-center justify-between gap-4 py-6 duration-medium md:h-24 md:flex-row">
+      <p className="text-center text-muted-foreground text-sm leading-loose md:text-left">
         {t.rich("footer", {
           author: (chunks) => (
             <a
-              className="text-sm text-primary inline-block after:content-[''] after:w-0 after:h-[1px] after:block after:bg-current after:transition-all hover:after:w-full"
+              className="inline-block text-primary text-sm after:block after:h-[1px] after:w-0 hover:after:w-full after:bg-current after:transition-all after:content-['']"
               href="https://github.com/fellipeutaka"
               target="_blank"
               rel="noreferrer"
@@ -22,7 +22,7 @@ export function SiteFooter() {
           ),
           github: (chunks) => (
             <a
-              className="text-sm text-primary inline-block after:content-[''] after:w-0 after:h-[1px] after:block after:bg-current after:transition-all hover:after:w-full"
+              className="inline-block text-primary text-sm after:block after:h-[1px] after:w-0 hover:after:w-full after:bg-current after:transition-all after:content-['']"
               href={siteConfig.links.github}
               target="_blank"
               rel="noreferrer"

@@ -13,7 +13,7 @@ export default function Page({ params }: PageParams) {
   unstable_setRequestLocale(params.locale);
 
   return (
-    <main className="container grid items-center animate-in fade-in slide-in-from-bottom-8 animate-duration-1000">
+    <main className="fade-in slide-in-from-bottom-8 container grid animate-duration-1000 animate-in items-center">
       <HeroSection />
       <FeatureSection />
       <StarsSection />

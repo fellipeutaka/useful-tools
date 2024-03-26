@@ -28,8 +28,8 @@ export function RandomColor() {
   useHotkeys([["Space", handleGenerateNewColor]]);
 
   const colorInHex = hsvaToHexString(color);
-  const colorInRGB = hsvaToRgbString(color);
-  const colorInHSL = hsvaToHslaString(color);
+  const _colorInRGB = hsvaToRgbString(color);
+  const _colorInHSL = hsvaToHslaString(color);
 
   return (
     <section className="grid place-content-center">

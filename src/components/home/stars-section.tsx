@@ -11,16 +11,16 @@ export function StarsSection() {
   return (
     <section
       id="open-source"
-      className="space-y-4 py-8 text-center md:py-12 lg:py-24"
+      className="space-y-4 py-8 text-center lg:py-24 md:py-12"
     >
       <Heading
         as="h2"
         variant="h2"
-        className="text-3xl leading-[1.1] sm:text-3xl md:text-6xl"
+        className="text-3xl leading-[1.1] md:text-6xl sm:text-3xl"
       >
         {t("open-source.title")}
       </Heading>
-      <p className="mx-auto max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+      <p className="mx-auto max-w-[85%] text-muted-foreground leading-normal sm:text-lg sm:leading-7">
         {t("open-source.subtitle.first")}
         <br />
         {t("open-source.subtitle.second")}{" "}
@@ -45,7 +45,7 @@ export function StarsSection() {
         </div>
 
         <div className="flex items-center">
-          <div className="size-4 border-y-8 border-r-8 border-muted border-y-transparent" />
+          <div className="size-4 border-muted border-y-8 border-y-transparent border-r-8" />
           <div className="flex h-10 items-center rounded-md border border-muted bg-muted px-4 font-medium">
             <Suspense fallback={t("open-source.stars-error")}>
               <StarsAmount />

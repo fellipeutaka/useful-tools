@@ -49,7 +49,7 @@ export default async function Page({ params }: PageParams) {
       <Text
         as="a"
         variant="link"
-        className="text-muted-foreground max-w-max"
+        className="max-w-max text-muted-foreground"
         href="https://exchangeratesapi.io"
       >
         {t("pages.tools.currency.source")}

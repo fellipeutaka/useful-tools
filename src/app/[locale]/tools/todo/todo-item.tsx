@@ -28,7 +28,7 @@ export function TodoItem({ todo }: TodoItemProps) {
     <li
       className={cn(
         "rounded-md border border-border p-3",
-        isDragging && "ring-2 ring-ring opacity-30",
+        isDragging && "opacity-30 ring-2 ring-ring",
       )}
       ref={setNodeRef}
       style={{
@@ -36,8 +36,8 @@ export function TodoItem({ todo }: TodoItemProps) {
         transition,
       }}
     >
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-3 flex-1">
+      <div className="mb-4 flex items-center justify-between">
+        <div className="flex flex-1 items-center gap-3">
           <Checkbox
             className="size-6"
             checked={!!todo.completedAt}
@@ -46,7 +46,7 @@ export function TodoItem({ todo }: TodoItemProps) {
           />
           <input
             value={todo.title}
-            className="appearance-none bg-transparent outline-none flex-1"
+            className="flex-1 appearance-none bg-transparent outline-none"
             onChange={(e) => editTodo(todo.id, e.target.value)}
           />
         </div>
@@ -63,7 +63,7 @@ export function TodoItem({ todo }: TodoItemProps) {
       </div>
 
       <div className="flex items-center justify-between">
-        <p className="flex items-center gap-2 text-sm text-muted-foreground">
+        <p className="flex items-center gap-2 text-muted-foreground text-sm">
           <Icons.Clock className="size-4" />
           <time dateTime={new Date(todo.createdAt).toISOString()}>
             {new Date(todo.createdAt).toLocaleDateString(undefined, {
@@ -75,7 +75,7 @@ export function TodoItem({ todo }: TodoItemProps) {
         <AlertDialog>
           <AlertDialog.Trigger asChild>
             <Button variant="destructive" size="sm">
-              <Icons.Trash className="size-4 mr-2" />
+              <Icons.Trash className="mr-2 size-4" />
               <span>{t("delete.trigger")}</span>
             </Button>
           </AlertDialog.Trigger>

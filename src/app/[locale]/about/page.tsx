@@ -24,8 +24,8 @@ export default function Page({ params }: PageParams) {
   const t = useTranslations("pages.about");
 
   return (
-    <div className="grid content-center border-b border-border">
-      <main className="container py-10 animate-in fade-in slide-in-from-bottom-8 animate-duration-1000">
+    <div className="grid content-center border-border border-b">
+      <main className="fade-in slide-in-from-bottom-8 container animate-duration-1000 animate-in py-10">
         <div className="space-y-2">
           <Heading className="lg:text-4xl">{t("title")}</Heading>
           <p className="text-lg text-muted-foreground">
@@ -46,7 +46,7 @@ export default function Page({ params }: PageParams) {
         <Heading
           as="h2"
           variant="h2"
-          className="mt-8 border-b border-border pb-2"
+          className="mt-8 border-border border-b pb-2"
         >
           {t("credits.title")}
         </Heading>
@@ -100,7 +100,7 @@ export default function Page({ params }: PageParams) {
         <Heading
           as="h2"
           variant="h2"
-          className="mt-8 border-b border-border pb-2"
+          className="mt-8 border-border border-b pb-2"
         >
           {t("author")}
         </Heading>

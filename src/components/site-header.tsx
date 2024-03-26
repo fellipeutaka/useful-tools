@@ -14,8 +14,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "w-full border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40",
-        "animate-in fade-in slide-in-from-top-full animate-duration-700",
+        "sticky top-0 z-40 w-full border-border border-b bg-background/95 backdrop-blur-sm",
+        "fade-in slide-in-from-top-full animate-duration-700 animate-in",
       )}
     >
       <nav className="container sticky top-0 z-40 flex h-full items-center justify-between">

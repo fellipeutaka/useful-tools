@@ -103,7 +103,7 @@ export function PasswordGenerator() {
         </div>
       </div>
       <Button onClick={handleGeneratePassword}>
-        <Icons.RefreshCw className="size-4 mr-2" />
+        <Icons.RefreshCw className="mr-2 size-4" />
         <span>{t("actions.generate")}</span>
       </Button>
     </section>

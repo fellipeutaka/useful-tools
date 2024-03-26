@@ -88,8 +88,8 @@ export const ComboboxList = forwardRef<HTMLDivElement, ComboboxListProps>(
               className={cn(
                 "mr-2 size-4",
                 value.toUpperCase() === item.toUpperCase()
-                  ? "animate-in fade-in"
-                  : "opacity-0 animate-out fade-out",
+                  ? "fade-in animate-in"
+                  : "fade-out animate-out opacity-0",
               )}
             />
             {item}

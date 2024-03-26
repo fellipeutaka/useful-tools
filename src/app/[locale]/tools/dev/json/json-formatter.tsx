@@ -67,7 +67,7 @@ export function JSONFormatter() {
             value={result}
             options={{ readOnly: true }}
           />
-          <CopyButton className="absolute right-4 top-4" valueToCopy={result} />
+          <CopyButton className="absolute top-4 right-4" valueToCopy={result} />
         </div>
       </div>
       <div className="flex items-center gap-4">

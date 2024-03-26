@@ -17,7 +17,7 @@ export function SettingsDropdown() {
     <DropdownMenu>
       <DropdownMenu.Trigger asChild>
         <Button className="group" variant="ghost" size="icon">
-          <Icons.Config className="size-4 group-hover:rotate-90 group-data-[state='open']:rotate-90 transition-transform" />
+          <Icons.Config className="size-4 transition-transform group-data-[state='open']:rotate-90 group-hover:rotate-90" />
           <span className="sr-only">{t("settings.config")}</span>
         </Button>
       </DropdownMenu.Trigger>

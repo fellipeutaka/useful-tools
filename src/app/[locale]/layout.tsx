@@ -82,7 +82,7 @@ export default function RootLayout({
           fonts.sans.variable,
           fonts.mono.variable,
           "grid min-h-screen grid-rows-[4rem,1fr,min-content] [scrollbar-gutter:stable]",
-          "bg-background text-foreground antialiased font-sans",
+          "bg-background font-sans text-foreground antialiased",
         )}
       >
         <NextIntlClientProvider messages={messages}>
